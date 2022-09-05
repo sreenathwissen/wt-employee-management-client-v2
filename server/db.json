@@ -1,0 +1,40 @@
+{
+  "users": [
+    {
+      "name": "Prashant",
+      "age": "22",
+      "email": "asc@zyx",
+      "id": 1
+    },
+    {
+      "name": "Neeraj",
+      "age": "22",
+      "email": "asc@zyx",
+      "id": 2
+    },
+    {
+      "name": "Jadli",
+      "age": "22",
+      "email": "asc@zyx",
+      "id": 3
+    },
+    {
+      "name": "Rohan",
+      "age": "22",
+      "email": "asc@zyx",
+      "id": 4
+    },
+    {
+      "name": "Praveen",
+      "age": "22",
+      "email": "asc@zyx",
+      "id": 5
+    },
+    {
+      "name": "Shubham Rauthan s",
+      "age": "22",
+      "email": "asc@zyx",
+      "id": 6
+    }
+  ]
+}
