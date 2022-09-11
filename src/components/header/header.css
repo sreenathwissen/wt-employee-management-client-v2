@@ -1,0 +1,54 @@
+/* MATERIAL UI CSS OVERRIDE */
+.MuiDrawer-paper {
+  margin-top: 51px;
+}
+
+.css-h4y409-MuiList-root {
+  padding-top: 5px !important;
+  padding-bottom: 0px !important;
+}
+
+/* HEADER CSS  */
+.header-logo-intial {
+  display: none;
+  margin: 5px 0px 0px 0px;
+  padding: 0px;
+}
+
+.header-logo-complete {
+  display: inline-block;
+}
+
+.header-logo-complete img {
+  height: 40px;
+  width: 100%;
+}
+
+.app-bar {
+  margin: 0;
+  width: 100%;
+  background-color: white;
+  box-shadow: 0px 2px 4px -1px rgb(0 0 0 / 20%),
+    0px 4px 5px 0px rgb(0 0 0 / 14%), 0px 1px 10px 0px rgb(0 0 0 / 12%);
+}
+
+.sidebar-logo {
+  display: none;
+}
+
+/* MEDIA QUERIES */
+
+@media only screen and (max-width: 599px) {
+  .header-logo-intial {
+    display: inline-block;
+  }
+  .MuiDrawer-paper {
+    margin-top: 0px;
+  }
+  .sidebar-logo {
+    display: block;
+  }
+  .header-logo-complete {
+    display: none;
+  }
+}
