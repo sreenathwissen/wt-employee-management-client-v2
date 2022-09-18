@@ -20,7 +20,7 @@ import Avatar from "@mui/material/Avatar";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import "./header.css";
-
+import DataGrid from "../data-grid";
 const drawerWidth = 180;
 
 const Header = (props) => {
@@ -103,7 +103,7 @@ const Header = (props) => {
             >
               <MenuIcon style={{ color: "black" }} />
             </IconButton>
-            <div class="header-logo-intial">
+            <div className="header-logo-intial">
               <img
                 src="img/wissen-technology-logo-initial.png"
                 style={{ height: "5vh" }}
@@ -185,11 +185,12 @@ const Header = (props) => {
           component="main"
           sx={{
             flexGrow: 1,
-            p: 3,
+            p: 2,
             width: { sm: `calc(100% - ${drawerWidth}px)` },
           }}
         >
           <Toolbar />
+          <DataGrid />
           <Typography paragraph>Table will be displayed here!!</Typography>
         </Box>
       </Box>
