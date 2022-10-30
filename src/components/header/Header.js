@@ -21,6 +21,8 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import "./header.css";
 import DataGrid from "../data-grid";
+import ClientGrid from "../client-grid/ClientGrid";
+import ProjectGrid from "../project-grid";
 const drawerWidth = 180;
 
 const Header = (props) => {
@@ -191,7 +193,10 @@ const Header = (props) => {
         >
           <Toolbar />
           <DataGrid />
-          <Typography paragraph>Table will be displayed here!!</Typography>
+          <br></br>
+          <ClientGrid/>
+          <br></br>
+          <ProjectGrid/>
         </Box>
       </Box>
     </>

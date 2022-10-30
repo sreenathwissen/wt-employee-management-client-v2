@@ -1,0 +1,10 @@
+export default class Project{
+    constructor(PROJECT_ID, PROJECT_NAME, PROJECT_LOCATION, PROJECT_LEAD, PROJECT_TYPE, CLIENT_ID) {
+        this.PROJECT_ID = PROJECT_ID;
+        this.PROJECT_NAME = PROJECT_NAME;
+        this.PROJECT_LOCATION = PROJECT_LOCATION;
+        this.PROJECT_LEAD = PROJECT_LEAD;
+        this.PROJECT_TYPE = PROJECT_TYPE;
+        this.CLIENT_ID = CLIENT_ID;
+    };
+};
