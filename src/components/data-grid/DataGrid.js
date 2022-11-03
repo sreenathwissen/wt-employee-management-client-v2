@@ -102,7 +102,7 @@ const DataGrid = () => {
           color="success"
           onClick={handleClickOpen}
         >
-          <AddCircleOutlineIcon /> &nbsp; create
+          <AddCircleOutlineIcon /> &nbsp; create employee
         </Button>
       </Grid>
       <MaterialReactTable
