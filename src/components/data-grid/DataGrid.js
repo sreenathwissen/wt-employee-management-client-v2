@@ -17,7 +17,7 @@ const DataGrid = () => {
   };
   const [tableData, setTableData] = useState([]);
   const url = "http://localhost:4000/employees";
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
   const [formData, setFormData] = useState(initialValue);
   const onChange = (e) => {
     const { value, id } = e.target;
