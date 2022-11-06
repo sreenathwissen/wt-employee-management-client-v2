@@ -5,7 +5,8 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import { TextField } from "@mui/material";
-
+import StepperForm from "../stepper-form/StepperForm";
+import CloseIcon from "@mui/icons-material/Close";
 const DataForm = ({ open, handleClose, data, onChange, handleFormSubmit }) => {
   const { firstName, lastName, email } = data;
 
@@ -19,40 +20,18 @@ const DataForm = ({ open, handleClose, data, onChange, handleFormSubmit }) => {
       >
         <DialogTitle id="alert-dialog-title">
           {"Create New Employee"}
+          <span style={{ marginLeft: "310px" }}>
+            <CloseIcon
+              onClick={handleClose}
+              style={{ cursor: "pointer", color: "red" }}
+            />
+          </span>
         </DialogTitle>
         <DialogContent>
-          <form>
-            <TextField
-              id="firstName"
-              placeholder="Enter your first name"
-              fullWidth
-              variant="outlined"
-              margin="dense"
-              value={firstName}
-              onChange={(e) => onChange(e)}
-            />
-            <TextField
-              id="lastName"
-              placeholder="Enter your last name"
-              fullWidth
-              variant="outlined"
-              margin="dense"
-              value={lastName}
-              onChange={(e) => onChange(e)}
-            />
-            <TextField
-              id="email"
-              placeholder="Enter your email"
-              fullWidth
-              variant="outlined"
-              margin="dense"
-              value={email}
-              onChange={(e) => onChange(e)}
-            />
-          </form>
+          <StepperForm />
         </DialogContent>
         <DialogActions>
-          <Button color="secondary" onClick={handleClose} variant="outlined">
+          {/* <Button color="secondary" onClick={handleClose} variant="outlined">
             close
           </Button>
           <Button
@@ -61,7 +40,7 @@ const DataForm = ({ open, handleClose, data, onChange, handleFormSubmit }) => {
             variant="contained"
           >
             submit
-          </Button>
+          </Button> */}
         </DialogActions>
       </Dialog>
     </div>
