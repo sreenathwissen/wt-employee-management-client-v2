@@ -17,7 +17,7 @@ const DataGrid = () => {
   };
   const [tableData, setTableData] = useState([]);
   const url = "http://localhost:4000/employees";
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
   const [formData, setFormData] = useState(initialValue);
   const onChange = (e) => {
     const { value, id } = e.target;
@@ -57,7 +57,7 @@ const DataGrid = () => {
   }, []);
 
   const getUser = () => {
-    fetch(url)
+    fetch("/api/employee/employees")
       .then((resp) => resp.json())
       .then((resp) => setTableData(resp));
   };
@@ -69,11 +69,11 @@ const DataGrid = () => {
         header: "Emp Id",
       },
       {
-        accessorKey: "first_name", //access nested data with dot notation
+        accessorKey: "firstName", //access nested data with dot notation
         header: "First Name",
       },
       {
-        accessorKey: "last_name",
+        accessorKey: "lastName",
         header: "Last Name",
       },
       {
