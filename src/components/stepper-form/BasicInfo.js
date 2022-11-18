@@ -13,8 +13,6 @@ import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 const BasicInfo = () => {
   const [value, setValue] = React.useState(dayjs("2022-04-07"));
   const [value2, setValue2] = React.useState(dayjs("2022-04-07"));
-  const [value3, setValue3] = React.useState(dayjs("2022-04-07"));
-  const [value4, setValue4] = React.useState(dayjs("2022-04-07"));
 
   return (
     <>
@@ -138,29 +136,6 @@ const BasicInfo = () => {
       <Grid2 container spacing={2}>
         <Grid2 item xs={6}>
           <TextField
-            id="work-phone"
-            label="Work Phone"
-            variant="standard"
-            placeholder="Work Phone"
-            margin="normal"
-            fullWidth
-          />
-        </Grid2>
-        <Grid2 item xs={6}>
-          <TextField
-            id="manager"
-            label="Manager"
-            variant="standard"
-            placeholder="Manager"
-            margin="normal"
-            fullWidth
-          />
-        </Grid2>
-      </Grid2>
-
-      <Grid2 container spacing={2}>
-        <Grid2 item xs={6}>
-          <TextField
             id="primary-emergency-mobile-number"
             label="Emergency Mobile Number"
             variant="standard"
@@ -206,114 +181,6 @@ const BasicInfo = () => {
             label="Employee status"
             variant="standard"
             placeholder="Joining, Probation"
-            margin="normal"
-            fullWidth
-          />
-        </Grid2>
-      </Grid2>
-
-      <Grid2 container spacing={2}>
-        <Grid2 item xs={6} sx={{ mt: 2 }}>
-          <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <DatePicker
-              disableFuture
-              label="Date of Joining"
-              openTo="year"
-              views={["year", "month", "day"]}
-              value={value3}
-              fullWidth
-              onChange={(newValue) => {
-                setValue3(newValue);
-              }}
-              renderInput={(params) => (
-                <TextField {...params} variant="standard" />
-              )}
-            />
-          </LocalizationProvider>
-        </Grid2>
-        <Grid2 item xs={6}>
-          <TextField
-            id="experience"
-            label="Exp DOJ"
-            variant="standard"
-            placeholder="Exp DOJ"
-            margin="normal"
-            fullWidth
-          />
-        </Grid2>
-      </Grid2>
-
-      <Grid2 container spacing={2}>
-        <Grid2 item xs={6}>
-          <TextField
-            id="type"
-            label="Type"
-            variant="standard"
-            placeholder="Full Time, Consultant"
-            margin="normal"
-            fullWidth
-          />
-        </Grid2>
-        <Grid2 item xs={6} sx={{ mt: 2 }}>
-          <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <DatePicker
-              disableFuture
-              label="Exit Date"
-              openTo="year"
-              views={["year", "month", "day"]}
-              value={value4}
-              fullWidth
-              onChange={(newValue) => {
-                setValue4(newValue);
-              }}
-              renderInput={(params) => (
-                <TextField {...params} variant="standard" />
-              )}
-            />
-          </LocalizationProvider>
-        </Grid2>
-      </Grid2>
-
-      <Grid2 container spacing={2}>
-        <Grid2 item xs={6}>
-          <TextField
-            id="desg-id"
-            label="Desg Id"
-            variant="standard"
-            placeholder="Desgination Id"
-            margin="normal"
-            fullWidth
-          />
-        </Grid2>
-        <Grid2 item xs={6}>
-          <TextField
-            id="dep-id"
-            label="Department Id"
-            variant="standard"
-            placeholder="Department Id"
-            margin="normal"
-            fullWidth
-          />
-        </Grid2>
-      </Grid2>
-
-      <Grid2 container spacing={2}>
-        <Grid2 item xs={6}>
-          <TextField
-            id="role-id"
-            label="Role Id"
-            variant="standard"
-            placeholder="Role Id"
-            margin="normal"
-            fullWidth
-          />
-        </Grid2>
-        <Grid2 item xs={6}>
-          <TextField
-            id="joining-location"
-            label="Joining Location"
-            variant="standard"
-            placeholder="Joining Location"
             margin="normal"
             fullWidth
           />

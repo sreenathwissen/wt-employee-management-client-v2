@@ -1,65 +1,6 @@
 {
   "employees": [
     {
-      "id": 1,
-      "emp_id": "WT2112",
-      "first_name": "Suraj",
-      "last_name": "Jadli",
-      "pan": "DFJ343KFDF",
-      "email": "suraj.jadli@wissen.com",
-      "gender": "male",
-      "dob": "26/03/2001",
-      "blood_grop": "A+",
-      "primary_mobile_no": 9878675647,
-      "secondary_mobile_no": 9878675647,
-      "primary_emergency_mobile_no": 9878675647,
-      "secondary_emergency_mobile_no": 9878675647,
-      "work_phone": 9878675647,
-      "martial_status_date": "23/02/2020",
-      "doj": "13/06/2022",
-      "exp_doj": "13/06/2022",
-      "manager": "Sreenath",
-      "desg_id": "dfg",
-      "dep_id": 1,
-      "role_id": "ddf",
-      "exit_date": "24/03/2023",
-      "type": "fdfd",
-      "joining_location": "bengaluru",
-      "status": "true",
-      "address": {
-        "addr_id": 1,
-        "emp_id": "",
-        "flat_no": "",
-        "street": "",
-        "pincode": 344542,
-        "city": "bellandur",
-        "country": "India",
-        "state": "Karnataka",
-        "address_type": ""
-      },
-      "employee_skill": {
-        "emp_id": "",
-        "skill_id": "",
-        "level": ""
-      },
-      "employee_account": {
-        "emp_id": "",
-        "pan": "",
-        "uan": "",
-        "pf_no": ""
-      }
-    },
-    {
-      "emp_id": 2,
-      "first_name": "Amara",
-      "last_name": "Patrono",
-      "email": "apatrono1@latimes.com",
-      "gender": "Female",
-      "manager": "Amara Patrono",
-      "doj": "5/7/2022",
-      "id": 2
-    },
-    {
       "emp_id": 3,
       "first_name": "Zia",
       "last_name": "Woollard",
