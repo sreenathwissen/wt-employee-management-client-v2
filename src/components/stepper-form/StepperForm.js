@@ -9,6 +9,7 @@ import EmployeeAddress from "./EmployeeAddress";
 import EmployeeAccount from "./EmployeeAccount";
 import EmployeeSkill from "./EmployeeSkill";
 import ArrowCircleRightRoundedIcon from "@mui/icons-material/ArrowCircleRightRounded";
+import EmployeeInfo from "./EmployeeInfo";
 
 function getSteps() {
   return [
@@ -25,11 +26,14 @@ function getStepContent(step) {
       return <BasicInfo />;
 
     case 1:
-      return <EmployeeAddress />;
+      return <EmployeeInfo />;
 
     case 2:
-      return <EmployeeAccount />;
+      return <EmployeeAddress />;
+
     case 3:
+      return <EmployeeAccount />;
+    case 4:
       return <EmployeeSkill />;
     default:
       return "unknown step";

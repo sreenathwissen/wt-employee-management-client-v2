@@ -50,16 +50,6 @@
       }
     },
     {
-      "emp_id": 2,
-      "first_name": "Amara",
-      "last_name": "Patrono",
-      "email": "apatrono1@latimes.com",
-      "gender": "Female",
-      "manager": "Amara Patrono",
-      "doj": "5/7/2022",
-      "id": 2
-    },
-    {
       "emp_id": 3,
       "first_name": "Zia",
       "last_name": "Woollard",
