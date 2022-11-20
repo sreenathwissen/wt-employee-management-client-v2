@@ -94,9 +94,9 @@ const DataGrid = () => {
 
   return (
     <>
-      <Grid align="right">
+      <Grid sx={{ m: 0, p: 2 }} align="right">
         <Button
-          sx={{ m: 2 }}
+          // sx={{ m: 2 }}
           className="btn-add"
           variant="contained"
           color="success"
@@ -115,25 +115,28 @@ const DataGrid = () => {
           },
         }}
         columns={columns}
+        initialState={{ density: "compact" }}
+        // enableFilters={false}
+        enableColumnFilters={false}
         data={tableData}
         enableRowActions
         enableRowVirtualization
         renderRowActions={({ row, table }) => (
           <Box sx={{ display: "flex", gap: "1rem" }}>
             <Tooltip arrow placement="left" title="Edit">
-              <IconButton>
+              <IconButton sx={{ ml: 3 }}>
                 {/* onClick={() => table.setEditingRow(row)} */}
                 <Edit />
               </IconButton>
             </Tooltip>
-            <Tooltip arrow placement="right" title="Delete">
+            {/* <Tooltip arrow placement="right" title="Delete">
               <IconButton
                 color="error"
                 onClick={() => handleDelete(row.original.id)}
               >
                 <Delete />
               </IconButton>
-            </Tooltip>
+            </Tooltip> */}
           </Box>
         )}
       />

@@ -105,7 +105,7 @@ const StepperForm = () => {
       ) : (
         <>
           <form>{getStepContent(activeStep)}</form>
-          <div style={{ display: "inline-block", marginLeft: "380px" }}>
+          <div style={{ display: "inline-block", marginLeft: "400px" }}>
             <Button disabled={activeStep === 0} onClick={handleBack}>
               back
             </Button>
