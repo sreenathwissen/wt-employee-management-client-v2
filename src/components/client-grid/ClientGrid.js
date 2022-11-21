@@ -11,13 +11,13 @@ const ClientGrid = () => {
   const [clientForm, setClientForm] = useState(false);
 
   const handleClickOpen = (type) => {
-    if(type === 'client') {
+    if (type === "client") {
       setClientForm(true);
     }
   };
 
   const handleClose = (type) => {
-    if(type === 'client') {
+    if (type === "client") {
       setClientForm(false);
     }
   };
@@ -52,19 +52,19 @@ const ClientGrid = () => {
 
   return (
     <>
-      <Grid align="right">
+      <Grid sx={{ m: 0, p: 2 }} align="right">
         <Button
-          sx={{ m: 2 }}
+          // sx={{ m: 2 }}
           className="btn-add"
           variant="contained"
           color="success"
-          onClick={() => handleClickOpen('client')}
+          onClick={() => handleClickOpen("client")}
         >
           <AddCircleOutlineIcon /> &nbsp; create client
         </Button>
       </Grid>
       <MaterialReactTable columns={columns} data={tableData} />
-      <ClientForm open={clientForm} handleClose={() => handleClose('client')} />
+      <ClientForm open={clientForm} handleClose={() => handleClose("client")} />
     </>
   );
 };

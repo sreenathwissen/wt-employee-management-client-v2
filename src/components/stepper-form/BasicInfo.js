@@ -24,6 +24,7 @@ const BasicInfo = () => {
             variant="standard"
             placeholder="First Name"
             margin="normal"
+            required
             fullWidth
           />
         </Grid2>

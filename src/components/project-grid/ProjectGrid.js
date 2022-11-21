@@ -5,7 +5,7 @@ import Grid from "@mui/material/Grid";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import ProjectForm from "../project-form/ProjectForm";
 import ProjectLinkageForm from "../employee-project-linkage-form";
-
+import AssignmentOutlinedIcon from "@mui/icons-material/AssignmentOutlined";
 const ProjectGrid = () => {
   const [tableData, setTableData] = useState([]);
   const url = "http://localhost:4000/projects";
@@ -13,19 +13,17 @@ const ProjectGrid = () => {
   const [projectLinkajeForm, setProjectLinkajeForm] = useState(false);
 
   const handleClickOpen = (type) => {
-    if(type === 'project') {
+    if (type === "project") {
       setProjectForm(true);
-    }
-    else if(type === 'projectlinkage') {
+    } else if (type === "projectlinkage") {
       setProjectLinkajeForm(true);
     }
   };
 
   const handleClose = (type) => {
-    if(type === 'project') {
+    if (type === "project") {
       setProjectForm(false);
-    }
-    else if(type === 'projectlinkage') {
+    } else if (type === "projectlinkage") {
       setProjectLinkajeForm(false);
     }
   };
@@ -72,27 +70,35 @@ const ProjectGrid = () => {
 
   return (
     <>
-      <Grid align="right">
+      <Grid sx={{ m: 0, p: 2 }} align="right">
+        <Button
+          className="btn-add"
+          variant="contained"
+          color="success"
+          onClick={() => handleClickOpen("project")}
+        >
+          <AddCircleOutlineIcon /> &nbsp; create new project
+        </Button>
         <Button
           sx={{ m: 2 }}
           className="btn-add"
           variant="contained"
           color="success"
-          onClick={() => handleClickOpen('project')}
+          onClick={() => handleClickOpen("projectlinkage")}
         >
-          <AddCircleOutlineIcon /> &nbsp; create new project
-        </Button><Button
-          sx={{ m: 2 }}
-          className="btn-add"
-          variant="contained"
-          color="success"
-          onClick={() => handleClickOpen('projectlinkage')}
-        > &nbsp; Asign Project
+          <AssignmentOutlinedIcon />
+          &nbsp; Asign Project
         </Button>
       </Grid>
       <MaterialReactTable columns={columns} data={tableData} />
-      <ProjectForm open={projectForm} handleClose={() => handleClose('project')} />
-      <ProjectLinkageForm open={projectLinkajeForm} handleClose={() => handleClose('projectlinkage')} />
+      <ProjectForm
+        open={projectForm}
+        handleClose={() => handleClose("project")}
+      />
+      <ProjectLinkageForm
+        open={projectLinkajeForm}
+        handleClose={() => handleClose("projectlinkage")}
+      />
     </>
   );
 };
