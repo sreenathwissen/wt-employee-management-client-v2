@@ -20,6 +20,7 @@ const ClientGrid = () => {
     if (type === "client") {
       setClientForm(false);
     }
+    getUser();
   };
 
   useEffect(() => {
@@ -27,7 +28,7 @@ const ClientGrid = () => {
   }, []);
 
   const getUser = () => {
-    fetch(url)
+    fetch('/api/client/allClients')
       .then((resp) => resp.json())
       .then((resp) => setTableData(resp));
   };
@@ -35,15 +36,15 @@ const ClientGrid = () => {
   const columns = useMemo(
     () => [
       {
-        accessorKey: "cid", //access nested data with dot notation
+        accessorKey: "clientId", //access nested data with dot notation
         header: "Client ID",
       },
       {
-        accessorKey: "cname",
+        accessorKey: "clientName",
         header: "Client Name",
       },
       {
-        accessorKey: "clocation", //normal accessorKey
+        accessorKey: "clientLocation", //normal accessorKey
         header: "Client Location",
       },
     ],
