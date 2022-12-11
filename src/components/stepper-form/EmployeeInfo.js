@@ -21,7 +21,6 @@ const EmployeeInfo = () => {
             id="desg-id"
             label="Desg Id"
             variant="standard"
-            placeholder="Desgination Id"
             margin="normal"
             fullWidth
           />
@@ -31,7 +30,6 @@ const EmployeeInfo = () => {
             id="dep-id"
             label="Department Id"
             variant="standard"
-            placeholder="Department Id"
             margin="normal"
             fullWidth
           />
@@ -44,7 +42,6 @@ const EmployeeInfo = () => {
             id="role-id"
             label="Role Id"
             variant="standard"
-            placeholder="Role Id"
             margin="normal"
             fullWidth
           />
@@ -54,7 +51,6 @@ const EmployeeInfo = () => {
             id="joining-location"
             label="Joining Location"
             variant="standard"
-            placeholder="Joining Location"
             margin="normal"
             fullWidth
           />
@@ -66,7 +62,6 @@ const EmployeeInfo = () => {
             id="work-phone"
             label="Work Phone"
             variant="standard"
-            placeholder="Work Phone"
             margin="normal"
             fullWidth
           />
@@ -76,7 +71,6 @@ const EmployeeInfo = () => {
             id="manager"
             label="Manager"
             variant="standard"
-            placeholder="Manager"
             margin="normal"
             fullWidth
           />
@@ -106,7 +100,6 @@ const EmployeeInfo = () => {
             id="experience"
             label="Exp DOJ"
             variant="standard"
-            placeholder="Exp DOJ"
             margin="normal"
             fullWidth
           />
