@@ -11,7 +11,6 @@ const EmployeeAddress = () => {
             id="addr-id"
             label="Address Id"
             variant="standard"
-            placeholder="Address Id"
             margin="normal"
             fullWidth
           />
@@ -19,7 +18,6 @@ const EmployeeAddress = () => {
             id="flat-no"
             label="Flat No"
             variant="standard"
-            placeholder="Flat No"
             margin="normal"
             fullWidth
           />
@@ -27,7 +25,6 @@ const EmployeeAddress = () => {
             id="state"
             label="State"
             variant="standard"
-            placeholder="State"
             margin="normal"
             fullWidth
           />
@@ -35,7 +32,6 @@ const EmployeeAddress = () => {
             id="street"
             label="Street"
             variant="standard"
-            placeholder="Street"
             margin="normal"
             fullWidth
           />
@@ -43,7 +39,6 @@ const EmployeeAddress = () => {
             id="address-type"
             label="Address Type"
             variant="standard"
-            placeholder="Address Type"
             margin="normal"
             fullWidth
           />
@@ -53,7 +48,6 @@ const EmployeeAddress = () => {
             id="emp-id"
             label="Emp ID"
             variant="standard"
-            placeholder="Emp ID"
             margin="normal"
             fullWidth
           />
@@ -61,7 +55,6 @@ const EmployeeAddress = () => {
             id="country"
             label="Country"
             variant="standard"
-            placeholder="Country"
             margin="normal"
             fullWidth
           />
@@ -69,7 +62,6 @@ const EmployeeAddress = () => {
             id="city"
             label="City"
             variant="standard"
-            placeholder="City"
             margin="normal"
             fullWidth
           />
@@ -77,7 +69,6 @@ const EmployeeAddress = () => {
             id="pincode"
             label="Pin Code"
             variant="standard"
-            placeholder="Pin Code"
             margin="normal"
             fullWidth
           />

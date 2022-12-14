@@ -22,7 +22,6 @@ const BasicInfo = () => {
             id="firstName"
             label="Frist Name"
             variant="standard"
-            placeholder="First Name"
             margin="normal"
             required
             fullWidth
@@ -33,7 +32,6 @@ const BasicInfo = () => {
             id="lastName"
             label="Last Name"
             variant="standard"
-            placeholder="Last Name"
             margin="normal"
             fullWidth
           />
@@ -46,7 +44,6 @@ const BasicInfo = () => {
             id="email"
             label="Email"
             variant="standard"
-            placeholder="Email"
             margin="normal"
             fullWidth
           />
@@ -117,7 +114,6 @@ const BasicInfo = () => {
             id="primary-mobile-number"
             label="Mobile Number"
             variant="standard"
-            placeholder="Mobile Number"
             margin="normal"
             fullWidth
           />
@@ -127,7 +123,6 @@ const BasicInfo = () => {
             id="secondary-mobile-number"
             label="Alternative Mobile Number"
             variant="standard"
-            placeholder="Alternative Mobile Number"
             margin="normal"
             fullWidth
           />
@@ -140,7 +135,6 @@ const BasicInfo = () => {
             id="primary-emergency-mobile-number"
             label="Emergency Mobile Number"
             variant="standard"
-            placeholder="Emergency Mobile Number"
             margin="normal"
             fullWidth
           />
@@ -150,7 +144,6 @@ const BasicInfo = () => {
             id="primary-emergency-mobile-number"
             label="Alternative Emergency Mobile Number"
             variant="standard"
-            placeholder="Alternative Mobile Number"
             margin="normal"
             fullWidth
           />

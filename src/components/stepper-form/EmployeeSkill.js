@@ -11,7 +11,6 @@ const EmployeeSkill = () => {
             id="emp-id"
             label="Emp ID"
             variant="standard"
-            placeholder="Emp ID"
             margin="normal"
             fullWidth
           />
@@ -19,7 +18,6 @@ const EmployeeSkill = () => {
             id="skill-name"
             label="Skill Name"
             variant="standard"
-            placeholder="Skill Name"
             margin="normal"
             fullWidth
           />
@@ -29,7 +27,6 @@ const EmployeeSkill = () => {
             id="skill-id"
             label="Skill ID"
             variant="standard"
-            placeholder="skill ID"
             margin="normal"
             fullWidth
           />
@@ -37,7 +34,6 @@ const EmployeeSkill = () => {
             id="level"
             label="Level"
             variant="standard"
-            placeholder="Level"
             margin="normal"
             fullWidth
           />

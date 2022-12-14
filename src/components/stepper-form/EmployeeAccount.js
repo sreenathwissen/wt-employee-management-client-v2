@@ -11,7 +11,6 @@ const EmployeeAccount = () => {
             id="emp-id"
             label="Emp ID"
             variant="standard"
-            placeholder="Emm ID"
             margin="normal"
             fullWidth
           />
@@ -19,7 +18,6 @@ const EmployeeAccount = () => {
             id="pan"
             label="PAN"
             variant="standard"
-            placeholder="PAN Number"
             margin="normal"
             fullWidth
           />
@@ -29,7 +27,6 @@ const EmployeeAccount = () => {
             id="uan"
             label="UAN"
             variant="standard"
-            placeholder="UAN"
             margin="normal"
             fullWidth
           />
@@ -37,7 +34,6 @@ const EmployeeAccount = () => {
             id="pf-no"
             label="PF Number"
             variant="standard"
-            placeholder="PF Number"
             margin="normal"
             fullWidth
           />

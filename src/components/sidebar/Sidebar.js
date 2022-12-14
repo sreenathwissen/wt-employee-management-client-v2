@@ -126,7 +126,7 @@ export default function Sidebar() {
       </AppBar> */}
       <Drawer variant="permanent" open={open}>
         <DrawerHeader>
-          <div class="header-logo">
+          <div className="header-logo">
             <img src="img/wissen-technology-logo.jpg" />
           </div>
           {!open ? (
