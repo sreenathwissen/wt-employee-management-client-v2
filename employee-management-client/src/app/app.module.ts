@@ -12,18 +12,25 @@ import { CommonModule } from '@angular/common';
 import { MaterialModule } from './material/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { SkillsComponent } from './skills/skills.component';
+import { SkillComponent } from './skills/skill/skill.component';
+import { SkillListComponent } from './skills/skill-list/skill-list.component';
+import { SkillService } from './shared/skill.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     ClientsComponent,
     ClientComponent,
-    ClientListComponent
+    ClientListComponent,
+    SkillsComponent,
+    SkillComponent,
+    SkillListComponent
   ],
-  providers: [ClientService
+  providers: [ClientService, SkillService
   ],
   bootstrap: [AppComponent],
-  entryComponents: [ClientComponent],
+  entryComponents: [ClientComponent, SkillComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

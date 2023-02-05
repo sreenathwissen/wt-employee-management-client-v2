@@ -10,9 +10,6 @@ export class ClientService {
 
   constructor(private _http: HttpClient) { }
 
-  // postClientData() {
-  //   return this._http.post('http://localhost:8080/api/client', ClientComponent);
-  // }
 
   form: FormGroup = new FormGroup({
     clientId: new FormControl(0, Validators.required),
@@ -33,7 +30,7 @@ export class ClientService {
 
   }
 
-  insertEmployee(client: any) {
+  insertClient(client: any) {
     console.log(client);
     let clientArray = []
     clientArray.push(client);

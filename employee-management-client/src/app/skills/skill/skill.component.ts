@@ -1,19 +1,19 @@
-import { Component } from '@angular/core';
-import { ClientService } from 'src/app/shared/client.service';
+import { Component, OnInit } from '@angular/core';
+import { SkillService } from 'src/app/shared/skill.service';
 import { MatDialogRef } from '@angular/material/dialog';
 
-@Component({
-  selector: 'app-client',
-  templateUrl: './client.component.html',
-  styleUrls: ['./client.component.css']
-})
-export class ClientComponent {
 
-  constructor(public service: ClientService,
-    public dialogRef: MatDialogRef<ClientComponent>) { }
+@Component({
+  selector: 'app-skill',
+  templateUrl: './skill.component.html',
+  styleUrls: ['./skill.component.scss']
+})
+export class SkillComponent implements OnInit {
+
+  constructor(public service: SkillService,
+    public dialogRef: MatDialogRef<SkillComponent>) { }
 
   ngOnInit() {
-
   }
 
   onClear() {
@@ -24,7 +24,7 @@ export class ClientComponent {
   onSubmit() {
     if (this.service.form.valid) {
       console.log(this.service.form.value)
-      this.service.insertClient(this.service.form.value).subscribe(data => {
+      this.service.insertSkill(this.service.form.value).subscribe(data => {
 
         console.log(data);
 
@@ -40,4 +40,5 @@ export class ClientComponent {
     this.service.initializeFormGroup();
     this.dialogRef.close();
   }
+
 }
