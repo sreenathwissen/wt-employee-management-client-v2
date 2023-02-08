@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { ISkill } from './ISkill';
 
 @Injectable({
   providedIn: 'root'
@@ -21,12 +23,12 @@ export class SkillService {
     });
   }
 
-  getSkillData() {
-    return this._http.get('http://localhost:8080/api/skill');
+  getSkillData(): Observable<ISkill[]> {
+    return this._http.get<ISkill[]>('http://localhost:8080/api/skill');
 
   }
 
-  insertSkill(skill: any) {
+  insertSkill(skill: ISkill) {
     console.log(skill);
     let skillArray = []
     skillArray.push(skill);
@@ -38,7 +40,7 @@ export class SkillService {
     return this._http.post("http://localhost:8080/api/skill", body, { 'headers': headers })
   }
 
-  populateForm(skill: any) {
+  populateForm(skill: ISkill) {
     this.form.setValue(skill);
   }
 }

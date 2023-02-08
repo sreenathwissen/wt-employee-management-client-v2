@@ -1,16 +1,16 @@
-import { Component } from '@angular/core';
-import { ClientService } from 'src/app/shared/client.service';
+import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
+import { ClientService } from '../client.service';
 
 @Component({
-  selector: 'app-client',
-  templateUrl: './client.component.html',
-  styleUrls: ['./client.component.css']
+  selector: 'app-client-form',
+  templateUrl: './client-form.component.html',
+  styleUrls: ['./client-form.component.scss']
 })
-export class ClientComponent {
+export class ClientFormComponent implements OnInit {
 
   constructor(public service: ClientService,
-    public dialogRef: MatDialogRef<ClientComponent>) { }
+    public dialogRef: MatDialogRef<ClientFormComponent>) { }
 
   ngOnInit() {
 
@@ -40,4 +40,5 @@ export class ClientComponent {
     this.service.initializeFormGroup();
     this.dialogRef.close();
   }
+
 }

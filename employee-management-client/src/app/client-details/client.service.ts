@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { IClient } from '../client-details/IClient';
 
 
 @Injectable({
@@ -25,12 +27,17 @@ export class ClientService {
     });
   }
 
-  getClientData() {
-    return this._http.get('http://localhost:8080/api/client/allClients');
+  getClientData(): Observable<IClient[]> {
+    return this._http.get<IClient[]>('http://localhost:8080/api/client/allClients');
 
   }
 
-  insertClient(client: any) {
+  searchClientData(searchPattern: String): Observable<IClient[]> {
+    return this._http.get<IClient[]>('http://localhost:8080/api/client/search?clientName=' + searchPattern);
+
+  }
+
+  insertClient(client: IClient) {
     console.log(client);
     let clientArray = []
     clientArray.push(client);
@@ -42,7 +49,7 @@ export class ClientService {
     return this._http.post("http://localhost:8080/api/client", body, { 'headers': headers })
   }
 
-  populateForm(client: any) {
+  populateForm(client: IClient) {
     this.form.setValue(client);
   }
 

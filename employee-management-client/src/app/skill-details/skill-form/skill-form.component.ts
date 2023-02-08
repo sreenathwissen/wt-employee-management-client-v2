@@ -1,17 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { SkillService } from 'src/app/shared/skill.service';
 import { MatDialogRef } from '@angular/material/dialog';
-
+import { SkillService } from '../skill.service';
 
 @Component({
-  selector: 'app-skill',
-  templateUrl: './skill.component.html',
-  styleUrls: ['./skill.component.scss']
+  selector: 'app-skill-form',
+  templateUrl: './skill-form.component.html',
+  styleUrls: ['./skill-form.component.scss']
 })
-export class SkillComponent implements OnInit {
+export class SkillFormComponent implements OnInit {
 
   constructor(public service: SkillService,
-    public dialogRef: MatDialogRef<SkillComponent>) { }
+    public dialogRef: MatDialogRef<SkillFormComponent>) { }
 
   ngOnInit() {
   }

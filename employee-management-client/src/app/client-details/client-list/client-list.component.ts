@@ -3,8 +3,9 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { ClientService } from 'src/app/shared/client.service';
-import { ClientComponent } from '../client/client.component';
+import { ClientFormComponent } from '../client-form/client-form.component';
+import { ClientService } from '../client.service';
+import { IClient } from '../IClient';
 
 @Component({
   selector: 'app-client-list',
@@ -19,10 +20,10 @@ export class ClientListComponent implements OnInit {
   }
   listData!: MatTableDataSource<any>;
   displayedColumns: string[] = ['clientId', 'clientName', 'clientLocation', 'actions'];
-  rowdata: any
+  rowdata: IClient[] = [];
 
 
-  dataSource!: MatTableDataSource<ClientComponent>;
+  dataSource!: MatTableDataSource<ClientFormComponent>;
 
   @ViewChild(MatPaginator, { static: true })
   paginator!: MatPaginator;
@@ -30,7 +31,7 @@ export class ClientListComponent implements OnInit {
 
   @ViewChild(MatSort, { static: true })
   sort!: MatSort;
-  @Input() set projects(value: ClientComponent[]) {
+  @Input() set projects(value: ClientFormComponent[]) {
     this.dataSource = new MatTableDataSource(value);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
@@ -65,7 +66,7 @@ export class ClientListComponent implements OnInit {
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.width = "60%";
-    this.dialog.open(ClientComponent, dialogConfig);
+    this.dialog.open(ClientFormComponent, dialogConfig);
   }
 
   onEdit(row: any) {
@@ -74,7 +75,7 @@ export class ClientListComponent implements OnInit {
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.width = "60%";
-    this.dialog.open(ClientComponent, dialogConfig);
+    this.dialog.open(ClientFormComponent, dialogConfig);
   }
 
 }

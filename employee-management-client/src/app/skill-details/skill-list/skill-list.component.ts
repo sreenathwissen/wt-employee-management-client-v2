@@ -1,10 +1,11 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import { SkillService } from 'src/app/shared/skill.service';
-import { SkillComponent } from '../skill/skill.component';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { ISkill } from '../ISkill';
+import { SkillFormComponent } from '../skill-form/skill-form.component';
+import { SkillService } from '../skill.service';
 
 @Component({
   selector: 'app-skill-list',
@@ -12,6 +13,10 @@ import { MatTableDataSource } from '@angular/material/table';
   styleUrls: ['./skill-list.component.scss']
 })
 export class SkillListComponent implements OnInit {
+
+  listData!: MatTableDataSource<any>;
+  displayedColumns: string[] = ['skillId', 'skillName', 'actions'];
+  rowdata: ISkill[] = []
 
   constructor(private service: SkillService,
     private dialog: MatDialog) {
@@ -29,11 +34,8 @@ export class SkillListComponent implements OnInit {
     );
   }
 
-  listData!: MatTableDataSource<any>;
-  displayedColumns: string[] = ['skillId', 'skillName', 'actions'];
-  rowdata: any
 
-  dataSource!: MatTableDataSource<SkillComponent>;
+  dataSource!: MatTableDataSource<SkillFormComponent>;
 
   @ViewChild(MatPaginator, { static: true })
   paginator!: MatPaginator;
@@ -42,7 +44,7 @@ export class SkillListComponent implements OnInit {
   @ViewChild(MatSort, { static: true })
   sort!: MatSort;
 
-  @Input() set projects(value: SkillComponent[]) {
+  @Input() set projects(value: SkillFormComponent[]) {
     this.dataSource = new MatTableDataSource(value);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
@@ -65,7 +67,7 @@ export class SkillListComponent implements OnInit {
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.width = "60%";
-    this.dialog.open(SkillComponent, dialogConfig);
+    this.dialog.open(SkillFormComponent, dialogConfig);
   }
 
   onEdit(row: any) {
@@ -74,7 +76,7 @@ export class SkillListComponent implements OnInit {
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.width = "60%";
-    this.dialog.open(SkillComponent, dialogConfig);
+    this.dialog.open(SkillFormComponent, dialogConfig);
   }
 
 }
