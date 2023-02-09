@@ -1,0 +1,45 @@
+.wrap{
+    .tilte {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        button {
+            background: #04eefe;
+            color: #000;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+    }
+    table {
+        width: 100%;
+        border-color: unset;
+        background: #fff;
+        margin-top: 40px;
+        padding: 20px;
+        border-radius: 10px;
+        th, td{
+            background: #fff;
+            text-align: left;
+            padding: 10px;
+            border: 1px solid #ddd;
+            font-size: 16px;
+        }
+        p{
+            padding-bottom: 10px;
+        }
+    }
+}
+.nddtar {
+    width: 97%;
+    border-color: unset;
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5px;
+    color: rgb(94, 90, 90);
+}
