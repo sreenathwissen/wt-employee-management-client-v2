@@ -16,6 +16,7 @@ import { SkillDetailsComponent } from './skill-details/skill-details.component';
 import { SkillFormComponent } from './skill-details/skill-form/skill-form.component';
 import { SkillListComponent } from './skill-details/skill-list/skill-list.component';
 import { SkillService } from './skill-details/skill.service';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { SkillService } from './skill-details/skill.service';
     ClientDetailsComponent,
     ClientFormComponent,
     SkillDetailsComponent,
-    SkillFormComponent
+    SkillFormComponent,
+    NavbarComponent
   ],
   providers: [ClientService, SkillService
   ],
