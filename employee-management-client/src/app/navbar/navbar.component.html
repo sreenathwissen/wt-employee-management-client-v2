@@ -1,0 +1,16 @@
+<mat-toolbar color="primary">
+  <button
+    mat-icon-button
+    class="example-icon"
+    aria-label="Example icon-button with menu icon"
+    (click)="toggleOpenNav()"
+  >
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>Employee Mangement System</span>
+</mat-toolbar>
+<div class="sidenav" [ngClass]="open ? 'open' : 'close'">
+  <a class="nav-links" mat-button>Home</a>
+  <a class="nav-links" mat-button>Contact</a>
+  <a class="nav-links" mat-button>About</a>
+</div>
