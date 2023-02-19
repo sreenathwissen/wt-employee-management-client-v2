@@ -138,10 +138,8 @@ export class CreateEmployeeComponent implements OnInit {
     ]
     this.https.httpPostWithHeader(this.apiList.createEmployee, sendData).subscribe((res: any) => {
       let employees: any[] = [];
-      if (localStorage.getItem('employees')) {
-        employees = JSON.parse(localStorage.getItem('employees') || '')
-      }
-      employees.push(res);
+      
+      employees = res;
       localStorage.setItem('employees', JSON.stringify(employees));
       this.router.navigateByUrl('/employees');
     })

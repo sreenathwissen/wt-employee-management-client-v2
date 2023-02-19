@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpsService } from 'src/app/services/https/https.service';
+import { apiList } from 'src/app/services/https/api-list';
 
 @Component({
   selector: 'app-employees',
@@ -7,11 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EmployeesComponent implements OnInit {
   employees:any[]=[]
-  constructor() { }
+  constructor(private https: HttpsService, private apiList: apiList) { }
 
   ngOnInit(): void {
+    this.https.httpGet(this.apiList.getEmployees).subscribe((res: any) => {
+      this.employees = res
+    })
     if(localStorage.getItem('employees')){
-      this.employees = JSON.parse(localStorage.getItem('employees') || '')
+      this.employees.push(JSON.parse(localStorage.getItem('employees') || ''))
   }
   }
 

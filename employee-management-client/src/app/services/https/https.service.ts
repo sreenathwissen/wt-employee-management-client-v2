@@ -38,9 +38,9 @@ export class HttpsService {
     return this.http.get(this.baseUrl + url + "/" + params, this.header());
   }
 
-  httpGet(url: string, link: string): Observable<Object> {
+  httpGet(url: string): Observable<Object> {
     // return this.http.get(this.baseUrl + this.apiList[url] + link);
-    return this.http.get(this.baseUrl + url + link);
+    return this.http.get(this.baseUrl + url);
   }
 
   httpGetWithoutBase(url: string, link: string): Observable<Object> {
