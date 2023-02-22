@@ -17,6 +17,10 @@ import { SkillFormComponent } from './skill-details/skill-form/skill-form.compon
 import { SkillListComponent } from './skill-details/skill-list/skill-list.component';
 import { SkillService } from './skill-details/skill.service';
 import { NavbarComponent } from './navbar/navbar.component';
+import { ProjectDetailsComponent } from './project-details/project-details.component';
+import { ProjectFormComponent } from './project-details/project-form/project-form.component';
+import { ProjectListComponent } from './project-details/project-list/project-list.component';
+import { ProjectService } from './project-details/project.service';
 
 @NgModule({
   declarations: [
@@ -27,9 +31,12 @@ import { NavbarComponent } from './navbar/navbar.component';
     ClientFormComponent,
     SkillDetailsComponent,
     SkillFormComponent,
-    NavbarComponent
+    NavbarComponent,
+    ProjectDetailsComponent,
+    ProjectFormComponent,
+    ProjectListComponent
   ],
-  providers: [ClientService, SkillService
+  providers: [ClientService, SkillService, ProjectService
   ],
   bootstrap: [AppComponent],
   // entryComponents: [SkillDetailsComponent],
