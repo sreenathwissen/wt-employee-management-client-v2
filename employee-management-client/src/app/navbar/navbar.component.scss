@@ -1,6 +1,8 @@
 mat-toolbar {
-  background: #002b5c;
-  color: white;
+  background: white;
+  color: #002b5c;
+  display: flex;
+  align-items: center;
 }
 
 mat-sidenav {
@@ -45,4 +47,14 @@ mat-divider {
   margin-top: 16px;
   margin-bottom: 16px;
   background-color: rgba(255, 255, 255, 0.5);
+}
+
+.header {
+  margin: 0 auto;
+}
+
+.logo {
+  width: 80%;
+  height: 80%;
+  display: block;
 }
