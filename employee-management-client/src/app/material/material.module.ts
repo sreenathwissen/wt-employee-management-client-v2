@@ -15,7 +15,10 @@ import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
-import { MatDialogModule } from '@angular/material/dialog'
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatListModule } from '@angular/material/list';
 
 @NgModule({
   declarations: [],
@@ -36,7 +39,7 @@ import { MatDialogModule } from '@angular/material/dialog'
     MatIconModule,
     MatPaginatorModule,
     MatSortModule,
-    MatDialogModule
+    MatDialogModule,
   ],
   exports: [
     MatToolbarModule,
@@ -54,7 +57,10 @@ import { MatDialogModule } from '@angular/material/dialog'
     MatIconModule,
     MatPaginatorModule,
     MatSortModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSidenavModule,
+    MatDividerModule,
+    MatListModule,
   ],
 })
-export class MaterialModule { }
+export class MaterialModule {}

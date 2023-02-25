@@ -1,16 +1,81 @@
-<mat-toolbar color="primary">
+<mat-toolbar>
+  <button mat-button disabled *ngIf="sidenav.mode === 'side'">
+    <img class="logo" src="assets\Wissen-logo.png" />
+  </button>
   <button
     mat-icon-button
-    class="example-icon"
-    aria-label="Example icon-button with menu icon"
-    (click)="toggleOpenNav()"
+    *ngIf="sidenav.mode === 'over'"
+    (click)="sidenav.toggle()"
   >
-    <mat-icon>menu</mat-icon>
+    <mat-icon *ngIf="!sidenav.opened"> menu </mat-icon>
+    <mat-icon *ngIf="sidenav.opened"> close </mat-icon>
   </button>
-  <span>Employee Mangement System</span>
+  <span class="header">Employee Portal</span>
 </mat-toolbar>
-<div class="sidenav" [ngClass]="open ? 'open' : 'close'">
-  <a class="nav-links" mat-button>Home</a>
-  <a class="nav-links" mat-button>Contact</a>
-  <a class="nav-links" mat-button>About</a>
-</div>
+
+<mat-sidenav-container>
+  <mat-sidenav mode="side" opened class="mat-elevation-z8">
+    <mat-nav-list>
+      <a
+        mat-button
+        class="menu-button"
+        [routerLink]="['/employee']"
+        routerLinkActive="router-link-active"
+      >
+        <mat-icon>person</mat-icon>
+        <span>Employee</span>
+      </a>
+      <a
+        mat-button
+        class="menu-button"
+        [routerLink]="['/client']"
+        routerLinkActive="router-link-active"
+      >
+        <mat-icon>domain</mat-icon>
+        <span>Client</span>
+      </a>
+      <button
+        mat-button
+        class="menu-button"
+        [routerLink]="['/project']"
+        routerLinkActive="router-link-active"
+      >
+        <mat-icon>computer</mat-icon>
+        <span>Project</span>
+      </button>
+      <button
+        mat-button
+        class="menu-button"
+        [routerLink]="['/skill']"
+        routerLinkActive="router-link-active"
+      >
+        <mat-icon>settings</mat-icon>
+        <span>Skill</span>
+      </button>
+
+      <mat-divider></mat-divider>
+
+      <button
+        mat-button
+        class="menu-button"
+        [routerLink]="['/help']"
+        routerLinkActive="router-link-active"
+      >
+        <mat-icon>help</mat-icon>
+        <span>Help</span>
+      </button>
+      <button
+        mat-button
+        class="menu-button"
+        [routerLink]="['/support']"
+        routerLinkActive="router-link-active"
+      >
+        <mat-icon>headset_mic</mat-icon>
+        <span>Support</span>
+      </button>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
