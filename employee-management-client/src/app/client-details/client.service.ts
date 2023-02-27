@@ -10,6 +10,8 @@ import { IClient } from '../client-details/IClient';
 })
 export class ClientService {
 
+  clientList!: IClient[];
+
   constructor(private _http: HttpClient) { }
 
 
