@@ -11,6 +11,7 @@
             <th>Personal Info</th>
             <th>Professional Info</th>
             <th>Address</th>
+            <th>Action</th>
         </tr>
         <tr *ngFor="let data of employees; let i=index">
             <td>{{i+1}}</td>
@@ -38,6 +39,7 @@
                 <p><b>State: </b>{{data.state}}</p>
                 <p><b>Pin Code: </b>{{data.pincode}}</p>
             </td>
+            <td><mat-icon routerLink="/edit-employee">edit</mat-icon></td>
         </tr>
     </table>
     <tr class="nddtar">No data to display</tr>

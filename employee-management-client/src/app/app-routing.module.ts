@@ -5,6 +5,7 @@ import { EmployeesComponent } from './components/employee/employees/employees.co
 import { ClientDetailsComponent } from './client-details/client-details.component';
 import { ProjectDetailsComponent } from './project-details/project-details.component';
 import { SkillDetailsComponent } from './skill-details/skill-details.component';
+import { EditEmployeeComponent } from './components/employee/edit-employee/edit-employee.component';
 
 const routes: Routes = [
   {
@@ -14,6 +15,10 @@ const routes: Routes = [
   {
     path: 'create-employee',
     component: CreateEmployeeComponent
+  },
+  {
+    path: 'edit-employee',
+    component: EditEmployeeComponent
   },
   { path: 'project', component: ProjectDetailsComponent },
   { path: 'skill', component: SkillDetailsComponent },

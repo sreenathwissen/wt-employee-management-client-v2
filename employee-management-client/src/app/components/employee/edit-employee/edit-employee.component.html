@@ -1,0 +1,136 @@
+<div class="wrap">
+    <div class="tilte">
+        <h3>Edit Employee</h3>
+    </div>
+    <mat-tab-group [selectedIndex]="selectedIndex">
+        <mat-tab label="Personal Info">
+            <div class="form-group">
+                <div class="form-control">
+                    <div class="left"><label>First Name</label></div>
+                    <div class="right"><input type="text" [(ngModel)]="data.firstName" placeholder="John"></div>
+                </div>
+                <div class="form-control">
+                    <div class="left"><label>Last Name</label></div>
+                    <div class="right"><input type="text" placeholder="Doe" [(ngModel)]="data.lastName"></div>
+                </div>
+                <div class="form-control">
+                    <div class="left"><label>Date of Birth</label></div>
+                    <div class="right"><input type="text" placeholder="12-02-1998" [(ngModel)]="data.dob"></div>
+                </div>
+                <div class="form-control">
+                    <div class="left"><label>Email</label></div>
+                    <div class="right"><input type="text" placeholder="john@gmail.com"  [(ngModel)]="data.email"></div>
+                </div>
+                <div class="form-control">
+                    <div class="left"><label>Phone Number</label></div>
+                    <div class="right"><input type="number" placeholder="987654321" [(ngModel)]="data.phoneNo"></div>
+                </div>
+                <div class="form-control">
+                    <div class="left"><label>Emeregency Contact</label></div>
+                    <div class="right"><input type="number" placeholder="987654321" [(ngModel)]="data.emergencyContact"></div>
+                </div>
+                <div class="form-control">
+                    <div class="left"><label>Blood Group</label></div>
+                    <div class="right"><input type="text" placeholder="A" [(ngModel)]="data.bloodGroup"></div>
+                </div>
+            </div>
+
+            <div class="btn">
+                <button routerLink="/employees" style="margin-right: 10px;background: red;">Cancel</button>
+                <button (click)="selectedIndex=1">Next</button>
+            </div>
+        </mat-tab>
+        <mat-tab label="Professional Info">
+            <div class="form-group">
+                <div class="form-control">
+                    <div class="left"><label>Employee ID</label></div>
+                    <div class="right"><input type="number" placeholder="1" [(ngModel)]="data.employeeId"></div>
+                </div>
+                <div class="form-control">
+                    <div class="left"><label>Experience No of Years</label></div>
+                    <div class="right"><input type="number" placeholder="2" [(ngModel)]="data.experience"></div>
+                </div>
+                <div class="form-control">
+                    <div class="left"><label>Manager</label></div>
+                    <div class="right"><input type="text" placeholder="Herry" [(ngModel)]="data.manager"></div>
+                </div>
+                <div class="form-control">
+                    <div class="left"><label>Designation</label></div>
+                    <div class="right"><input type="text" placeholder="Manager" [(ngModel)]="data.designation"></div>
+                </div>
+                <div class="form-control">
+                    <div class="left"><label>Role</label></div>
+                    <div class="right"><input type="text" placeholder="Dummy" [(ngModel)]="data.role"></div>
+                </div>
+                <div class="form-control">
+                    <div class="left"><label>Type</label></div>
+                    <div class="right"><input type="text" placeholder="Dummy" [(ngModel)]="data.type"></div>
+                </div>
+            </div>
+            <div class="btn">
+                <span>
+                    <button routerLink="/employees" style="margin-right: 20px;background: red;">Cancel</button>
+                </span>
+                <span>
+                    <button (click)="selectedIndex=0" style="margin-right: 10px;background: #468cca;">Back</button>
+                    <button (click)="selectedIndex=2">Next</button>
+                </span>
+            </div>
+        </mat-tab>
+        <mat-tab label="Address">
+            <div class="form-group">
+                <div class="form-control">
+                    <div class="left"><span class="badge">Current Address</span> <label>Flat</label></div>
+                    <div class="right"><input type="text"  placeholder="#234" [(ngModel)]="data.currentFlat"></div>
+                </div>
+                <div class="form-control">
+                    <div class="left"><span class="badge">Current Address</span> <label>Street</label></div>
+                    <div class="right"><input type="text" placeholder="#234" [(ngModel)]="data.currentStreet"></div>
+                </div>
+                <div class="form-control">
+                    <div class="left"><span class="badge">Current Address</span> <label>City</label></div>
+                    <div class="right"><input type="text" placeholder="Chandigarh" [(ngModel)]="data.currentCity"></div>
+                </div>
+                <div class="form-control">
+                    <div class="left"><span class="badge">Current Address</span> <label>State</label></div>
+                    <div class="right"><input type="text" placeholder="Chandigarh" [(ngModel)]="data.currentState"></div>
+                </div>
+                <div class="form-control">
+                    <div class="left"><span class="badge">Current Address</span> <label>Pin Code</label></div>
+                    <div class="right"><input type="number" placeholder="160044" [(ngModel)]="data.currentPinCode"></div>
+                </div>
+                <p class="saca" (click)="sameAddress()">Same as Current Address</p>
+                <br />
+                <div class="form-control">
+                    <div class="left"><span class="badge red">Permanent Address</span> <label>Flat</label></div>
+                    <div class="right"><input type="text" placeholder="#455" [(ngModel)]="data.permanentFlat"></div>
+                </div>
+                <div class="form-control">
+                    <div class="left"><span class="badge red">Permanent Address</span> <label>Street</label></div>
+                    <div class="right"><input type="text" placeholder="#455" [(ngModel)]="data.permanentStreet"></div>
+                </div>
+                <div class="form-control">
+                    <div class="left"><span class="badge red">Permanent Address</span> <label>City</label></div>
+                    <div class="right"><input type="text" placeholder="Chandigarh" [(ngModel)]="data.permanentCity"></div>
+                </div>
+                <div class="form-control">
+                    <div class="left"><span class="badge red">Permanent Address</span> <label>State</label></div>
+                    <div class="right"><input type="text" placeholder="Chandigarh" [(ngModel)]="data.permanentState"></div>
+                </div>
+                <div class="form-control">
+                    <div class="left"><span class="badge red">Permanent Address</span> <label>Pin Code</label></div>
+                    <div class="right"><input type="number" placeholder="160044" [(ngModel)]="data.permanentPinCode"></div>
+                </div>
+            </div>
+            <div class="btn">
+                <span>
+                    <button routerLink="/employees" style="margin-right: 20px;background: red;">Cancel</button>
+                </span>
+                <span>
+                    <button (click)="selectedIndex=1" style="margin-right: 10px;background: #468cca;">Back</button>
+                    <button (click)="selectedIndex=3">Next</button>
+                </span>
+            </div>
+        </mat-tab>
+    </mat-tab-group>
+</div>
