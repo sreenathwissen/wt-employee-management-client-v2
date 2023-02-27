@@ -34,10 +34,9 @@ import { ProjectService } from './project-details/project.service';
     NavbarComponent,
     ProjectDetailsComponent,
     ProjectFormComponent,
-    ProjectListComponent
+    ProjectListComponent,
   ],
-  providers: [ClientService, SkillService, ProjectService
-  ],
+  providers: [ClientService, SkillService, ProjectService],
   bootstrap: [AppComponent],
   // entryComponents: [SkillDetailsComponent],
   imports: [
@@ -48,7 +47,7 @@ import { ProjectService } from './project-details/project.service';
     ReactiveFormsModule,
     HttpClientModule,
     FormsModule,
-    BrowserAnimationsModule
-  ]
+    BrowserAnimationsModule,
+  ],
 })
-export class AppModule { }
+export class AppModule {}
