@@ -35,6 +35,7 @@ export class ProjectFormComponent implements OnInit {
   }
 
   onSubmit() {
+    let found: boolean;
     if (this.service.form.valid) {
       console.log(this.service.form.value)
       const saveData: IProject = {
@@ -49,8 +50,21 @@ export class ProjectFormComponent implements OnInit {
       this.service.insertProject(saveData).subscribe(data => {
 
         console.log(data);
+        this.service.projectList.forEach((project, index) => {
+          if (Array.isArray(data) && project.projectId === data[0].projectId) {
+            this.service.projectList[index] = data[0];
+            this.service.projectList = [...this.service.projectList];
+            found = true;
+          }
+        });
+        if (!found && Array.isArray(data))
+          this.service.projectList = [...this.service.projectList, data[0]];
 
-      });
+      },
+      (err) => {
+        if (err.status === 400) alert(err.error[0].errorMessage);
+      }
+      );
       this.service.form.reset();
       this.service.initializeFormGroup();
       this.onClose();

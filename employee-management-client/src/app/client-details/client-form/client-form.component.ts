@@ -22,13 +22,27 @@ export class ClientFormComponent implements OnInit {
   }
 
   onSubmit() {
+    let found: boolean;
     if (this.service.form.valid) {
       console.log(this.service.form.value)
       this.service.insertClient(this.service.form.value).subscribe(data => {
 
         console.log(data);
+        this.service.clientList.forEach((client, index) => {
+          if (Array.isArray(data) && client.clientId === data[0].clientId) {
+            this.service.clientList[index] = data[0];
+            this.service.clientList = [...this.service.clientList];
+            found = true;
+          }
+        });
+        if (!found && Array.isArray(data))
+          this.service.clientList = [...this.service.clientList, data[0]];
 
-      });
+      },
+      (err) => {
+        if (err.status === 400) alert(err.error[0].errorMessage);
+      }
+      );
       this.service.form.reset();
       this.service.initializeFormGroup();
       this.onClose();

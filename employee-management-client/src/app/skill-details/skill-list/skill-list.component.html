@@ -62,7 +62,7 @@
     ></mat-footer-row>
     <mat-footer-row
       *matFooterRowDef="['noData']"
-      [ngClass]="{ hide: !(listData != null && listData.data.length == 0) }"
+      [ngClass]="{ hide: !(listData != null && service.skillList.length == 0) }"
     ></mat-footer-row>
   </mat-table>
 

@@ -14,7 +14,7 @@ import { IClient } from '../IClient';
 })
 export class ClientListComponent implements OnInit {
 
-  constructor(private service: ClientService,
+  constructor(public service: ClientService,
     private dialog: MatDialog) {
 
   }
@@ -43,6 +43,7 @@ export class ClientListComponent implements OnInit {
     this.service.getClientData().subscribe(
       list => {
         console.log(list)
+        this.service.clientList = list;
         this.rowdata = list
         this.listData = new MatTableDataSource(this.rowdata);
         this.listData.sort = this.sort;

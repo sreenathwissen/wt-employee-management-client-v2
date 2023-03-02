@@ -10,6 +10,8 @@ import { IProject } from '../project-details/IProject';
 })
 export class ProjectService {
 
+  projectList!: IProject[];
+
   defaultClient: IClient = {
     clientId: 0,
     clientLocation: '',
