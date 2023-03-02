@@ -17,12 +17,10 @@ export class SkillListComponent implements OnInit {
   displayedColumns: string[] = ['skillId', 'skillName', 'actions'];
   rowdata: ISkill[] = [];
 
-  // created public service so as to access in html
-  constructor(public service: SkillService, private dialog: MatDialog) {}
+  constructor(private service: SkillService, private dialog: MatDialog) {}
   ngOnInit() {
     this.service.getSkillData().subscribe((list) => {
       console.log(list);
-      this.service.skillList = list;
       this.rowdata = list;
       this.listData = new MatTableDataSource(this.rowdata);
       this.listData.sort = this.sort;

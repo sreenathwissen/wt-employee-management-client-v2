@@ -1,13 +1,15 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 import { ISkill } from './ISkill';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SkillService {
+  private skillUrl = 'http://localhost:8080/api/skill';
   constructor(private _http: HttpClient) {}
 
   skillList!: ISkill[];
@@ -25,7 +27,14 @@ export class SkillService {
   }
 
   getSkillData(): Observable<ISkill[]> {
-    return this._http.get<ISkill[]>('http://localhost:8080/api/skill');
+    return this._http.get<ISkill[]>(this.skillUrl).pipe(
+      map((res: ISkill[]) => {
+        return res;
+      }),
+      catchError((err: HttpErrorResponse) => {
+        return throwError(err);
+      })
+    );
   }
 
   insertSkill(skill: ISkill) {
@@ -33,13 +42,17 @@ export class SkillService {
     let skillArray = [];
     skillArray.push(skill);
     console.log(skillArray);
-
     const headers = { 'content-type': 'application/json' };
     const body = JSON.stringify(skillArray);
     console.log(body);
-    return this._http.post('http://localhost:8080/api/skill', body, {
-      headers: headers,
-    });
+    return this._http.post(this.skillUrl, body, { headers: headers }).pipe(
+      map((res: any) => {
+        return res;
+      }),
+      catchError((err: HttpErrorResponse) => {
+        return throwError(err);
+      })
+    );
   }
 
   populateForm(skill: ISkill) {
