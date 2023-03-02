@@ -21,6 +21,8 @@ import { ProjectDetailsComponent } from './project-details/project-details.compo
 import { ProjectFormComponent } from './project-details/project-form/project-form.component';
 import { ProjectListComponent } from './project-details/project-list/project-list.component';
 import { ProjectService } from './project-details/project.service';
+import { EmployeeProjectDetailsComponent } from './employee-project-details/employee-project-details.component';
+import { EmployeeProjectService } from './employee-project-details/EmployeeProjectService';
 
 @NgModule({
   declarations: [
@@ -35,8 +37,9 @@ import { ProjectService } from './project-details/project.service';
     ProjectDetailsComponent,
     ProjectFormComponent,
     ProjectListComponent,
+    EmployeeProjectDetailsComponent
   ],
-  providers: [ClientService, SkillService, ProjectService],
+  providers: [ClientService, SkillService, ProjectService, EmployeeProjectService],
   bootstrap: [AppComponent],
   // entryComponents: [SkillDetailsComponent],
   imports: [
@@ -50,4 +53,4 @@ import { ProjectService } from './project-details/project.service';
     BrowserAnimationsModule,
   ],
 })
-export class AppModule {}
+export class AppModule { }
