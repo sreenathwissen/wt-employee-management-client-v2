@@ -10,36 +10,30 @@ import { SkillService } from '../skill.service';
 @Component({
   selector: 'app-skill-list',
   templateUrl: './skill-list.component.html',
-  styleUrls: ['./skill-list.component.scss']
+  styleUrls: ['./skill-list.component.scss'],
 })
 export class SkillListComponent implements OnInit {
-
   listData!: MatTableDataSource<any>;
   displayedColumns: string[] = ['skillId', 'skillName', 'actions'];
-  rowdata: ISkill[] = []
+  rowdata: ISkill[] = [];
 
-  constructor(private service: SkillService,
-    private dialog: MatDialog) {
-
-  }
+  // created public service so as to access in html
+  constructor(public service: SkillService, private dialog: MatDialog) {}
   ngOnInit() {
-    this.service.getSkillData().subscribe(
-      list => {
-        console.log(list)
-        this.rowdata = list
-        this.listData = new MatTableDataSource(this.rowdata);
-        this.listData.sort = this.sort;
-        this.listData.paginator = this.paginator;
-      }
-    );
+    this.service.getSkillData().subscribe((list) => {
+      console.log(list);
+      this.service.skillList = list;
+      this.rowdata = list;
+      this.listData = new MatTableDataSource(this.rowdata);
+      this.listData.sort = this.sort;
+      this.listData.paginator = this.paginator;
+    });
   }
-
 
   dataSource!: MatTableDataSource<SkillFormComponent>;
 
   @ViewChild(MatPaginator, { static: true })
   paginator!: MatPaginator;
-
 
   @ViewChild(MatSort, { static: true })
   sort!: MatSort;
@@ -53,7 +47,7 @@ export class SkillListComponent implements OnInit {
   searchKey!: string;
 
   onSearchClear() {
-    this.searchKey = "";
+    this.searchKey = '';
     this.applyFilter();
   }
 
@@ -66,7 +60,7 @@ export class SkillListComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
-    dialogConfig.width = "60%";
+    dialogConfig.width = '60%';
     this.dialog.open(SkillFormComponent, dialogConfig);
   }
 
@@ -75,8 +69,7 @@ export class SkillListComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
-    dialogConfig.width = "60%";
+    dialogConfig.width = '60%';
     this.dialog.open(SkillFormComponent, dialogConfig);
   }
-
 }
