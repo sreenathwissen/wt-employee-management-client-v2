@@ -11,6 +11,11 @@ export class ClientService {
   private clientUrl = 'http://localhost:8080/api/client/';
   constructor(private _http: HttpClient) {}
 
+  clientList!: IClient[];
+
+  constructor(private _http: HttpClient) { }
+
+
   form: FormGroup = new FormGroup({
     clientId: new FormControl(0, Validators.required),
     clientName: new FormControl('', Validators.required),

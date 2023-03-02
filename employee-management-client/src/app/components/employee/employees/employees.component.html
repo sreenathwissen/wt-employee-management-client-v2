@@ -1,0 +1,48 @@
+
+<div class="wrap">
+    <div class="tilte">
+        <h3>Employees</h3>
+        <button routerLink="/create-employee">+ Create Employee</button>
+    </div>
+   <div class="table-responsive">
+    <table>
+        <tr>
+            <th>#</th>
+            <th>Personal Info</th>
+            <th>Professional Info</th>
+            <th>Address</th>
+            <th>Action</th>
+        </tr>
+        <tr *ngFor="let data of employees; let i=index">
+            <td>{{i+1}}</td>
+            <td>
+                <p><b>First Name: </b>{{data?.firstName}}</p>
+                <p><b>Last Name: </b>{{data?.lastName}}</p>
+                <p><b>Date of Birth: </b>{{data?.dob}}</p>
+                <p><b>Email: </b>{{data?.email}}</p>
+                <p><b>Phone Number: </b>{{data?.primaryPhoneNumber}}</p>
+                <p><b>Emeregency Contact: </b>{{data?.primaryEmergencyContactNumber}}</p>
+                <p><b>Blood Group: </b>{{data?.employeeResponse?.bloodGroup}}</p>
+            </td>
+            <td>
+                <p><b>Employee ID: </b>{{data?.empId}}</p>
+                <p><b>Experience No of Years: </b>{{data?.expDoj}}</p>
+                <p><b>Manager: </b>{{data?.manager}}</p>
+                <p><b>Designation: </b>{{data?.designation?.desgName}}</p>
+                <p><b>Role: </b>{{data?.role?.roleName}}</p>
+                <p><b>Type: </b>{{data?.type}}</p>
+            </td>
+            <td>
+                <p><b>Flat: </b>{{data?.addressResponse?.flatNo}}</p>
+                <p><b>Street: </b>{{data.street}}</p>
+                <p><b>City: </b>{{data.city}}</p>
+                <p><b>State: </b>{{data.state}}</p>
+                <p><b>Pin Code: </b>{{data.pincode}}</p>
+            </td>
+            <td><mat-icon routerLink="/edit-employee">edit</mat-icon></td>
+        </tr>
+    </table>
+    <tr class="nddtar">No data to display</tr>
+   </div>
+   
+</div>

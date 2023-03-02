@@ -1,0 +1,43 @@
+.wrap{
+    .tilte {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        button {
+            background: #071877;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+    }
+    table {
+        width: 100%;
+        border-color: unset;
+        background: #fff;
+        margin-top: 40px;
+        th, td{
+            background: #fff;
+            text-align: left;
+            border: 1px solid #ddd;
+            font-size: 16px;
+            padding:10px
+        }
+        p{
+            padding-bottom: 10px;
+        }
+    }
+}
+.nddtar {
+    width: 97%;
+    border-color: unset;
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5px;
+    color: rgb(94, 90, 90);
+}

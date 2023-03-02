@@ -23,6 +23,7 @@ export class ClientFormComponent implements OnInit {
   }
 
   onSubmit() {
+    let found: boolean;
     if (this.service.form.valid) {
       console.log(this.service.form.value)
       this.service.insertClient(this.service.form.value).subscribe(

@@ -1,5 +1,7 @@
+import { HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
+import { ISkill } from '../ISkill';
 import { SkillService } from '../skill.service';
 import { NotificationService } from '../../notification-service/notification.service';
 
@@ -11,6 +13,7 @@ import { NotificationService } from '../../notification-service/notification.ser
 export class SkillFormComponent implements OnInit {
   constructor(
     public service: SkillService,
+
     public notificationService: NotificationService,
     public dialogRef: MatDialogRef<SkillFormComponent>
   ) {}
@@ -23,6 +26,7 @@ export class SkillFormComponent implements OnInit {
   }
 
   onSubmit() {
+    let found: boolean;
     if (this.service.form.valid) {
       console.log(this.service.form.value);
       this.service.insertSkill(this.service.form.value).subscribe(

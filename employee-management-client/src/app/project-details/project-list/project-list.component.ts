@@ -14,7 +14,7 @@ import { ProjectService } from '../project.service';
 })
 export class ProjectListComponent implements OnInit {
 
-  constructor(private service: ProjectService,
+  constructor(public service: ProjectService,
     private dialog: MatDialog) { }
 
   listData!: MatTableDataSource<any>;
@@ -42,6 +42,7 @@ export class ProjectListComponent implements OnInit {
     this.service.getProjectData().subscribe(
       list => {
         console.log(list)
+        this.service.projectList = list;
         this.rowdata = list
         this.listData = new MatTableDataSource(this.rowdata);
         this.listData.sort = this.sort;

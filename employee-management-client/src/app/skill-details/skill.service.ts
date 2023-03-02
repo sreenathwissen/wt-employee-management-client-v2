@@ -12,6 +12,8 @@ export class SkillService {
   private skillUrl = 'http://localhost:8080/api/skill';
   constructor(private _http: HttpClient) {}
 
+  skillList!: ISkill[];
+
   form: FormGroup = new FormGroup({
     skillId: new FormControl(0, Validators.required),
     skillName: new FormControl('', Validators.required),
