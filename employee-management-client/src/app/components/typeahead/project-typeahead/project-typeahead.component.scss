@@ -1,0 +1,35 @@
+.dropdown-item {
+    margin: 0rem;
+    vertical-align: auto;
+    padding-bottom: 0.25rem;
+    padding-top: 0.5rem;
+    padding-left: 0.5rem;
+    padding-right: 0rem;
+    cursor: auto;
+}
+.dropdown-item:hover {
+    cursor: pointer;
+}
+.dropdown-item-lable {
+    cursor: auto;
+}
+.dropdown-item-lable:hover {
+    cursor: pointer;
+}
+.card {
+    padding: 0rem;
+}
+.clear-icon {
+    margin: 0rem;
+    padding: 0rem;
+    padding-left: 0.25rem;
+    vertical-align: middle;
+    align-items: center;
+    text-align: center;
+    align-self: center;
+    align-content: center;
+}
+.material-icons:hover {
+    cursor: pointer;
+    color: darkred;
+}

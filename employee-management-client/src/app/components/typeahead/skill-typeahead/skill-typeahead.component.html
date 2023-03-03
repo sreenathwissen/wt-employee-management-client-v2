@@ -1,0 +1,24 @@
+<div>  
+  <div *ngIf="selected" class="row">
+    <input [(ngModel)]="searchString"
+        [typeahead]="dropDownList"
+        class="form-control col-11"
+        (ngModelChange)="onTypeaheadChanged($event)" disabled="true"/>
+        <div class="col-1 clear-icon">
+          <span class="material-icons" (click)="onClearSelected()">close</span>
+        </div>
+  </div>
+  <div *ngIf="!selected" class="row">
+    <input [(ngModel)]="searchString"
+      [typeahead]="dropDownList"
+      class="form-control col-12"
+      (ngModelChange)="onTypeaheadChanged($event)"/>
+      <div *ngIf="dropDown" class="col-12 card">
+        <div *ngFor="let item of dropDownList">
+          <div class="dropdown-item" (click)="onDropDownItemClick(item)">
+            <label class="dropdown-item-lable">{{item.skillName}}</label>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>

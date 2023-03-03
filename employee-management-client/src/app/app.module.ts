@@ -21,6 +21,7 @@ import { SkillFormComponent } from './skill-details/skill-form/skill-form.compon
 import { SkillListComponent } from './skill-details/skill-list/skill-list.component';
 import { SkillService } from './skill-details/skill.service';
 import { NavbarComponent } from './navbar/navbar.component';
+import { GTypeaheadModule } from './components/typeahead/typeahead.module';
 import { ProjectDetailsComponent } from './project-details/project-details.component';
 import { ProjectFormComponent } from './project-details/project-form/project-form.component';
 import { ProjectListComponent } from './project-details/project-list/project-list.component';
@@ -62,6 +63,7 @@ import { EditEmployeeComponent } from './components/employee/edit-employee/edit-
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
-  ],
+    GTypeaheadModule
+  ]
 })
 export class AppModule {}
