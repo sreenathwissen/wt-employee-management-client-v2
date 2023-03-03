@@ -41,27 +41,12 @@ export class ProjectService {
   }
 
   getProjectData(): Observable<IProject[]> {
-    return this._http.get<IProject[]>(this.projectUrl + '/allProjects').pipe(
-      map((res: IProject[]) => {
-        return res;
-      }),
-      catchError((err: HttpErrorResponse) => {
-        return throwError(err);
-      })
-    );
+    return this._http.get<IProject[]>(this.projectUrl + '/allProjects');
   }
 
   searchProjectData(searchPattern: String): Observable<IProject[]> {
     return this._http
-      .get<IProject[]>(this.projectUrl + '/search?projectName=' + searchPattern)
-      .pipe(
-        map((res: IProject[]) => {
-          return res;
-        }),
-        catchError((err: HttpErrorResponse) => {
-          return throwError(err);
-        })
-      );
+      .get<IProject[]>(this.projectUrl + '/search?projectName=' + searchPattern);
   }
 
   insertProject(project: IProject) {
@@ -72,14 +57,7 @@ export class ProjectService {
     const headers = { 'content-type': 'application/json' };
     const body = JSON.stringify(projectArray);
     console.log(body);
-    return this._http.post(this.projectUrl, body, { headers: headers }).pipe(
-      map((res: any) => {
-        return res;
-      }),
-      catchError((err: HttpErrorResponse) => {
-        return throwError(err);
-      })
-    );
+    return this._http.post(this.projectUrl, body, { headers: headers });
   }
 
   populateForm(project: IProject) {

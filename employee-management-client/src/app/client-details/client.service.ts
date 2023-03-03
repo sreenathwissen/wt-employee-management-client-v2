@@ -28,27 +28,13 @@ export class ClientService {
   }
 
   getClientData(): Observable<IClient[]> {
-    return this._http.get<IClient[]>(this.clientUrl + '/allClients').pipe(
-      map((res: IClient[]) => {
-        return res;
-      }),
-      catchError((err: HttpErrorResponse) => {
-        return throwError(err);
-      })
-    );
+    return this._http.get<IClient[]>(this.clientUrl + '/allClients');
   }
 
   searchClientData(searchPattern: String): Observable<IClient[]> {
-    return this._http
-      .get<IClient[]>(this.clientUrl + '/search?clientName=' + searchPattern)
-      .pipe(
-        map((res: IClient[]) => {
-          return res;
-        }),
-        catchError((err: HttpErrorResponse) => {
-          return throwError(err);
-        })
-      );
+    return this._http.get<IClient[]>(
+      this.clientUrl + '/search?clientName=' + searchPattern
+    );
   }
 
   insertClient(client: IClient) {
@@ -59,18 +45,9 @@ export class ClientService {
     const headers = { 'content-type': 'application/json' };
     const body = JSON.stringify(clientArray);
     console.log(body);
-    return this._http
-      .post(this.clientUrl, body, {
-        headers: headers,
-      })
-      .pipe(
-        map((res: any) => {
-          return res;
-        }),
-        catchError((err: HttpErrorResponse) => {
-          return throwError(err);
-        })
-      );
+    return this._http.post(this.clientUrl, body, {
+      headers: headers,
+    });
   }
 
   populateForm(client: IClient) {

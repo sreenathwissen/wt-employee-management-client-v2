@@ -27,14 +27,7 @@ export class SkillService {
   }
 
   getSkillData(): Observable<ISkill[]> {
-    return this._http.get<ISkill[]>(this.skillUrl).pipe(
-      map((res: ISkill[]) => {
-        return res;
-      }),
-      catchError((err: HttpErrorResponse) => {
-        return throwError(err);
-      })
-    );
+    return this._http.get<ISkill[]>(this.skillUrl);
   }
 
   insertSkill(skill: ISkill) {
@@ -45,18 +38,9 @@ export class SkillService {
     const headers = { 'content-type': 'application/json' };
     const body = JSON.stringify(skillArray);
     console.log(body);
-    return this._http
-      .post(this.skillUrl, body, {
-        headers: headers,
-      })
-      .pipe(
-        map((res: any) => {
-          return res;
-        }),
-        catchError((err: HttpErrorResponse) => {
-          return throwError(err);
-        })
-      );
+    return this._http.post(this.skillUrl, body, {
+      headers: headers,
+    });
   }
 
   populateForm(skill: ISkill) {
