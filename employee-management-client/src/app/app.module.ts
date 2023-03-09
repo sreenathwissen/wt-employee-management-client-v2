@@ -8,7 +8,7 @@ import { CreateEmployeeComponent } from './components/employee/create-employee/c
 import { EmployeesComponent } from './components/employee/employees/employees.component';
 import { apiList } from './services/https/api-list';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import{MatTabsModule} from '@angular/material/tabs'
+import { MatTabsModule } from '@angular/material/tabs';
 import { ClientListComponent } from './client-details/client-list/client-list.component';
 import { CommonModule } from '@angular/common';
 import { MaterialModule } from './material/material.module';
@@ -28,6 +28,7 @@ import { ProjectService } from './project-details/project.service';
 import { EmployeeProjectDetailsComponent } from './employee-project-details/employee-project-details.component';
 import { EmployeeProjectService } from './employee-project-details/EmployeeProjectService';
 import { EditEmployeeComponent } from './components/employee/edit-employee/edit-employee.component';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -44,13 +45,10 @@ import { EditEmployeeComponent } from './components/employee/edit-employee/edit-
     ProjectDetailsComponent,
     ProjectFormComponent,
     ProjectListComponent,
-
-    EmployeeProjectDetailsComponent
-  ],
-  providers: [ClientService, SkillService, ProjectService, EmployeeProjectService],
+    EmployeeProjectDetailsComponent,
     EditEmployeeComponent
   ],
-  providers: [ClientService, SkillService, ProjectService,apiList],
+  providers: [ClientService, SkillService, ProjectService, apiList, EmployeeProjectService],
   bootstrap: [AppComponent],
   // entryComponents: [SkillDetailsComponent],
   imports: [
@@ -60,14 +58,10 @@ import { EditEmployeeComponent } from './components/employee/edit-employee/edit-
     MatTabsModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule, 
+    HttpClientModule,
     CommonModule,
     MaterialModule,
-    BrowserAnimationsModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    FormsModule,
-    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
   ],
 })
 export class AppModule { }

@@ -1,14 +1,12 @@
 <mat-toolbar>
-  <button mat-button disabled *ngIf="sidenav.mode === 'side'">
-    <img class="logo" src="assets\Wissen-logo.png" />
-  </button>
   <button
     mat-icon-button
-    *ngIf="sidenav.mode === 'over'"
     (click)="sidenav.toggle()"
   >
-    <mat-icon *ngIf="!sidenav.opened"> menu </mat-icon>
-    <mat-icon *ngIf="sidenav.opened"> close </mat-icon>
+    <mat-icon> menu </mat-icon>
+  </button>
+  <button mat-button disabled *ngIf="sidenav.mode === 'side'">
+    <img class="logo" src="assets\images\Wissen-logo.png" />
   </button>
   <span class="header">Employee Portal</span>
 </mat-toolbar>
