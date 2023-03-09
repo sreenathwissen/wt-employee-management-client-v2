@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpsService } from 'src/app/services/https/https.service';
 import { apiList } from 'src/app/services/https/api-list';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-employees',
@@ -8,7 +9,8 @@ import { apiList } from 'src/app/services/https/api-list';
   styleUrls: ['./employees.component.scss']
 })
 export class EmployeesComponent implements OnInit {
-  employees:any[]=[]
+  employees:any[]=[];
+  displayedColumns: string[] = ['firstName', 'lastName', 'dob', 'email', 'primaryPhoneNumber', 'primaryEmergencyContactNumber', 'bloodGroup'];
   constructor(private https: HttpsService, private apiList: apiList) { }
 
   ngOnInit(): void {
