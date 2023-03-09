@@ -25,6 +25,8 @@ import { ProjectDetailsComponent } from './project-details/project-details.compo
 import { ProjectFormComponent } from './project-details/project-form/project-form.component';
 import { ProjectListComponent } from './project-details/project-list/project-list.component';
 import { ProjectService } from './project-details/project.service';
+import { EmployeeProjectDetailsComponent } from './employee-project-details/employee-project-details.component';
+import { EmployeeProjectService } from './employee-project-details/EmployeeProjectService';
 import { EditEmployeeComponent } from './components/employee/edit-employee/edit-employee.component';
 import { ToastrModule } from 'ngx-toastr';
 
@@ -43,9 +45,10 @@ import { ToastrModule } from 'ngx-toastr';
     ProjectDetailsComponent,
     ProjectFormComponent,
     ProjectListComponent,
-    EditEmployeeComponent,
+    EmployeeProjectDetailsComponent,
+    EditEmployeeComponent
   ],
-  providers: [ClientService, SkillService, ProjectService, apiList],
+  providers: [ClientService, SkillService, ProjectService, apiList, EmployeeProjectService],
   bootstrap: [AppComponent],
   // entryComponents: [SkillDetailsComponent],
   imports: [
@@ -61,4 +64,4 @@ import { ToastrModule } from 'ngx-toastr';
     ToastrModule.forRoot(),
   ],
 })
-export class AppModule {}
+export class AppModule { }
