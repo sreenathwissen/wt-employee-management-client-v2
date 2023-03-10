@@ -1,52 +1,191 @@
 <div class="container">
-    <mat-toolbar>
-        <span class="title">Employee</span>
-    </mat-toolbar>
-    <div class="search-div">
-        <button mat-raised-button routerLink="/create-employee">
-            <mat-icon>add</mat-icon>Create
-        </button>
-        <mat-form-field class="search-form-field">
-            <input matInput placeholder="Search" autocomplete="off" />
-            <button mat-button matSuffix mat-icon-button aria-label="Clear">
-                <mat-icon>close</mat-icon>
-            </button>
-        </mat-form-field>
-    </div>
-    <div class="mat-elevation-z8">
-        <mat-table [dataSource]="employees" matSort>
-            <ng-container matColumnDef="firstName">
-                <mat-header-cell *matHeaderCellDef mat-sort-header><b>First Name</b></mat-header-cell>
-                <mat-cell *matCellDef="let element">{{ element.firstName }}</mat-cell>
-            </ng-container>
-            <ng-container matColumnDef="lastName">
-                <mat-header-cell *matHeaderCellDef mat-sort-header><b>Last Name</b></mat-header-cell>
-                <mat-cell *matCellDef="let element">{{ element.lastName }}</mat-cell>
-            </ng-container>
-            <ng-container matColumnDef="dob">
-                <mat-header-cell *matHeaderCellDef mat-sort-header><b>Date of Birth</b></mat-header-cell>
-                <mat-cell *matCellDef="let element">{{ element.dob | date: 'dd/MM/yyy' }}</mat-cell>
-            </ng-container>
-            <ng-container matColumnDef="email">
-                <mat-header-cell *matHeaderCellDef mat-sort-header><b>Email</b></mat-header-cell>
-                <mat-cell *matCellDef="let element">{{ element.email }}</mat-cell>
-            </ng-container>
-            <ng-container matColumnDef="primaryPhoneNumber">
-                <mat-header-cell *matHeaderCellDef mat-sort-header><b>Phone Number</b></mat-header-cell>
-                <mat-cell *matCellDef="let element">{{ element.workPhone }}</mat-cell>
-            </ng-container>
-            <ng-container matColumnDef="primaryEmergencyContactNumber">
-                <mat-header-cell *matHeaderCellDef mat-sort-header><b>Emeregency Contact</b></mat-header-cell>
-                <mat-cell *matCellDef="let element">{{ element.primaryEmergencyContactNumber }}</mat-cell>
-            </ng-container>
-            <ng-container matColumnDef="bloodGroup">
-                <mat-header-cell *matHeaderCellDef mat-sort-header><b>Blood Group</b></mat-header-cell>
-                <mat-cell *matCellDef="let element">{{ element.bloodGroup }}</mat-cell>
-            </ng-container>
-            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-            <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
-        </mat-table>
+  <mat-toolbar>
+    <span class="title">Employee</span>
+  </mat-toolbar>
+  <div class="search-div">
+    <button mat-raised-button routerLink="/create-employee">
+      <mat-icon>add</mat-icon>Create
+    </button>
+    <mat-form-field class="search-form-field">
+      <input matInput placeholder="Search" autocomplete="off" />
+      <button mat-button matSuffix mat-icon-button aria-label="Clear">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+  </div>
+  <div class="mat-elevation-z8">
+    <mat-table [dataSource]="employees" matSort>
+      <ng-container matColumnDef="firstName">
+        <mat-header-cell *matHeaderCellDef mat-sort-header
+          ><b>First Name</b></mat-header-cell
+        >
+        <mat-cell *matCellDef="let element">{{ element.firstName }}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="lastName">
+        <mat-header-cell *matHeaderCellDef mat-sort-header
+          ><b>Last Name</b></mat-header-cell
+        >
+        <mat-cell *matCellDef="let element">{{ element.lastName }}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="dob">
+        <mat-header-cell *matHeaderCellDef mat-sort-header
+          ><b>Date of Birth</b></mat-header-cell
+        >
+        <mat-cell *matCellDef="let element">{{
+          element.dob | date : "dd/MM/yyy"
+        }}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="email">
+        <mat-header-cell *matHeaderCellDef mat-sort-header
+          ><b>Email</b></mat-header-cell
+        >
+        <mat-cell *matCellDef="let element">{{ element.email }}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="primaryPhoneNumber">
+        <mat-header-cell *matHeaderCellDef mat-sort-header
+          ><b>Phone Number</b></mat-header-cell
+        >
+        <mat-cell *matCellDef="let element">{{ element.workPhone }}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="primaryEmergencyContactNumber">
+        <mat-header-cell *matHeaderCellDef mat-sort-header
+          ><b>Emeregency Contact</b></mat-header-cell
+        >
+        <mat-cell *matCellDef="let element">{{
+          element.primaryEmergencyContactNumber
+        }}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="bloodGroup">
+        <mat-header-cell *matHeaderCellDef mat-sort-header
+          ><b>Blood Group</b></mat-header-cell
+        >
+        <mat-cell *matCellDef="let element">{{ element.bloodGroup }}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="employeeId">
+        <mat-header-cell *matHeaderCellDef mat-sort-header
+          ><b>Employee ID</b></mat-header-cell
+        >
+        <mat-cell *matCellDef="let element">{{ element.empId }}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="experience">
+        <mat-header-cell *matHeaderCellDef mat-sort-header
+          ><b>Experience No of Years</b></mat-header-cell
+        >
+        <mat-cell *matCellDef="let element">{{ element.expDoj }}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="manager">
+        <mat-header-cell *matHeaderCellDef mat-sort-header
+          ><b>Manager</b></mat-header-cell
+        >
+        <mat-cell *matCellDef="let element">{{ element.manager }}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="designation">
+        <mat-header-cell *matHeaderCellDef mat-sort-header
+          ><b>Designation</b></mat-header-cell
+        >
+        <mat-cell *matCellDef="let element">{{
+          element.designation?.desgName
+        }}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="role">
+        <mat-header-cell *matHeaderCellDef mat-sort-header
+          ><b>Role</b></mat-header-cell
+        >
+        <mat-cell *matCellDef="let element">{{
+          element.role?.roleName
+        }}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="type">
+        <mat-header-cell *matHeaderCellDef mat-sort-header
+          ><b>Type</b></mat-header-cell
+        >
+        <mat-cell *matCellDef="let element">{{ element.type }}</mat-cell>
+      </ng-container>
+      <!-- ## from API we are not getting location ## -->
+      <!-- <ng-container matColumnDef="currentFlat">
+        <mat-header-cell *matHeaderCellDef mat-sort-header
+          ><b>Current Flat No</b></mat-header-cell
+        >
+        <mat-cell *matCellDef="let element">{{ element.currentFlat }}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="currentStreet">
+        <mat-header-cell *matHeaderCellDef mat-sort-header
+          ><b>Current Street</b></mat-header-cell
+        >
+        <mat-cell *matCellDef="let element">{{
+          element.currentStreet
+        }}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="currentCity">
+        <mat-header-cell *matHeaderCellDef mat-sort-header
+          ><b>Current City</b></mat-header-cell
+        >
+        <mat-cell *matCellDef="let element">{{ element.currentCity }}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="currentState">
+        <mat-header-cell *matHeaderCellDef mat-sort-header
+          ><b>Current State</b></mat-header-cell
+        >
+        <mat-cell *matCellDef="let element">{{
+          element.currentState
+        }}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="currentPinCode">
+        <mat-header-cell *matHeaderCellDef mat-sort-header
+          ><b>Current Pincode</b></mat-header-cell
+        >
+        <mat-cell *matCellDef="let element">{{
+          element.currentPinCode
+        }}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="permanentFlat">
+        <mat-header-cell *matHeaderCellDef mat-sort-header
+          ><b>Permanent Flat No</b></mat-header-cell
+        >
+        <mat-cell *matCellDef="let element">{{
+          element.permanentFlat
+        }}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="permanentStreet">
+        <mat-header-cell *matHeaderCellDef mat-sort-header
+          ><b>Permanent Street</b></mat-header-cell
+        >
+        <mat-cell *matCellDef="let element">{{
+          element.permanentStreet
+        }}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="permanentCity">
+        <mat-header-cell *matHeaderCellDef mat-sort-header
+          ><b>Permanent City</b></mat-header-cell
+        >
+        <mat-cell *matCellDef="let element">{{
+          element.permanentCity
+        }}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="permanentState">
+        <mat-header-cell *matHeaderCellDef mat-sort-header
+          ><b>Permanent State</b></mat-header-cell
+        >
+        <mat-cell *matCellDef="let element">{{
+          element.permanentState
+        }}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="permanentPinCode">
+        <mat-header-cell *matHeaderCellDef mat-sort-header
+          ><b>Permanent Pincode</b></mat-header-cell
+        >
+        <mat-cell *matCellDef="let element">{{
+          element.permanentPinCode
+        }}</mat-cell>
+      </ng-container> -->
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+    </mat-table>
 
-        <mat-paginator [pageSize]="5" aria-label="Select page" showFirstLastButtons></mat-paginator>
-    </div>
+    <mat-paginator
+      [pageSize]="5"
+      aria-label="Select page"
+      showFirstLastButtons
+    ></mat-paginator>
+  </div>
 </div>
