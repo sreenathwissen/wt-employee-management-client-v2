@@ -62,6 +62,7 @@ export class SkillFormComponent implements OnInit {
           }
         }
       );
+      this.service.form.reset();
     }
   }
 

@@ -61,6 +61,7 @@ export class ClientFormComponent implements OnInit {
           }
         }
       );
+      this.service.form.reset();
     }
   }
 

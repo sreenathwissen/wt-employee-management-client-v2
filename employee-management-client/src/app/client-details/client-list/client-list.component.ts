@@ -59,7 +59,7 @@ export class ClientListComponent implements OnInit {
   applyFilter() {
     this.service.clientListForFilter = this.service.clientList.filter(
       ({ clientName }: any) =>
-        clientName.indexOf(this.searchKey.trim().toLowerCase()) !== -1
+        clientName.toLowerCase().indexOf(this.searchKey.trim().toLowerCase()) !== -1
     );
   }
 

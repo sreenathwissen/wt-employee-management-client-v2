@@ -63,7 +63,7 @@ export class ProjectListComponent implements OnInit {
   applyFilter() {
     this.service.projectListForFilter = this.service.projectList.filter(
       ({ projectName }: any) =>
-        projectName.indexOf(this.searchKey.trim().toLowerCase()) !== -1
+        projectName.toLowerCase().indexOf(this.searchKey.trim().toLowerCase()) !== -1
     );
   }
 

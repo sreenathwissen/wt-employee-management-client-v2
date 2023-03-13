@@ -19,13 +19,13 @@ export class CreateEmployeeComponent implements OnInit {
   @ViewChild('skillInput') skillInput!: ElementRef;
   separatorKeysCodes: number[] = [ENTER, COMMA];
   firstFormGroup = this._formBuilder.group({
-    firstName: [''],
-    lastName: [''],
-    dob: [''],
-    email: [''],
-    phoneNo: [''],
-    emergencyContact: [''],
-    bloodGroup: [''],
+    firstName: ['', Validators.required],
+    lastName: ['', Validators.required],
+    dob: ['', Validators.required],
+    email: ['', Validators.required],
+    phoneNo: ['', Validators.required],
+    emergencyContact: ['', Validators.required],
+    bloodGroup: ['', Validators.required],
   });
   secondFormGroup = this._formBuilder.group({
     employeeId: ['', Validators.required],
@@ -34,7 +34,7 @@ export class CreateEmployeeComponent implements OnInit {
     designation: ['', Validators.required],
     role: ['', Validators.required],
     type: ['', Validators.required],
-    skillTypeahead: ['', Validators.required],
+    skillTypeahead: [''],
   });
   thirdFormGroup = this._formBuilder.group({
     currentFlat: ['', Validators.required],
@@ -141,7 +141,7 @@ export class CreateEmployeeComponent implements OnInit {
           uan: '',
         },
         employeeId: 0,
-        employeeSkillDTOList: [],
+        employeeSkillDTOList: [] as {levels:number,skillId:any,skillName:string}[],
         exitDate: '',
         expDoj: secondFormGroup.value.experience,
         firstName: firstFormGroup.value.firstName,
@@ -164,7 +164,11 @@ export class CreateEmployeeComponent implements OnInit {
       },
     ];
     this.skills.forEach((skill) => {
-      sendData[0].employeeSkillDTOList.push();
+      sendData[0].employeeSkillDTOList.push({
+        levels: 0,
+        skillId: this.service.skillList.find(s => s.skillName === skill)?.skillId,
+        skillName: skill
+      });
     });
     this.https
       .httpPostWithHeader(this.apiList.createEmployee, sendData)

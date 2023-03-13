@@ -85,6 +85,7 @@ export class ProjectFormComponent implements OnInit {
           }
         }
       );
+      this.service.form.reset();
     }
   }
 

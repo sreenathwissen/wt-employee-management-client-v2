@@ -14,169 +14,169 @@
     </mat-form-field>
   </div>
   <div class="mat-elevation-z8">
-    <mat-table [dataSource]="employees" matSort>
+    <mat-table [dataSource]="employees" [fixedLayout] matSort>
       <ng-container matColumnDef="firstName">
         <mat-header-cell *matHeaderCellDef mat-sort-header
           ><b>First Name</b></mat-header-cell
         >
-        <mat-cell *matCellDef="let element">{{ element.firstName }}</mat-cell>
+        <mat-cell *matCellDef="let element"><span class="ellipsis">{{ element.firstName }}</span></mat-cell>
       </ng-container>
       <ng-container matColumnDef="lastName">
         <mat-header-cell *matHeaderCellDef mat-sort-header
           ><b>Last Name</b></mat-header-cell
         >
-        <mat-cell *matCellDef="let element">{{ element.lastName }}</mat-cell>
+        <mat-cell *matCellDef="let element"><span class="ellipsis">{{ element.lastName }}</span></mat-cell>
       </ng-container>
       <ng-container matColumnDef="dob">
         <mat-header-cell *matHeaderCellDef mat-sort-header
           ><b>Date of Birth</b></mat-header-cell
         >
-        <mat-cell *matCellDef="let element">{{
+        <mat-cell *matCellDef="let element"><span class="ellipsis">{{
           element.dob | date : "dd/MM/yyy"
-        }}</mat-cell>
+        }}</span></mat-cell>
       </ng-container>
       <ng-container matColumnDef="email">
         <mat-header-cell *matHeaderCellDef mat-sort-header
           ><b>Email</b></mat-header-cell
         >
-        <mat-cell *matCellDef="let element">{{ element.email }}</mat-cell>
+        <mat-cell *matCellDef="let element"><span class="ellipsis">{{ element.email }}</span></mat-cell>
       </ng-container>
       <ng-container matColumnDef="primaryPhoneNumber">
         <mat-header-cell *matHeaderCellDef mat-sort-header
           ><b>Phone Number</b></mat-header-cell
         >
-        <mat-cell *matCellDef="let element">{{ element.workPhone }}</mat-cell>
+        <mat-cell *matCellDef="let element"><span class="ellipsis">{{ element.workPhone }}</span></mat-cell>
       </ng-container>
       <ng-container matColumnDef="primaryEmergencyContactNumber">
         <mat-header-cell *matHeaderCellDef mat-sort-header
           ><b>Emeregency Contact</b></mat-header-cell
         >
-        <mat-cell *matCellDef="let element">{{
+        <mat-cell *matCellDef="let element"><span class="ellipsis">{{
           element.primaryEmergencyContactNumber
-        }}</mat-cell>
+        }}</span></mat-cell>
       </ng-container>
       <ng-container matColumnDef="bloodGroup">
         <mat-header-cell *matHeaderCellDef mat-sort-header
           ><b>Blood Group</b></mat-header-cell
         >
-        <mat-cell *matCellDef="let element">{{ element.bloodGroup }}</mat-cell>
+        <mat-cell *matCellDef="let element"><span class="ellipsis">{{ element.bloodGroup }}</span></mat-cell>
       </ng-container>
       <ng-container matColumnDef="employeeId">
         <mat-header-cell *matHeaderCellDef mat-sort-header
           ><b>Employee ID</b></mat-header-cell
         >
-        <mat-cell *matCellDef="let element">{{ element.empId }}</mat-cell>
+        <mat-cell *matCellDef="let element"><span class="ellipsis">{{ element.empId }}</span></mat-cell>
       </ng-container>
       <ng-container matColumnDef="experience">
         <mat-header-cell *matHeaderCellDef mat-sort-header
           ><b>Experience No of Years</b></mat-header-cell
         >
-        <mat-cell *matCellDef="let element">{{ element.expDoj }}</mat-cell>
+        <mat-cell *matCellDef="let element"><span class="ellipsis">{{ element.expDoj }}</span></mat-cell>
       </ng-container>
       <ng-container matColumnDef="manager">
         <mat-header-cell *matHeaderCellDef mat-sort-header
           ><b>Manager</b></mat-header-cell
         >
-        <mat-cell *matCellDef="let element">{{ element.manager }}</mat-cell>
+        <mat-cell *matCellDef="let element"><span class="ellipsis">{{ element.manager }}</span></mat-cell>
       </ng-container>
       <ng-container matColumnDef="designation">
         <mat-header-cell *matHeaderCellDef mat-sort-header
           ><b>Designation</b></mat-header-cell
         >
-        <mat-cell *matCellDef="let element">{{
+        <mat-cell *matCellDef="let element"><span class="ellipsis">{{
           element.designation?.desgName
-        }}</mat-cell>
+        }}</span></mat-cell>
       </ng-container>
       <ng-container matColumnDef="role">
         <mat-header-cell *matHeaderCellDef mat-sort-header
           ><b>Role</b></mat-header-cell
         >
-        <mat-cell *matCellDef="let element">{{
+        <mat-cell *matCellDef="let element"><span class="ellipsis">{{
           element.role?.roleName
-        }}</mat-cell>
+        }}</span></mat-cell>
       </ng-container>
       <ng-container matColumnDef="type">
         <mat-header-cell *matHeaderCellDef mat-sort-header
           ><b>Type</b></mat-header-cell
         >
-        <mat-cell *matCellDef="let element">{{ element.type }}</mat-cell>
+        <mat-cell *matCellDef="let element"><span class="ellipsis">{{ element.type }}</span></mat-cell>
       </ng-container>
       <!-- ## from API we are not getting location ## -->
       <!-- <ng-container matColumnDef="currentFlat">
         <mat-header-cell *matHeaderCellDef mat-sort-header
           ><b>Current Flat No</b></mat-header-cell
         >
-        <mat-cell *matCellDef="let element">{{ element.currentFlat }}</mat-cell>
+        <mat-cell *matCellDef="let element"><span class="ellipsis">{{ element.currentFlat }}</span></mat-cell>
       </ng-container>
       <ng-container matColumnDef="currentStreet">
         <mat-header-cell *matHeaderCellDef mat-sort-header
           ><b>Current Street</b></mat-header-cell
         >
-        <mat-cell *matCellDef="let element">{{
+        <mat-cell *matCellDef="let element"><span class="ellipsis">{{
           element.currentStreet
-        }}</mat-cell>
+        }}</span></mat-cell>
       </ng-container>
       <ng-container matColumnDef="currentCity">
         <mat-header-cell *matHeaderCellDef mat-sort-header
           ><b>Current City</b></mat-header-cell
         >
-        <mat-cell *matCellDef="let element">{{ element.currentCity }}</mat-cell>
+        <mat-cell *matCellDef="let element"><span class="ellipsis">{{ element.currentCity }}</span></mat-cell>
       </ng-container>
       <ng-container matColumnDef="currentState">
         <mat-header-cell *matHeaderCellDef mat-sort-header
           ><b>Current State</b></mat-header-cell
         >
-        <mat-cell *matCellDef="let element">{{
+        <mat-cell *matCellDef="let element"><span class="ellipsis">{{
           element.currentState
-        }}</mat-cell>
+        }}</span></mat-cell>
       </ng-container>
       <ng-container matColumnDef="currentPinCode">
         <mat-header-cell *matHeaderCellDef mat-sort-header
           ><b>Current Pincode</b></mat-header-cell
         >
-        <mat-cell *matCellDef="let element">{{
+        <mat-cell *matCellDef="let element"><span class="ellipsis">{{
           element.currentPinCode
-        }}</mat-cell>
+        }}</span></mat-cell>
       </ng-container>
       <ng-container matColumnDef="permanentFlat">
         <mat-header-cell *matHeaderCellDef mat-sort-header
           ><b>Permanent Flat No</b></mat-header-cell
         >
-        <mat-cell *matCellDef="let element">{{
+        <mat-cell *matCellDef="let element"><span class="ellipsis">{{
           element.permanentFlat
-        }}</mat-cell>
+        }}</span></mat-cell>
       </ng-container>
       <ng-container matColumnDef="permanentStreet">
         <mat-header-cell *matHeaderCellDef mat-sort-header
           ><b>Permanent Street</b></mat-header-cell
         >
-        <mat-cell *matCellDef="let element">{{
+        <mat-cell *matCellDef="let element"><span class="ellipsis">{{
           element.permanentStreet
-        }}</mat-cell>
+        }}</span></mat-cell>
       </ng-container>
       <ng-container matColumnDef="permanentCity">
         <mat-header-cell *matHeaderCellDef mat-sort-header
           ><b>Permanent City</b></mat-header-cell
         >
-        <mat-cell *matCellDef="let element">{{
+        <mat-cell *matCellDef="let element"><span class="ellipsis">{{
           element.permanentCity
-        }}</mat-cell>
+        }}</span></mat-cell>
       </ng-container>
       <ng-container matColumnDef="permanentState">
         <mat-header-cell *matHeaderCellDef mat-sort-header
           ><b>Permanent State</b></mat-header-cell
         >
-        <mat-cell *matCellDef="let element">{{
+        <mat-cell *matCellDef="let element"><span class="ellipsis">{{
           element.permanentState
-        }}</mat-cell>
+        }}</span></mat-cell>
       </ng-container>
       <ng-container matColumnDef="permanentPinCode">
         <mat-header-cell *matHeaderCellDef mat-sort-header
           ><b>Permanent Pincode</b></mat-header-cell
         >
-        <mat-cell *matCellDef="let element">{{
+        <mat-cell *matCellDef="let element"><span class="ellipsis">{{
           element.permanentPinCode
-        }}</mat-cell>
+        }}</span></mat-cell>
       </ng-container> -->
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>

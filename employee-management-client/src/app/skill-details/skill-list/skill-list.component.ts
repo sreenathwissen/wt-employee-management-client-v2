@@ -56,7 +56,7 @@ export class SkillListComponent implements OnInit {
   applyFilter() {
     this.service.skillListForFilter = this.service.skillList.filter(
       ({ skillName }: any) =>
-        skillName.indexOf(this.searchKey.trim().toLowerCase()) !== -1
+        skillName.toLowerCase().indexOf(this.searchKey.trim().toLowerCase()) !== -1
     );
   }
 

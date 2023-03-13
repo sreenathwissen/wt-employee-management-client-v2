@@ -1,9 +1,13 @@
 .title {
-    color: #333333;
-    font-family: Arial, sans-serif;
-    font-size: 26px;
-    font-weight: bold;
-    margin: 0;
-    text-transform: uppercase;
-  }
-  
+  color: #333333;
+  font-family: Arial, sans-serif;
+  font-size: 26px;
+  font-weight: bold;
+  margin: 0;
+  text-transform: uppercase;
+}
+mat-cell > span.ellipsis {
+  text-overflow: ellipsis; 
+  overflow: hidden; 
+  white-space: nowrap;
+}
