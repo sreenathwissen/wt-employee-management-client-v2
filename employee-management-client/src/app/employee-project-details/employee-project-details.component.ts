@@ -3,6 +3,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { EmployeeProjectFormComponent } from './employee-project-form/employee-project-form.component';
 import { EmployeeProjectService } from './EmployeeProjectService';
 import { IEmployeeProject } from './IEmployeeProject';
 
@@ -14,7 +15,7 @@ import { IEmployeeProject } from './IEmployeeProject';
 export class EmployeeProjectDetailsComponent implements OnInit {
 
   listData!: MatTableDataSource<any>;
-  displayedColumns: string[] = ['employeeId', 'projectName', 'projectLocation', 'projectLead', 'projectType', 'dojOnboarding', 'dorOnboarding', 'clientName', 'clientLocation'];
+  displayedColumns: string[] = ['employeeId', 'projectName', 'projectLocation', 'projectLead', 'projectType', 'dojOnboarding', 'dorOnboarding', 'clientName', 'clientLocation', 'actions'];
   rowData: IEmployeeProject[] = []
   isListEnable: boolean = false;
   @ViewChild(MatPaginator, { static: true })
@@ -23,7 +24,8 @@ export class EmployeeProjectDetailsComponent implements OnInit {
   sort!: MatSort;
 
 
-  constructor(public employeeProjectService: EmployeeProjectService) { }
+  constructor(public employeeProjectService: EmployeeProjectService,
+    private dialog: MatDialog) { }
 
   ngOnInit() {
   }
@@ -42,4 +44,24 @@ export class EmployeeProjectDetailsComponent implements OnInit {
       });
     }
   }
+
+  onCreate() {
+    this.isListEnable = false;
+    this.employeeProjectService.initializeFormGroup();
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = "60%";
+    this.dialog.open(EmployeeProjectFormComponent, dialogConfig);
+  }
+
+  onEdit(row: any) {
+    this.employeeProjectService.populateForm(row);
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = "60%";
+    this.dialog.open(EmployeeProjectFormComponent, dialogConfig);
+  }
+
 }
