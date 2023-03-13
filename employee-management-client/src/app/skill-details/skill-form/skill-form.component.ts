@@ -50,6 +50,7 @@ export class SkillFormComponent implements OnInit {
             this.service.skillList = [...this.service.skillList, data[0]];
             this.dialogRef.close(true);
           }
+          this.service.skillListForFilter = [...this.service.skillList];
         },
         (err) => {
           if (err.status === 400) {
@@ -61,6 +62,7 @@ export class SkillFormComponent implements OnInit {
           }
         }
       );
+      this.service.form.reset();
     }
   }
 

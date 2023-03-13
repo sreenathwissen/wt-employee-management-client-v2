@@ -23,6 +23,7 @@ export class SkillListComponent implements OnInit {
     this.service.getSkillData().subscribe((list) => {
       console.log(list);
       this.service.skillList = list;
+      this.service.skillListForFilter = list;
       this.rowdata = list;
       this.listData = new MatTableDataSource(this.rowdata);
       this.listData.sort = this.sort;
@@ -48,11 +49,15 @@ export class SkillListComponent implements OnInit {
 
   onSearchClear() {
     this.searchKey = '';
+    this.service.skillListForFilter = this.service.skillList;
     this.applyFilter();
   }
 
   applyFilter() {
-    this.listData.filter = this.searchKey.trim().toLowerCase();
+    this.service.skillListForFilter = this.service.skillList.filter(
+      ({ skillName }: any) =>
+        skillName.toLowerCase().indexOf(this.searchKey.trim().toLowerCase()) !== -1
+    );
   }
 
   onCreate() {

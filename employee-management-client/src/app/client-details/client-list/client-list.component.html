@@ -1,50 +1,84 @@
 <div class="search-div">
-    <button mat-raised-button (click)="onCreate()">
-        <mat-icon>add</mat-icon>Create
+  <button mat-raised-button (click)="onCreate()">
+    <mat-icon>add</mat-icon>Create
+  </button>
+  <mat-form-field class="search-form-field">
+    <input
+      matInput
+      [(ngModel)]="searchKey"
+      placeholder="Search"
+      autocomplete="off"
+      (keyup)="applyFilter()"
+    />
+    <button
+      mat-button
+      matSuffix
+      mat-icon-button
+      aria-label="Clear"
+      *ngIf="searchKey"
+      (click)="onSearchClear()"
+    >
+      <mat-icon>close</mat-icon>
     </button>
-    <mat-form-field class="search-form-field">
-        <input matInput [(ngModel)]="searchKey" placeholder="Search" autocomplete="off" (keyup)="applyFilter()">
-        <button mat-button matSuffix mat-icon-button aria-label="Clear" *ngIf="searchKey" (click)="onSearchClear()">
-            <mat-icon>close</mat-icon>
-        </button>
-    </mat-form-field>
+  </mat-form-field>
 </div>
 <div class="mat-elevation-z8">
-    <mat-table [dataSource]="service.clientList" matSort>
-        <ng-container matColumnDef="clientId">
-            <mat-header-cell *matHeaderCellDef mat-sort-header><b>Client ID</b></mat-header-cell>
-            <mat-cell *matCellDef="let element">{{element.clientId}}</mat-cell>
-        </ng-container>
-        <ng-container matColumnDef="clientName">
-            <mat-header-cell *matHeaderCellDef mat-sort-header><b>Client Name</b></mat-header-cell>
-            <mat-cell *matCellDef="let element">{{element.clientName}}</mat-cell>
-        </ng-container>
-        <ng-container matColumnDef="clientLocation">
-            <mat-header-cell *matHeaderCellDef mat-sort-header><b>Client Location</b></mat-header-cell>
-            <mat-cell *matCellDef="let element">{{element.clientLocation}}</mat-cell>
-        </ng-container>
-        <ng-container matColumnDef="actions">
-            <mat-header-cell *matHeaderCellDef><b>Actions</b></mat-header-cell>
-            <mat-cell *matCellDef="let row">
-                <button mat-icon-button (click)="onEdit(row)"><mat-icon>launch</mat-icon></button>
-            </mat-cell>
-        </ng-container>
-        <ng-container matColumnDef="loading">
-            <mat-footer-cell *matFooterCellDef colspan="6">
-                Loading data...
-            </mat-footer-cell>
-        </ng-container>
-        <ng-container matColumnDef="noData">
-            <mat-footer-cell *matFooterCellDef colspan="6">
-                No data.
-            </mat-footer-cell>
-        </ng-container>
-        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-        <mat-footer-row *matFooterRowDef="['loading']" [ngClass]="{'hide':listData!=null}"></mat-footer-row>
-        <mat-footer-row *matFooterRowDef="['noData']"
-            [ngClass]="{'hide':!(listData!=null && service.clientList.length==0)}"></mat-footer-row>
-    </mat-table>
+  <mat-table [dataSource]="service.clientListForFilter" matSort>
+    <ng-container matColumnDef="clientId">
+      <mat-header-cell *matHeaderCellDef mat-sort-header
+        ><b>Client ID</b></mat-header-cell
+      >
+      <mat-cell *matCellDef="let element">{{ element.clientId }}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="clientName">
+      <mat-header-cell *matHeaderCellDef mat-sort-header
+        ><b>Client Name</b></mat-header-cell
+      >
+      <mat-cell *matCellDef="let element">{{ element.clientName }}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="clientLocation">
+      <mat-header-cell *matHeaderCellDef mat-sort-header
+        ><b>Client Location</b></mat-header-cell
+      >
+      <mat-cell *matCellDef="let element">{{
+        element.clientLocation
+      }}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef><b>Actions</b></mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <button mat-icon-button (click)="onEdit(row)">
+          <mat-icon>launch</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="loading">
+      <mat-footer-cell *matFooterCellDef colspan="6">
+        Loading data...
+      </mat-footer-cell>
+    </ng-container>
+    <ng-container matColumnDef="noData">
+      <mat-footer-cell *matFooterCellDef colspan="6">
+        No data.
+      </mat-footer-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+    <mat-footer-row
+      *matFooterRowDef="['loading']"
+      [ngClass]="{ hide: listData != null }"
+    ></mat-footer-row>
+    <mat-footer-row
+      *matFooterRowDef="['noData']"
+      [ngClass]="{
+        hide: !(listData != null && service.clientList.length == 0)
+      }"
+    ></mat-footer-row>
+  </mat-table>
 
-    <mat-paginator [pageSize]="5" aria-label="Select page" showFirstLastButtons></mat-paginator>
+  <mat-paginator
+    [pageSize]="5"
+    aria-label="Select page"
+    showFirstLastButtons
+  ></mat-paginator>
 </div>

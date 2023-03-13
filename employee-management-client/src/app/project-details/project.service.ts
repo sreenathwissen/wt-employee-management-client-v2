@@ -12,6 +12,7 @@ import { catchError, map } from 'rxjs/operators';
 export class ProjectService {
   private projectUrl = 'http://localhost:8080/api/project';
   projectList!: IProject[];
+  projectListForFilter!: IProject[];
 
   defaultClient: IClient = {
     clientId: 0,
@@ -45,8 +46,9 @@ export class ProjectService {
   }
 
   searchProjectData(searchPattern: String): Observable<IProject[]> {
-    return this._http
-      .get<IProject[]>(this.projectUrl + '/search?projectName=' + searchPattern);
+    return this._http.get<IProject[]>(
+      this.projectUrl + '/search?projectName=' + searchPattern
+    );
   }
 
   insertProject(project: IProject) {
