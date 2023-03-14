@@ -1,249 +1,360 @@
 <div class="wrap">
-    <div class="tilte">
-        <h3>Create Employee</h3>
-    </div>
-    <mat-tab-group [selectedIndex]="selectedIndex">
-        <mat-tab label="Personal Info">
-            <div class="form-group">
-                <div class="form-control">
-                    <div class="left"><label>First Name</label></div>
-                    <div class="right"><input type="text" [(ngModel)]="data.firstName"></div>
-                </div>
-                <div class="form-control">
-                    <div class="left"><label>Last Name</label></div>
-                    <div class="right"><input type="text" [(ngModel)]="data.lastName"></div>
-                </div>
-                <div class="form-control">
-                    <div class="left"><label>Date of Birth</label></div>
-                    <div class="right"><input type="date" [(ngModel)]="data.dob"></div>
-                </div>
-                <div class="form-control">
-                    <div class="left"><label>Email</label></div>
-                    <div class="right"><input type="text" [(ngModel)]="data.email"></div>
-                </div>
-                <div class="form-control">
-                    <div class="left"><label>Phone Number</label></div>
-                    <div class="right"><input type="number" [(ngModel)]="data.phoneNo"></div>
-                </div>
-                <div class="form-control">
-                    <div class="left"><label>Emeregency Contact</label></div>
-                    <div class="right"><input type="number" [(ngModel)]="data.emergencyContact"></div>
-                </div>
-                <div class="form-control">
-                    <div class="left"><label>Blood Group</label></div>
-                    <div class="right"><input type="text" [(ngModel)]="data.bloodGroup"></div>
-                </div>
-            </div>
-
-            <div class="btn">
-                <button routerLink="/employees" style="margin-right: 10px;background: red;">Cancel</button>
-                <button (click)="selectedIndex=1">Next</button>
-            </div>
-        </mat-tab>
-        <mat-tab label="Professional Info">
-            <div class="form-group">
-                <div class="form-control">
-                    <div class="left"><label>Employee ID</label></div>
-                    <div class="right"><input type="number" [(ngModel)]="data.employeeId"></div>
-                </div>
-                <div class="form-control">
-                    <div class="left"><label>Experience No of Years</label></div>
-                    <div class="right"><input type="number" [(ngModel)]="data.experience"></div>
-                </div>
-                <div class="form-control">
-                    <div class="left"><label>Manager</label></div>
-                    <div class="right"><input type="text" [(ngModel)]="data.manager"></div>
-                </div>
-                <div class="form-control">
-                    <div class="left"><label>Designation</label></div>
-                    <div class="right"><input type="text" [(ngModel)]="data.designation"></div>
-                </div>
-                <div class="form-control">
-                    <div class="left"><label>Role</label></div>
-                    <div class="right"><input type="text" [(ngModel)]="data.role"></div>
-                </div>
-                <div class="form-control">
-                    <div class="left"><label>Type</label></div>
-                    <div class="right"><input type="text" [(ngModel)]="data.type"></div>
-                </div>
-            </div>
-            <div class="btn">
-                <span>
-                    <button routerLink="/employees" style="margin-right: 20px;background: red;">Cancel</button>
-                </span>
-                <span>
-                    <button (click)="selectedIndex=0" style="margin-right: 10px;background: #468cca;">Back</button>
-                    <button (click)="selectedIndex=2">Next</button>
-                </span>
-            </div>
-        </mat-tab>
-        <mat-tab label="Address">
-            <div class="form-group">
-                <div class="form-control">
-                    <div class="left"><span class="badge">Current Address</span> <label>Flat</label></div>
-                    <div class="right"><input type="text" [(ngModel)]="data.currentFlat"></div>
-                </div>
-                <div class="form-control">
-                    <div class="left"><span class="badge">Current Address</span> <label>Street</label></div>
-                    <div class="right"><input type="text" [(ngModel)]="data.currentStreet"></div>
-                </div>
-                <div class="form-control">
-                    <div class="left"><span class="badge">Current Address</span> <label>City</label></div>
-                    <div class="right"><input type="text" [(ngModel)]="data.currentCity"></div>
-                </div>
-                <div class="form-control">
-                    <div class="left"><span class="badge">Current Address</span> <label>State</label></div>
-                    <div class="right"><input type="text" [(ngModel)]="data.currentState"></div>
-                </div>
-                <div class="form-control">
-                    <div class="left"><span class="badge">Current Address</span> <label>Pin Code</label></div>
-                    <div class="right"><input type="number" [(ngModel)]="data.currentPinCode"></div>
-                </div>
-                <p class="saca" (click)="sameAddress()">Same as Current Address</p>
-                <br />
-                <div class="form-control">
-                    <div class="left"><span class="badge red">Permanent Address</span> <label>Flat</label></div>
-                    <div class="right"><input type="text" [(ngModel)]="data.permanentFlat"></div>
-                </div>
-                <div class="form-control">
-                    <div class="left"><span class="badge red">Permanent Address</span> <label>Street</label></div>
-                    <div class="right"><input type="text" [(ngModel)]="data.permanentStreet"></div>
-                </div>
-                <div class="form-control">
-                    <div class="left"><span class="badge red">Permanent Address</span> <label>City</label></div>
-                    <div class="right"><input type="text" [(ngModel)]="data.permanentCity"></div>
-                </div>
-                <div class="form-control">
-                    <div class="left"><span class="badge red">Permanent Address</span> <label>State</label></div>
-                    <div class="right"><input type="text" [(ngModel)]="data.permanentState"></div>
-                </div>
-                <div class="form-control">
-                    <div class="left"><span class="badge red">Permanent Address</span> <label>Pin Code</label></div>
-                    <div class="right"><input type="number" [(ngModel)]="data.permanentPinCode"></div>
-                </div>
-            </div>
-            <div class="btn">
-                <span>
-                    <button routerLink="/employees" style="margin-right: 20px;background: red;">Cancel</button>
-                </span>
-                <span>
-                    <button (click)="selectedIndex=1" style="margin-right: 10px;background: #468cca;">Back</button>
-                    <button (click)="selectedIndex=3">Next</button>
-                </span>
-            </div>
-        </mat-tab>
-        <mat-tab label="Preview">
-            <p class="saca">Personal Info</p>
-            <div class="form-group dsbllld">
-                <div class="form-control">
-                    <div class="left"><label>First Name</label></div>
-                    <div class="right"><input type="text" [(ngModel)]="data.firstName"></div>
-                </div>
-                <div class="form-control">
-                    <div class="left"><label>Last Name</label></div>
-                    <div class="right"><input type="text" [(ngModel)]="data.lastName"></div>
-                </div>
-                <div class="form-control">
-                    <div class="left"><label>Date of Birth</label></div>
-                    <div class="right"><input type="date" [(ngModel)]="data.dob"></div>
-                </div>
-                <div class="form-control">
-                    <div class="left"><label>Email</label></div>
-                    <div class="right"><input type="text" [(ngModel)]="data.email"></div>
-                </div>
-                <div class="form-control">
-                    <div class="left"><label>Phone Number</label></div>
-                    <div class="right"><input type="number" [(ngModel)]="data.phoneNo"></div>
-                </div>
-                <div class="form-control">
-                    <div class="left"><label>Emeregency Contact</label></div>
-                    <div class="right"><input type="number" [(ngModel)]="data.emergencyContact"></div>
-                </div>
-                <div class="form-control">
-                    <div class="left"><label>Blood Group</label></div>
-                    <div class="right"><input type="text" [(ngModel)]="data.bloodGroup"></div>
-                </div>
-            </div>
-            <p class="saca">Professional Info</p>
-            <div class="form-group">
-                <div class="form-control">
-                    <div class="left"><label>Employee ID</label></div>
-                    <div class="right"><input type="number" [(ngModel)]="data.employeeId"></div>
-                </div>
-                <div class="form-control">
-                    <div class="left"><label>Experience No of Years</label></div>
-                    <div class="right"><input type="number" [(ngModel)]="data.experience"></div>
-                </div>
-                <div class="form-control">
-                    <div class="left"><label>Manager</label></div>
-                    <div class="right"><input type="text" [(ngModel)]="data.manager"></div>
-                </div>
-                <div class="form-control">
-                    <div class="left"><label>Designation</label></div>
-                    <div class="right"><input type="text" [(ngModel)]="data.designation"></div>
-                </div>
-                <div class="form-control">
-                    <div class="left"><label>Role</label></div>
-                    <div class="right"><input type="text" [(ngModel)]="data.role"></div>
-                </div>
-                <div class="form-control">
-                    <div class="left"><label>Type</label></div>
-                    <div class="right"><input type="text" [(ngModel)]="data.type"></div>
-                </div>
-            </div>
-            <p class="saca">Address</p>
-            <div class="form-group">
-                <div class="form-control">
-                    <div class="left"><span class="badge">Current Address</span> <label>Flat</label></div>
-                    <div class="right"><input type="text" [(ngModel)]="data.currentFlat"></div>
-                </div>
-                <div class="form-control">
-                    <div class="left"><span class="badge">Current Address</span> <label>Street</label></div>
-                    <div class="right"><input type="text" [(ngModel)]="data.currentStreet"></div>
-                </div>
-                <div class="form-control">
-                    <div class="left"><span class="badge">Current Address</span> <label>City</label></div>
-                    <div class="right"><input type="text" [(ngModel)]="data.currentCity"></div>
-                </div>
-                <div class="form-control">
-                    <div class="left"><span class="badge">Current Address</span> <label>State</label></div>
-                    <div class="right"><input type="text" [(ngModel)]="data.currentState"></div>
-                </div>
-                <div class="form-control">
-                    <div class="left"><span class="badge">Current Address</span> <label>Pin Code</label></div>
-                    <div class="right"><input type="number" [(ngModel)]="data.currentPinCode"></div>
-                </div>
-                <br />
-                <div class="form-control">
-                    <div class="left"><span class="badge red">Permanent Address</span> <label>Flat</label></div>
-                    <div class="right"><input type="text" [(ngModel)]="data.permanentFlat"></div>
-                </div>
-                <div class="form-control">
-                    <div class="left"><span class="badge red">Permanent Address</span> <label>Street</label></div>
-                    <div class="right"><input type="text" [(ngModel)]="data.permanentStreet"></div>
-                </div>
-                <div class="form-control">
-                    <div class="left"><span class="badge red">Permanent Address</span> <label>City</label></div>
-                    <div class="right"><input type="text" [(ngModel)]="data.permanentCity"></div>
-                </div>
-                <div class="form-control">
-                    <div class="left"><span class="badge red">Permanent Address</span> <label>State</label></div>
-                    <div class="right"><input type="text" [(ngModel)]="data.permanentState"></div>
-                </div>
-                <div class="form-control">
-                    <div class="left"><span class="badge red">Permanent Address</span> <label>Pin Code</label></div>
-                    <div class="right"><input type="number" [(ngModel)]="data.permanentPinCode"></div>
-                </div>
-            </div>
-            <div class="btn">
-                <span>
-                    <button routerLink="/employees" style="margin-right: 20px;background: red;">Cancel</button>
-                </span>
-                <span>
-                    <button (click)="selectedIndex=2" style="margin-right: 10px;background: #468cca;">Back</button>
-                    <button (click)="save()">Save</button>
-                </span>
-            </div>
-        </mat-tab>
-    </mat-tab-group>
+  <div class="tilte">
+    <h3>Create Employee</h3>
+  </div>
+  <mat-stepper [linear]="true" #stepper>
+    <mat-step [stepControl]="firstFormGroup">
+      <form [formGroup]="firstFormGroup">
+        <ng-template matStepLabel>Personal Info</ng-template>
+        <mat-form-field>
+          <mat-label>First Name</mat-label>
+          <input matInput formControlName="firstName" />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Last Name</mat-label>
+          <input matInput formControlName="lastName" />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Date Of Birth</mat-label>
+          <input type="date" matInput formControlName="dob" />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Email</mat-label>
+          <input type="email" matInput formControlName="email" />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Phone Number</mat-label>
+          <input type="tel" matInput formControlName="phoneNo" />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Emergency Contact</mat-label>
+          <input type="tel" matInput formControlName="emergencyContact" />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Blood Group</mat-label>
+          <input matInput formControlName="bloodGroup" />
+        </mat-form-field>
+        <div class="stepper-button-container">
+          <button
+            class="float-right"
+            mat-raised-button
+            color="primary"
+            matStepperNext
+          >
+            Next
+          </button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup" label="Professional Info">
+      <form [formGroup]="secondFormGroup">
+        <mat-form-field>
+          <mat-label>Employee ID</mat-label>
+          <input type="number" matInput formControlName="employeeId" />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Experience No of Years</mat-label>
+          <input type="number" matInput formControlName="experience" />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Manager</mat-label>
+          <input matInput formControlName="manager" />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Designation</mat-label>
+          <input matInput formControlName="designation" />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Role</mat-label>
+          <input matInput formControlName="role" />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Type</mat-label>
+          <input matInput formControlName="type" />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-chip-list #chipList>
+            <mat-chip
+              color="primary"
+              *ngFor="let skill of skills"
+              [selectable]="true"
+              [removable]="true"
+              (removed)="remove(skill)"
+            >
+              {{ skill }}
+              <mat-icon matChipRemove>cancel</mat-icon>
+            </mat-chip>
+            <input
+              placeholder="Skills (Type and Enter to add new)"
+              #skillInput
+              formControlName="skillTypeahead"
+              [matAutocomplete]="auto"
+              [matChipInputFor]="chipList"
+            />
+          </mat-chip-list>
+          <mat-autocomplete
+            #auto="matAutocomplete"
+            (optionSelected)="selected($event)"
+          >
+            <mat-option
+              *ngFor="let skill of service.skillListForFilter"
+              [value]="skill.skillId"
+            >
+              {{ skill.skillName }}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+        <div class="stepper-button-container">
+          <button
+            class="float-left"
+            mat-stroked-button
+            color="primary"
+            matStepperPrevious
+          >
+            Back
+          </button>
+          <button
+            class="float-right"
+            mat-raised-button
+            color="primary"
+            matStepperNext
+          >
+            Next
+          </button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="thirdFormGroup" label="Address">
+      <form [formGroup]="thirdFormGroup">
+        <fieldset>
+          <legend>Current Address</legend>
+          <mat-form-field>
+            <mat-label>Flat No</mat-label>
+            <input type="number" matInput formControlName="currentFlat" />
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Street</mat-label>
+            <input matInput formControlName="currentStreet" />
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>City</mat-label>
+            <input matInput formControlName="currentCity" />
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>State</mat-label>
+            <input matInput formControlName="currentState" />
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Pincode</mat-label>
+            <input matInput formControlName="currentPinCode" />
+          </mat-form-field>
+        </fieldset>
+        <fieldset>
+          <legend>Permanent Address</legend>
+          <mat-form-field>
+            <mat-label>Flat No</mat-label>
+            <input type="number" matInput formControlName="permanentFlat" />
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Street</mat-label>
+            <input matInput formControlName="permanentStreet" />
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>City</mat-label>
+            <input matInput formControlName="permanentCity" />
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>State</mat-label>
+            <input matInput formControlName="permanentState" />
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Pincode</mat-label>
+            <input matInput formControlName="permanentPinCode" />
+          </mat-form-field>
+        </fieldset>
+        <mat-checkbox class="mb-2" (click)="sameAddress(thirdFormGroup)"
+          >Same as Current Address</mat-checkbox
+        >
+        <div class="stepper-button-container">
+          <button
+            class="float-left"
+            mat-stroked-button
+            color="primary"
+            matStepperPrevious
+          >
+            Back
+          </button>
+          <button
+            class="float-right"
+            mat-raised-button
+            color="primary"
+            matStepperNext
+          >
+            Next
+          </button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Preview</ng-template>
+      <mat-grid-list cols="2" rowHeight="2rem">
+        <mat-grid-tile class="justify-right">First Name</mat-grid-tile>
+        <mat-grid-tile class="justify-left">{{
+          firstFormGroup.value.firstName
+        }}</mat-grid-tile>
+      </mat-grid-list>
+      <mat-grid-list cols="2" rowHeight="2rem">
+        <mat-grid-tile class="justify-right">Last Name</mat-grid-tile>
+        <mat-grid-tile class="justify-left">{{
+          firstFormGroup.value.lastName
+        }}</mat-grid-tile>
+      </mat-grid-list>
+      <mat-grid-list cols="2" rowHeight="2rem">
+        <mat-grid-tile class="justify-right">Date of Birth</mat-grid-tile>
+        <mat-grid-tile class="justify-left">{{
+          firstFormGroup.value.dob
+        }}</mat-grid-tile>
+      </mat-grid-list>
+      <mat-grid-list cols="2" rowHeight="2rem">
+        <mat-grid-tile class="justify-right">Email</mat-grid-tile>
+        <mat-grid-tile class="justify-left">{{
+          firstFormGroup.value.email
+        }}</mat-grid-tile>
+      </mat-grid-list>
+      <mat-grid-list cols="2" rowHeight="2rem">
+        <mat-grid-tile class="justify-right">Phone Number</mat-grid-tile>
+        <mat-grid-tile class="justify-left">{{
+          firstFormGroup.value.phoneNo
+        }}</mat-grid-tile>
+      </mat-grid-list>
+      <mat-grid-list cols="2" rowHeight="2rem">
+        <mat-grid-tile class="justify-right">Emeregency Contact</mat-grid-tile>
+        <mat-grid-tile class="justify-left">{{
+          firstFormGroup.value.emergencyContact
+        }}</mat-grid-tile>
+      </mat-grid-list>
+      <mat-grid-list cols="2" rowHeight="2rem">
+        <mat-grid-tile class="justify-right">Blood Group</mat-grid-tile>
+        <mat-grid-tile class="justify-left">{{
+          firstFormGroup.value.bloodGroup
+        }}</mat-grid-tile>
+      </mat-grid-list>
+      <mat-grid-list cols="2" rowHeight="2rem">
+        <mat-grid-tile class="justify-right">Employee ID</mat-grid-tile>
+        <mat-grid-tile class="justify-left">{{
+          secondFormGroup.value.employeeId
+        }}</mat-grid-tile>
+      </mat-grid-list>
+      <mat-grid-list cols="2" rowHeight="2rem">
+        <mat-grid-tile class="justify-right"
+          >Experience No of Years</mat-grid-tile
+        >
+        <mat-grid-tile class="justify-left">{{
+          secondFormGroup.value.experience
+        }}</mat-grid-tile>
+      </mat-grid-list>
+      <mat-grid-list cols="2" rowHeight="2rem">
+        <mat-grid-tile class="justify-right">Manager</mat-grid-tile>
+        <mat-grid-tile class="justify-left">{{
+          secondFormGroup.value.manager
+        }}</mat-grid-tile>
+      </mat-grid-list>
+      <mat-grid-list cols="2" rowHeight="2rem">
+        <mat-grid-tile class="justify-right">Designation</mat-grid-tile>
+        <mat-grid-tile class="justify-left">{{
+          secondFormGroup.value.designation
+        }}</mat-grid-tile>
+      </mat-grid-list>
+      <mat-grid-list cols="2" rowHeight="2rem">
+        <mat-grid-tile class="justify-right">Role</mat-grid-tile>
+        <mat-grid-tile class="justify-left">{{
+          secondFormGroup.value.role
+        }}</mat-grid-tile>
+      </mat-grid-list>
+      <mat-grid-list cols="2" rowHeight="2rem">
+        <mat-grid-tile class="justify-right">Type</mat-grid-tile>
+        <mat-grid-tile class="justify-left">{{
+          secondFormGroup.value.type
+        }}</mat-grid-tile>
+      </mat-grid-list>
+      <mat-grid-list cols="2" rowHeight="2rem">
+        <mat-grid-tile class="justify-right">Current Flat No</mat-grid-tile>
+        <mat-grid-tile class="justify-left">{{
+          thirdFormGroup.value.currentFlat
+        }}</mat-grid-tile>
+      </mat-grid-list>
+      <mat-grid-list cols="2" rowHeight="2rem">
+        <mat-grid-tile class="justify-right">Current Street</mat-grid-tile>
+        <mat-grid-tile class="justify-left">{{
+          thirdFormGroup.value.currentStreet
+        }}</mat-grid-tile>
+      </mat-grid-list>
+      <mat-grid-list cols="2" rowHeight="2rem">
+        <mat-grid-tile class="justify-right">Current City</mat-grid-tile>
+        <mat-grid-tile class="justify-left">{{
+          thirdFormGroup.value.currentCity
+        }}</mat-grid-tile>
+      </mat-grid-list>
+      <mat-grid-list cols="2" rowHeight="2rem">
+        <mat-grid-tile class="justify-right">Current State</mat-grid-tile>
+        <mat-grid-tile class="justify-left">{{
+          thirdFormGroup.value.currentState
+        }}</mat-grid-tile>
+      </mat-grid-list>
+      <mat-grid-list cols="2" rowHeight="2rem">
+        <mat-grid-tile class="justify-right">Current Pincode</mat-grid-tile>
+        <mat-grid-tile class="justify-left">{{
+          thirdFormGroup.value.currentPinCode
+        }}</mat-grid-tile>
+      </mat-grid-list>
+      <mat-grid-list cols="2" rowHeight="2rem">
+        <mat-grid-tile class="justify-right">Permanent Flat No</mat-grid-tile>
+        <mat-grid-tile class="justify-left">{{
+          thirdFormGroup.value.permanentFlat
+        }}</mat-grid-tile>
+      </mat-grid-list>
+      <mat-grid-list cols="2" rowHeight="2rem">
+        <mat-grid-tile class="justify-right">Permanent Street</mat-grid-tile>
+        <mat-grid-tile class="justify-left">{{
+          thirdFormGroup.value.permanentStreet
+        }}</mat-grid-tile>
+      </mat-grid-list>
+      <mat-grid-list cols="2" rowHeight="2rem">
+        <mat-grid-tile class="justify-right">Permanent City</mat-grid-tile>
+        <mat-grid-tile class="justify-left">{{
+          thirdFormGroup.value.permanentCity
+        }}</mat-grid-tile>
+      </mat-grid-list>
+      <mat-grid-list cols="2" rowHeight="2rem">
+        <mat-grid-tile class="justify-right">Permanent State</mat-grid-tile>
+        <mat-grid-tile class="justify-left">{{
+          thirdFormGroup.value.permanentState
+        }}</mat-grid-tile>
+      </mat-grid-list>
+      <mat-grid-list cols="2" rowHeight="2rem">
+        <mat-grid-tile class="justify-right">Permanent Pincode</mat-grid-tile>
+        <mat-grid-tile class="justify-left">{{
+          thirdFormGroup.value.permanentPinCode
+        }}</mat-grid-tile>
+      </mat-grid-list>
+      <div class="stepper-button-container">
+        <button
+          class="float-left"
+          mat-stroked-button
+          color="primary"
+          matStepperPrevious
+        >
+          Back
+        </button>
+        <button
+          class="float-right"
+          mat-raised-button
+          color="primary"
+          (click)="save(firstFormGroup, secondFormGroup, thirdFormGroup)"
+        >
+          Submit
+        </button>
+      </div>
+    </mat-step>
+  </mat-stepper>
 </div>

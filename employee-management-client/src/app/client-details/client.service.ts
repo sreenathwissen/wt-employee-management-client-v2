@@ -10,6 +10,7 @@ import { catchError, map } from 'rxjs/operators';
 export class ClientService {
   clientUrl = 'http://localhost:8080/api/client';
   clientList!: IClient[];
+  clientListForFilter!: IClient[];
 
   constructor(private _http: HttpClient) {}
 

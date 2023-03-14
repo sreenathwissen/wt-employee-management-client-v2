@@ -10,24 +10,23 @@ import { IClient } from '../IClient';
 @Component({
   selector: 'app-client-list',
   templateUrl: './client-list.component.html',
-  styleUrls: ['./client-list.component.scss']
+  styleUrls: ['./client-list.component.scss'],
 })
 export class ClientListComponent implements OnInit {
-
-  constructor(public service: ClientService,
-    private dialog: MatDialog) {
-
-  }
+  constructor(public service: ClientService, private dialog: MatDialog) {}
   listData!: MatTableDataSource<any>;
-  displayedColumns: string[] = ['clientId', 'clientName', 'clientLocation', 'actions'];
+  displayedColumns: string[] = [
+    'clientId',
+    'clientName',
+    'clientLocation',
+    'actions',
+  ];
   rowdata: IClient[] = [];
-
 
   dataSource!: MatTableDataSource<ClientFormComponent>;
 
   @ViewChild(MatPaginator, { static: true })
   paginator!: MatPaginator;
-
 
   @ViewChild(MatSort, { static: true })
   sort!: MatSort;
@@ -40,25 +39,28 @@ export class ClientListComponent implements OnInit {
   searchKey!: string;
 
   ngOnInit() {
-    this.service.getClientData().subscribe(
-      list => {
-        console.log(list)
-        this.service.clientList = list;
-        this.rowdata = list
-        this.listData = new MatTableDataSource(this.rowdata);
-        this.listData.sort = this.sort;
-        this.listData.paginator = this.paginator;
-      }
-    );
+    this.service.getClientData().subscribe((list) => {
+      console.log(list);
+      this.service.clientList = list;
+      this.service.clientListForFilter = list;
+      this.rowdata = list;
+      this.listData = new MatTableDataSource(this.rowdata);
+      this.listData.sort = this.sort;
+      this.listData.paginator = this.paginator;
+    });
   }
 
   onSearchClear() {
-    this.searchKey = "";
+    this.searchKey = '';
+    this.service.clientListForFilter = this.service.clientList;
     this.applyFilter();
   }
 
   applyFilter() {
-    this.listData.filter = this.searchKey.trim().toLowerCase();
+    this.service.clientListForFilter = this.service.clientList.filter(
+      ({ clientName }: any) =>
+        clientName.toLowerCase().indexOf(this.searchKey.trim().toLowerCase()) !== -1
+    );
   }
 
   onCreate() {
@@ -66,7 +68,7 @@ export class ClientListComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
-    dialogConfig.width = "60%";
+    dialogConfig.width = '60%';
     this.dialog.open(ClientFormComponent, dialogConfig);
   }
 
@@ -75,8 +77,7 @@ export class ClientListComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
-    dialogConfig.width = "60%";
+    dialogConfig.width = '60%';
     this.dialog.open(ClientFormComponent, dialogConfig);
   }
-
 }

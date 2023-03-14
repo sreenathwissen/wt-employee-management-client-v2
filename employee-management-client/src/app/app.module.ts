@@ -9,6 +9,7 @@ import { EmployeesComponent } from './components/employee/employees/employees.co
 import { apiList } from './services/https/api-list';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatStepperModule } from '@angular/material/stepper';
 import { ClientListComponent } from './client-details/client-list/client-list.component';
 import { CommonModule } from '@angular/common';
 import { MaterialModule } from './material/material.module';
@@ -29,6 +30,9 @@ import { EmployeeProjectDetailsComponent } from './employee-project-details/empl
 import { EmployeeProjectService } from './employee-project-details/EmployeeProjectService';
 import { EditEmployeeComponent } from './components/employee/edit-employee/edit-employee.component';
 import { ToastrModule } from 'ngx-toastr';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatChipsModule } from '@angular/material/chips';
 
 @NgModule({
   declarations: [
@@ -46,9 +50,15 @@ import { ToastrModule } from 'ngx-toastr';
     ProjectFormComponent,
     ProjectListComponent,
     EmployeeProjectDetailsComponent,
-    EditEmployeeComponent
+    EditEmployeeComponent,
   ],
-  providers: [ClientService, SkillService, ProjectService, apiList, EmployeeProjectService],
+  providers: [
+    ClientService,
+    SkillService,
+    ProjectService,
+    apiList,
+    EmployeeProjectService,
+  ],
   bootstrap: [AppComponent],
   // entryComponents: [SkillDetailsComponent],
   imports: [
@@ -56,12 +66,16 @@ import { ToastrModule } from 'ngx-toastr';
     AppRoutingModule,
     BrowserAnimationsModule,
     MatTabsModule,
+    MatStepperModule,
     FormsModule,
+    MatGridListModule,
     ReactiveFormsModule,
     HttpClientModule,
+    MatAutocompleteModule,
+    MatChipsModule,
     CommonModule,
     MaterialModule,
     ToastrModule.forRoot(),
   ],
 })
-export class AppModule { }
+export class AppModule {}
