@@ -25,7 +25,7 @@ export class SkillListComponent implements OnInit {
       this.service.skillList = list;
       this.service.skillListForFilter = list;
       this.rowdata = list;
-      this.listData = new MatTableDataSource(this.rowdata);
+      this.listData = new MatTableDataSource(this.service.skillListForFilter);
       this.listData.sort = this.sort;
       this.listData.paginator = this.paginator;
     });
@@ -56,7 +56,8 @@ export class SkillListComponent implements OnInit {
   applyFilter() {
     this.service.skillListForFilter = this.service.skillList.filter(
       ({ skillName }: any) =>
-        skillName.toLowerCase().indexOf(this.searchKey.trim().toLowerCase()) !== -1
+        skillName.toLowerCase().indexOf(this.searchKey.trim().toLowerCase()) !==
+        -1
     );
   }
 

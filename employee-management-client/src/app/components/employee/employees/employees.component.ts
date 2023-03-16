@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpsService } from 'src/app/services/https/https.service';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { apiList } from 'src/app/services/https/api-list';
-import { MatTableDataSource } from '@angular/material/table';
+import { HttpsService } from 'src/app/services/https/https.service';
+import { IEmployee } from '../../IEmployee';
+import { CreateEmployeeComponent } from '../create-employee/create-employee.component';
+import { EmployeeService } from '../employee.service';
 
 @Component({
   selector: 'app-employees',
@@ -9,7 +12,7 @@ import { MatTableDataSource } from '@angular/material/table';
   styleUrls: ['./employees.component.scss'],
 })
 export class EmployeesComponent implements OnInit {
-  employees: any[] = [];
+  employees: IEmployee[] = [];
   displayedColumns: string[] = [
     'employeeId',
     'firstName',
@@ -24,15 +27,57 @@ export class EmployeesComponent implements OnInit {
     'designation',
     'role',
     'type',
+    'actions',
   ];
-  constructor(private https: HttpsService, private apiList: apiList) {}
+  searchKey!: string;
+
+  constructor(
+    private https: HttpsService,
+    private apiList: apiList,
+    private dialog: MatDialog,
+    public service: EmployeeService
+  ) {}
 
   ngOnInit(): void {
     this.https.httpGet(this.apiList.getEmployees).subscribe((res: any) => {
       this.employees = res;
+      this.service.employeeList = res;
+      this.service.employeeListForFilter = res;
     });
-    if (localStorage.getItem('employees')) {
-      this.employees.push(JSON.parse(localStorage.getItem('employees') || ''));
-    }
+  }
+
+  onCreate() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = '60%';
+    this.dialog.open(CreateEmployeeComponent, dialogConfig);
+  }
+
+  onSearchClear() {
+    this.searchKey = '';
+    this.service.employeeListForFilter = this.service.employeeList;
+    this.applyFilter();
+  }
+
+  applyFilter() {
+    this.service.employeeListForFilter = this.service.employeeList.filter(
+      ({ firstName, lastName }: any) =>
+        (firstName + lastName)
+          .toLowerCase()
+          .indexOf(this.searchKey.trim().toLowerCase()) !== -1
+    );
+  }
+
+  onEdit(row: any) {
+    // this.service.firstFormGroup.setValue(row);
+    // this.service.secondFormGroup.setValue(row);
+    // this.service.thirdFormGroup.setValue(row);
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = '60%';
+    this.dialog.open(CreateEmployeeComponent, dialogConfig);
+    console.log(row);
   }
 }

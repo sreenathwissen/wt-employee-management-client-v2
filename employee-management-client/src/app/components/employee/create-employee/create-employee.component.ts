@@ -1,13 +1,13 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
-import { Router } from '@angular/router';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { FormGroup } from '@angular/forms';
+import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
+import { MatDialogRef } from '@angular/material/dialog';
+import { NotificationService } from 'src/app/notification-service/notification.service';
 import { apiList } from 'src/app/services/https/api-list';
 import { HttpsService } from 'src/app/services/https/https.service';
-import { ISkill } from 'src/app/skill-details/ISkill';
 import { SkillService } from 'src/app/skill-details/skill.service';
-import { MatChipInputEvent } from '@angular/material/chips';
+import { EmployeeService } from '../employee.service';
 
 @Component({
   selector: 'app-create-employee',
@@ -18,43 +18,17 @@ export class CreateEmployeeComponent implements OnInit {
   skills: string[] = [];
   @ViewChild('skillInput') skillInput!: ElementRef;
   separatorKeysCodes: number[] = [ENTER, COMMA];
-  firstFormGroup = this._formBuilder.group({
-    firstName: ['', Validators.required],
-    lastName: ['', Validators.required],
-    dob: ['', Validators.required],
-    email: ['', Validators.required],
-    phoneNo: ['', Validators.required],
-    emergencyContact: ['', Validators.required],
-    bloodGroup: ['', Validators.required],
-  });
-  secondFormGroup = this._formBuilder.group({
-    employeeId: ['', Validators.required],
-    experience: ['', Validators.required],
-    manager: ['', Validators.required],
-    designation: ['', Validators.required],
-    role: ['', Validators.required],
-    type: ['', Validators.required],
-    skillTypeahead: [''],
-  });
-  thirdFormGroup = this._formBuilder.group({
-    currentFlat: ['', Validators.required],
-    currentStreet: ['', Validators.required],
-    currentCity: ['', Validators.required],
-    currentState: ['', Validators.required],
-    currentPinCode: ['', Validators.required],
-    permanentFlat: ['', Validators.required],
-    permanentStreet: ['', Validators.required],
-    permanentCity: ['', Validators.required],
-    permanentState: ['', Validators.required],
-    permanentPinCode: ['', Validators.required],
-  });
+  firstFormGroup = this.employeeService.firstFormGroup;
+  secondFormGroup = this.employeeService.secondFormGroup;
+  thirdFormGroup = this.employeeService.thirdFormGroup;
 
   constructor(
-    private router: Router,
     private https: HttpsService,
     private apiList: apiList,
-    private _formBuilder: FormBuilder,
-    public service: SkillService
+    public service: SkillService,
+    public dialogRef: MatDialogRef<CreateEmployeeComponent>,
+    public employeeService: EmployeeService,
+    public notificationService: NotificationService
   ) {}
 
   ngOnInit(): void {
@@ -103,81 +77,114 @@ export class CreateEmployeeComponent implements OnInit {
       ?.setValue(thirdFormGroup.value.currentPinCode);
   }
 
-  save(
-    firstFormGroup: FormGroup,
-    secondFormGroup: FormGroup,
-    thirdFormGroup: FormGroup
-  ) {
+  save() {
     let sendData = [
       {
         addressDTOList: [
           {
             addressId: 0,
             addressType: '',
-            city: thirdFormGroup.value.currentCity,
+            city: this.thirdFormGroup.value.currentCity,
             country: '',
             employeeId: 0,
-            flatNo: thirdFormGroup.value.currentFlat,
-            pincode: thirdFormGroup.value.currentPinCode,
-            state: thirdFormGroup.value.currentState,
-            street: thirdFormGroup.value.currentStreet,
+            flatNo: this.thirdFormGroup.value.currentFlat,
+            pincode: this.thirdFormGroup.value.currentPinCode,
+            state: this.thirdFormGroup.value.currentState,
+            street: this.thirdFormGroup.value.currentStreet,
           },
         ],
-        bloodGroup: firstFormGroup.value.bloodGroup,
+        bloodGroup: this.firstFormGroup.value.bloodGroup,
         departmentDTO: {
           depId: 0,
           depName: '',
         },
         designationDTO: {
           desgId: 0,
-          desgName: secondFormGroup.value.designation,
+          desgName: this.secondFormGroup.value.designation,
         },
-        dob: firstFormGroup.value.dob,
+        dob: this.firstFormGroup.value.dob,
         doj: '',
-        email: firstFormGroup.value.email,
+        email: this.firstFormGroup.value.email,
         employeeAccountDTO: {
           pan: '',
           pfNo: '',
           uan: '',
         },
         employeeId: 0,
-        employeeSkillDTOList: [] as {levels:number,skillId:any,skillName:string}[],
+        employeeSkillDTOList: [] as {
+          levels: number;
+          skillId: any;
+          skillName: string;
+        }[],
         exitDate: '',
-        expDoj: secondFormGroup.value.experience,
-        firstName: firstFormGroup.value.firstName,
+        expDoj: this.secondFormGroup.value.experience,
+        firstName: this.firstFormGroup.value.firstName,
         gender: '',
         joiningLocation: '',
-        lastName: firstFormGroup.value.lastName,
-        manager: secondFormGroup.value.manager,
+        lastName: this.firstFormGroup.value.lastName,
+        manager: this.secondFormGroup.value.manager,
         maritalStatusDate: '',
-        primaryEmergencyContactNumber: firstFormGroup.value.emergencyContact,
+        primaryEmergencyContactNumber:
+          this.firstFormGroup.value.emergencyContact,
         primaryPhoneNumber: 0,
         roleDTO: {
           roleId: 0,
-          roleName: secondFormGroup.value.role,
+          roleName: this.secondFormGroup.value.role,
         },
         secondaryEmergencyContactNumber: 0,
         secondaryPhoneNumber: 0,
         status: '',
-        type: secondFormGroup.value.type,
-        workPhone: firstFormGroup.value.phoneNo,
+        type: this.secondFormGroup.value.type,
+        workPhone: this.firstFormGroup.value.phoneNo,
       },
     ];
     this.skills.forEach((skill) => {
       sendData[0].employeeSkillDTOList.push({
         levels: 0,
-        skillId: this.service.skillList.find(s => s.skillName === skill)?.skillId,
-        skillName: skill
+        skillId: this.service.skillList.find((s) => s.skillName === skill)
+          ?.skillId,
+        skillName: skill,
       });
     });
+    let found: boolean;
     this.https
       .httpPostWithHeader(this.apiList.createEmployee, sendData)
-      .subscribe((res: any) => {
-        let employees: any[] = [];
-
-        employees = res;
-        localStorage.setItem('employees', JSON.stringify(employees));
-        this.router.navigateByUrl('/employee');
-      });
+      .subscribe(
+        (res: any) => {
+          let data = res[0].employeeResponse;
+          this.employeeService.employeeList.forEach((employee, index) => {
+            if (employee.empId === data.empId) {
+              this.employeeService.employeeList[index] = data;
+              this.employeeService.employeeList = [
+                ...this.employeeService.employeeList,
+              ];
+              found = true;
+              this.notificationService.showSuccess(
+                'Success',
+                'Employee Updated Successfully'
+              );
+              this.dialogRef.close(true);
+            }
+          });
+          if (!found) {
+            this.notificationService.showSuccess(
+              'Success',
+              'Employee Added Successfully'
+            );
+            this.employeeService.employeeList = [
+              ...this.employeeService.employeeList,
+              data,
+            ];
+            this.dialogRef.close(true);
+          }
+          this.employeeService.employeeListForFilter = [
+            ...this.employeeService.employeeList,
+          ];
+        },
+        () => {
+          this.notificationService.showError('Failure', 'Employee not saved');
+          this.dialogRef.close(false);
+        }
+      );
   }
 }
