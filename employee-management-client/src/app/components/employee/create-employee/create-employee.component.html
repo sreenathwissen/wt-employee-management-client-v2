@@ -1,7 +1,9 @@
-<div class="wrap">
-  <div class="tilte">
-    <h3>Create Employee</h3>
-  </div>
+<mat-dialog-actions>
+  <!-- <span>{{service.form.controls['skillId'].value?"Modify Skill":"New Skill"}}</span> -->
+  <span class="fill-remaining-space"></span>
+  <button class="btn-dialog-close" mat-stroked-button mat-dialog-close tabIndex="-1"><mat-icon>clear</mat-icon></button>
+</mat-dialog-actions> <br />
+<mat-dialog-content>
   <mat-stepper [linear]="true" #stepper>
     <mat-step [stepControl]="firstFormGroup">
       <form [formGroup]="firstFormGroup">
@@ -35,12 +37,7 @@
           <input matInput formControlName="bloodGroup" />
         </mat-form-field>
         <div class="stepper-button-container">
-          <button
-            class="float-right"
-            mat-raised-button
-            color="primary"
-            matStepperNext
-          >
+          <button class="float-right" mat-raised-button color="primary" matStepperNext>
             Next
           </button>
         </div>
@@ -74,51 +71,25 @@
         </mat-form-field>
         <mat-form-field>
           <mat-chip-list #chipList>
-            <mat-chip
-              color="primary"
-              *ngFor="let skill of skills"
-              [selectable]="true"
-              [removable]="true"
-              (removed)="remove(skill)"
-            >
+            <mat-chip color="primary" *ngFor="let skill of skills" [selectable]="true" [removable]="true"
+              (removed)="remove(skill)">
               {{ skill }}
               <mat-icon matChipRemove>cancel</mat-icon>
             </mat-chip>
-            <input
-              placeholder="Skills (Type and Enter to add new)"
-              #skillInput
-              formControlName="skillTypeahead"
-              [matAutocomplete]="auto"
-              [matChipInputFor]="chipList"
-            />
+            <input placeholder="Skills (Type and Enter to add new)" #skillInput formControlName="skillTypeahead"
+              [matAutocomplete]="auto" [matChipInputFor]="chipList" />
           </mat-chip-list>
-          <mat-autocomplete
-            #auto="matAutocomplete"
-            (optionSelected)="selected($event)"
-          >
-            <mat-option
-              *ngFor="let skill of service.skillListForFilter"
-              [value]="skill.skillId"
-            >
+          <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+            <mat-option *ngFor="let skill of service.skillListForFilter" [value]="skill.skillId">
               {{ skill.skillName }}
             </mat-option>
           </mat-autocomplete>
         </mat-form-field>
         <div class="stepper-button-container">
-          <button
-            class="float-left"
-            mat-stroked-button
-            color="primary"
-            matStepperPrevious
-          >
+          <button class="float-left" mat-stroked-button color="primary" matStepperPrevious>
             Back
           </button>
-          <button
-            class="float-right"
-            mat-raised-button
-            color="primary"
-            matStepperNext
-          >
+          <button class="float-right" mat-raised-button color="primary" matStepperNext>
             Next
           </button>
         </div>
@@ -172,24 +143,12 @@
             <input matInput formControlName="permanentPinCode" />
           </mat-form-field>
         </fieldset>
-        <mat-checkbox class="mb-2" (click)="sameAddress(thirdFormGroup)"
-          >Same as Current Address</mat-checkbox
-        >
+        <mat-checkbox class="mb-2" (click)="sameAddress(thirdFormGroup)">Same as Current Address</mat-checkbox>
         <div class="stepper-button-container">
-          <button
-            class="float-left"
-            mat-stroked-button
-            color="primary"
-            matStepperPrevious
-          >
+          <button class="float-left" mat-stroked-button color="primary" matStepperPrevious>
             Back
           </button>
-          <button
-            class="float-right"
-            mat-raised-button
-            color="primary"
-            matStepperNext
-          >
+          <button class="float-right" mat-raised-button color="primary" matStepperNext>
             Next
           </button>
         </div>
@@ -201,160 +160,148 @@
         <mat-grid-tile class="justify-right">First Name</mat-grid-tile>
         <mat-grid-tile class="justify-left">{{
           firstFormGroup.value.firstName
-        }}</mat-grid-tile>
+          }}</mat-grid-tile>
       </mat-grid-list>
       <mat-grid-list cols="2" rowHeight="2rem">
         <mat-grid-tile class="justify-right">Last Name</mat-grid-tile>
         <mat-grid-tile class="justify-left">{{
           firstFormGroup.value.lastName
-        }}</mat-grid-tile>
+          }}</mat-grid-tile>
       </mat-grid-list>
       <mat-grid-list cols="2" rowHeight="2rem">
         <mat-grid-tile class="justify-right">Date of Birth</mat-grid-tile>
         <mat-grid-tile class="justify-left">{{
           firstFormGroup.value.dob
-        }}</mat-grid-tile>
+          }}</mat-grid-tile>
       </mat-grid-list>
       <mat-grid-list cols="2" rowHeight="2rem">
         <mat-grid-tile class="justify-right">Email</mat-grid-tile>
         <mat-grid-tile class="justify-left">{{
           firstFormGroup.value.email
-        }}</mat-grid-tile>
+          }}</mat-grid-tile>
       </mat-grid-list>
       <mat-grid-list cols="2" rowHeight="2rem">
         <mat-grid-tile class="justify-right">Phone Number</mat-grid-tile>
         <mat-grid-tile class="justify-left">{{
           firstFormGroup.value.phoneNo
-        }}</mat-grid-tile>
+          }}</mat-grid-tile>
       </mat-grid-list>
       <mat-grid-list cols="2" rowHeight="2rem">
         <mat-grid-tile class="justify-right">Emeregency Contact</mat-grid-tile>
         <mat-grid-tile class="justify-left">{{
           firstFormGroup.value.emergencyContact
-        }}</mat-grid-tile>
+          }}</mat-grid-tile>
       </mat-grid-list>
       <mat-grid-list cols="2" rowHeight="2rem">
         <mat-grid-tile class="justify-right">Blood Group</mat-grid-tile>
         <mat-grid-tile class="justify-left">{{
           firstFormGroup.value.bloodGroup
-        }}</mat-grid-tile>
+          }}</mat-grid-tile>
       </mat-grid-list>
       <mat-grid-list cols="2" rowHeight="2rem">
         <mat-grid-tile class="justify-right">Employee ID</mat-grid-tile>
         <mat-grid-tile class="justify-left">{{
           secondFormGroup.value.employeeId
-        }}</mat-grid-tile>
+          }}</mat-grid-tile>
       </mat-grid-list>
       <mat-grid-list cols="2" rowHeight="2rem">
-        <mat-grid-tile class="justify-right"
-          >Experience No of Years</mat-grid-tile
-        >
+        <mat-grid-tile class="justify-right">Experience No of Years</mat-grid-tile>
         <mat-grid-tile class="justify-left">{{
           secondFormGroup.value.experience
-        }}</mat-grid-tile>
+          }}</mat-grid-tile>
       </mat-grid-list>
       <mat-grid-list cols="2" rowHeight="2rem">
         <mat-grid-tile class="justify-right">Manager</mat-grid-tile>
         <mat-grid-tile class="justify-left">{{
           secondFormGroup.value.manager
-        }}</mat-grid-tile>
+          }}</mat-grid-tile>
       </mat-grid-list>
       <mat-grid-list cols="2" rowHeight="2rem">
         <mat-grid-tile class="justify-right">Designation</mat-grid-tile>
         <mat-grid-tile class="justify-left">{{
           secondFormGroup.value.designation
-        }}</mat-grid-tile>
+          }}</mat-grid-tile>
       </mat-grid-list>
       <mat-grid-list cols="2" rowHeight="2rem">
         <mat-grid-tile class="justify-right">Role</mat-grid-tile>
         <mat-grid-tile class="justify-left">{{
           secondFormGroup.value.role
-        }}</mat-grid-tile>
+          }}</mat-grid-tile>
       </mat-grid-list>
       <mat-grid-list cols="2" rowHeight="2rem">
         <mat-grid-tile class="justify-right">Type</mat-grid-tile>
         <mat-grid-tile class="justify-left">{{
           secondFormGroup.value.type
-        }}</mat-grid-tile>
+          }}</mat-grid-tile>
       </mat-grid-list>
       <mat-grid-list cols="2" rowHeight="2rem">
         <mat-grid-tile class="justify-right">Current Flat No</mat-grid-tile>
         <mat-grid-tile class="justify-left">{{
           thirdFormGroup.value.currentFlat
-        }}</mat-grid-tile>
+          }}</mat-grid-tile>
       </mat-grid-list>
       <mat-grid-list cols="2" rowHeight="2rem">
         <mat-grid-tile class="justify-right">Current Street</mat-grid-tile>
         <mat-grid-tile class="justify-left">{{
           thirdFormGroup.value.currentStreet
-        }}</mat-grid-tile>
+          }}</mat-grid-tile>
       </mat-grid-list>
       <mat-grid-list cols="2" rowHeight="2rem">
         <mat-grid-tile class="justify-right">Current City</mat-grid-tile>
         <mat-grid-tile class="justify-left">{{
           thirdFormGroup.value.currentCity
-        }}</mat-grid-tile>
+          }}</mat-grid-tile>
       </mat-grid-list>
       <mat-grid-list cols="2" rowHeight="2rem">
         <mat-grid-tile class="justify-right">Current State</mat-grid-tile>
         <mat-grid-tile class="justify-left">{{
           thirdFormGroup.value.currentState
-        }}</mat-grid-tile>
+          }}</mat-grid-tile>
       </mat-grid-list>
       <mat-grid-list cols="2" rowHeight="2rem">
         <mat-grid-tile class="justify-right">Current Pincode</mat-grid-tile>
         <mat-grid-tile class="justify-left">{{
           thirdFormGroup.value.currentPinCode
-        }}</mat-grid-tile>
+          }}</mat-grid-tile>
       </mat-grid-list>
       <mat-grid-list cols="2" rowHeight="2rem">
         <mat-grid-tile class="justify-right">Permanent Flat No</mat-grid-tile>
         <mat-grid-tile class="justify-left">{{
           thirdFormGroup.value.permanentFlat
-        }}</mat-grid-tile>
+          }}</mat-grid-tile>
       </mat-grid-list>
       <mat-grid-list cols="2" rowHeight="2rem">
         <mat-grid-tile class="justify-right">Permanent Street</mat-grid-tile>
         <mat-grid-tile class="justify-left">{{
           thirdFormGroup.value.permanentStreet
-        }}</mat-grid-tile>
+          }}</mat-grid-tile>
       </mat-grid-list>
       <mat-grid-list cols="2" rowHeight="2rem">
         <mat-grid-tile class="justify-right">Permanent City</mat-grid-tile>
         <mat-grid-tile class="justify-left">{{
           thirdFormGroup.value.permanentCity
-        }}</mat-grid-tile>
+          }}</mat-grid-tile>
       </mat-grid-list>
       <mat-grid-list cols="2" rowHeight="2rem">
         <mat-grid-tile class="justify-right">Permanent State</mat-grid-tile>
         <mat-grid-tile class="justify-left">{{
           thirdFormGroup.value.permanentState
-        }}</mat-grid-tile>
+          }}</mat-grid-tile>
       </mat-grid-list>
       <mat-grid-list cols="2" rowHeight="2rem">
         <mat-grid-tile class="justify-right">Permanent Pincode</mat-grid-tile>
         <mat-grid-tile class="justify-left">{{
           thirdFormGroup.value.permanentPinCode
-        }}</mat-grid-tile>
+          }}</mat-grid-tile>
       </mat-grid-list>
       <div class="stepper-button-container">
-        <button
-          class="float-left"
-          mat-stroked-button
-          color="primary"
-          matStepperPrevious
-        >
+        <button class="float-left" mat-stroked-button color="primary" matStepperPrevious>
           Back
         </button>
-        <button
-          class="float-right"
-          mat-raised-button
-          color="primary"
-          (click)="save(firstFormGroup, secondFormGroup, thirdFormGroup)"
-        >
+        <button class="float-right" mat-raised-button color="primary" (click)="save()">
           Submit
         </button>
       </div>
     </mat-step>
   </mat-stepper>
-</div>
+</mat-dialog-content>
