@@ -73,6 +73,7 @@ export class ProjectFormComponent implements OnInit {
             this.service.projectList = [...this.service.projectList, data[0]];
             this.dialogRef.close(true);
           }
+          this.service.projectListForFilter = [...this.service.projectList];
         },
         (err) => {
           if (err.status === 400) {
@@ -84,6 +85,7 @@ export class ProjectFormComponent implements OnInit {
           }
         }
       );
+      this.service.form.reset();
     }
   }
 

@@ -13,6 +13,7 @@ export class SkillService {
   constructor(private _http: HttpClient) {}
 
   skillList!: ISkill[];
+  skillListForFilter!: ISkill[];
 
   form: FormGroup = new FormGroup({
     skillId: new FormControl(0, Validators.required),
