@@ -1,0 +1,50 @@
+<mat-toolbar>
+    <span>{{service.employeeProjectForm.controls['employeeId'].value?"Modify Project":"New Project"}}</span>
+    <span class="fill-remaining-space"></span>
+    <button class="btn-dialog-close" mat-stroked-button (click)="onClose()"
+        tabIndex="-1"><mat-icon>clear</mat-icon></button>
+</mat-toolbar>
+<form [formGroup]="service.employeeProjectForm" class="normal-form">
+    <mat-grid-list cols="2" rowHeight="400px">
+        <mat-grid-tile>
+            <div class="controles-container">
+                <mat-form-field appearance="fill">
+                    <mat-label>Project Name</mat-label>
+                    <mat-error>This field is mandatory</mat-error>
+                    <mat-select formControlName="projectId">
+                        <mat-option *ngFor="let project of projects" [value]="project.projectId">
+                            {{project.projectName}}, {{project.projectLocation}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <input formControlName="employeeId" matInput placeholder="Employee ID*">
+                    <mat-error>This field is mandatory</mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="fill">
+                    <mat-label>Date of joining</mat-label>
+                    <input formControlName="doj" matInput [matDatepicker]="dojpicker">
+                    <mat-datepicker-toggle matIconSuffix [for]="dojpicker"></mat-datepicker-toggle>
+                    <mat-datepicker #dojpicker></mat-datepicker>
+                </mat-form-field>
+
+                <mat-form-field appearance="fill">
+                    <mat-label>Date of release</mat-label>
+                    <input formControlName="dor" matInput [matDatepicker]="dorpicker">
+                    <mat-datepicker-toggle matIconSuffix [for]="dorpicker"></mat-datepicker-toggle>
+                    <mat-datepicker #dorpicker></mat-datepicker>
+                </mat-form-field>
+
+
+
+                <div class="button-row">
+                    <button mat-raised-button color="primary" type="submit" (click)="onSubmit()"
+                        [disabled]="service.employeeProjectForm.invalid">Submit</button>
+                    <button mat-raised-button color="warn" (click)="onClear()">Clear</button>
+                </div>
+            </div>
+        </mat-grid-tile>
+    </mat-grid-list>
+</form>

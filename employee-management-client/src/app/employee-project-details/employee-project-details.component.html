@@ -16,6 +16,10 @@
                     <div class="button-row">
                         <button mat-raised-button color="primary" type="submit" (click)="onSubmit()"
                             [disabled]="employeeProjectService.form.invalid">Submit</button>
+
+                        <button mat-raised-button (click)="onCreate()">
+                            <mat-icon>add</mat-icon>Create
+                        </button>
                     </div>
                 </div>
             </mat-grid-tile>
@@ -59,6 +63,12 @@
             <ng-container matColumnDef="clientLocation">
                 <mat-header-cell *matHeaderCellDef mat-sort-header><b>Client Location</b></mat-header-cell>
                 <mat-cell *matCellDef="let element">{{element.project.client.clientLocation}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="actions">
+                <mat-header-cell *matHeaderCellDef><b>Actions</b></mat-header-cell>
+                <mat-cell *matCellDef="let row">
+                    <button mat-icon-button (click)="onEdit(row)"><mat-icon>launch</mat-icon></button>
+                </mat-cell>
             </ng-container>
             <ng-container matColumnDef="loading">
                 <mat-footer-cell *matFooterCellDef colspan="6">

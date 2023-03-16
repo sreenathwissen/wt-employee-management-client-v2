@@ -3,6 +3,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 import { IProject } from '../IProject';
 import { ProjectFormComponent } from '../project-form/project-form.component';
 import { ProjectService } from '../project.service';
@@ -13,7 +14,10 @@ import { ProjectService } from '../project.service';
   styleUrls: ['./project-list.component.scss'],
 })
 export class ProjectListComponent implements OnInit {
-  constructor(public service: ProjectService, private dialog: MatDialog) {}
+
+constructor(public service: ProjectService,
+    private dialog: MatDialog,
+    private router: Router) { }
 
   listData!: MatTableDataSource<any>;
   displayedColumns: string[] = [

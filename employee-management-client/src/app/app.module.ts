@@ -30,6 +30,7 @@ import { EmployeeProjectDetailsComponent } from './employee-project-details/empl
 import { EmployeeProjectService } from './employee-project-details/EmployeeProjectService';
 import { EditEmployeeComponent } from './components/employee/edit-employee/edit-employee.component';
 import { ToastrModule } from 'ngx-toastr';
+import { EmployeeProjectFormComponent } from './employee-project-details/employee-project-form/employee-project-form.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatChipsModule } from '@angular/material/chips';
@@ -51,6 +52,7 @@ import { MatChipsModule } from '@angular/material/chips';
     ProjectListComponent,
     EmployeeProjectDetailsComponent,
     EditEmployeeComponent,
+    EmployeeProjectFormComponent
   ],
   providers: [
     ClientService,
