@@ -1,9 +1,7 @@
-import { HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
-import { ISkill } from '../ISkill';
-import { SkillService } from '../skill.service';
-import { NotificationService } from '../../notification-service/notification.service';
+import { NotificationService } from '../../../notification-service/notification.service';
+import { SkillService } from '../../../services/skill.service';
 
 @Component({
   selector: 'app-skill-form',
@@ -15,9 +13,9 @@ export class SkillFormComponent implements OnInit {
     public service: SkillService,
     public notificationService: NotificationService,
     public dialogRef: MatDialogRef<SkillFormComponent>
-  ) {}
+  ) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   onClear() {
     this.service.form.reset();

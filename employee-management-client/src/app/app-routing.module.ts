@@ -1,13 +1,19 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CreateEmployeeComponent } from './components/employee/create-employee/create-employee.component';
-import { EmployeesComponent } from './components/employee/employees/employees.component';  
+import { EmployeesComponent } from './components/employee/employees/employees.component';
 import { ClientDetailsComponent } from './client-details/client-details.component';
 import { ProjectDetailsComponent } from './project-details/project-details.component';
-import { SkillDetailsComponent } from './skill-details/skill-details.component';
+import { SkillDetailsComponent } from './components/skill-details/skill-details.component';
 import { EditEmployeeComponent } from './components/employee/edit-employee/edit-employee.component';
+import { HomeComponent } from './components/home/home.component';
+
 
 const routes: Routes = [
+  {
+    path: 'home',
+    component: HomeComponent
+  },
   {
     path: 'employee',
     component: EmployeesComponent
@@ -20,9 +26,18 @@ const routes: Routes = [
     path: 'edit-employee',
     component: EditEmployeeComponent
   },
-  { path: 'project', component: ProjectDetailsComponent },
-  { path: 'skill', component: SkillDetailsComponent },
-  { path: 'client', component: ClientDetailsComponent },
+  {
+    path: 'project',
+    component: ProjectDetailsComponent
+  },
+  {
+    path: 'skill',
+    component: SkillDetailsComponent
+  },
+  {
+    path: 'client',
+    component: ClientDetailsComponent
+  },
   //{path : 'help', component: 'HelpComponent'},
   //{path : 'support', component: 'SupportComponent'}
 ];
@@ -31,4 +46,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

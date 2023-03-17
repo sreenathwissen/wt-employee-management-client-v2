@@ -65,4 +65,4 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
     MatAutocompleteModule,
   ],
 })
-export class MaterialModule {}
+export class MaterialModule { }

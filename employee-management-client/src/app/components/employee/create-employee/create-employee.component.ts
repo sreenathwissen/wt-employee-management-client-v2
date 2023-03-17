@@ -1,13 +1,11 @@
+import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { Router } from '@angular/router';
-import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { apiList } from 'src/app/services/https/api-list';
 import { HttpsService } from 'src/app/services/https/https.service';
-import { ISkill } from 'src/app/skill-details/ISkill';
-import { SkillService } from 'src/app/skill-details/skill.service';
-import { MatChipInputEvent } from '@angular/material/chips';
+import { SkillService } from 'src/app/services/skill.service';
 
 @Component({
   selector: 'app-create-employee',
@@ -55,7 +53,7 @@ export class CreateEmployeeComponent implements OnInit {
     private apiList: apiList,
     private _formBuilder: FormBuilder,
     public service: SkillService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.service.getSkillData().subscribe((list) => {
@@ -141,7 +139,7 @@ export class CreateEmployeeComponent implements OnInit {
           uan: '',
         },
         employeeId: 0,
-        employeeSkillDTOList: [] as {levels:number,skillId:any,skillName:string}[],
+        employeeSkillDTOList: [] as { levels: number, skillId: any, skillName: string }[],
         exitDate: '',
         expDoj: secondFormGroup.value.experience,
         firstName: firstFormGroup.value.firstName,

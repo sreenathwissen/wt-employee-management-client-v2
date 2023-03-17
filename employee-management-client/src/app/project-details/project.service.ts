@@ -1,11 +1,9 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Observable } from 'rxjs';
 import { IClient } from '../client-details/IClient';
 import { IProject } from '../project-details/IProject';
-import { ISkill } from '../skill-details/ISkill';
-import { Observable, throwError } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root',
 })
@@ -19,7 +17,7 @@ export class ProjectService {
     clientLocation: '',
     clientName: '',
   };
-  constructor(private _http: HttpClient) {}
+  constructor(private _http: HttpClient) { }
 
   form: FormGroup = new FormGroup({
     projectId: new FormControl(0, Validators.required),

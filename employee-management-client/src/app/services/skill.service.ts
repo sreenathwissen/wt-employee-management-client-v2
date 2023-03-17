@@ -1,16 +1,15 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Observable, throwError } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
-import { ISkill } from './ISkill';
+import { Observable } from 'rxjs';
+import { ISkill } from '../model/ISkill';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SkillService {
   private skillUrl = 'http://localhost:8080/api/skill';
-  constructor(private _http: HttpClient) {}
+  constructor(private _http: HttpClient) { }
 
   skillList!: ISkill[];
   skillListForFilter!: ISkill[];
