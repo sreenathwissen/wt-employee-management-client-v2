@@ -17,7 +17,7 @@ form {
     align-items: flex-start;
 }
 
-mat-form-field{
+mat-form-field {
     width: 100%;
 }
 
@@ -43,14 +43,14 @@ fieldset {
     margin-left: 0.2rem;
 }
 
-::ng-deep{
-.justify-right .mat-grid-tile-content {
-    justify-content: right !important;
-    margin-right: 4rem;
-    font-weight: bold;
-}
+::ng-deep {
+    .justify-right .mat-grid-tile-content {
+        justify-content: right !important;
+        margin-right: 4rem;
+        font-weight: bold;
+    }
 
-.justify-left .mat-grid-tile-content {
-    justify-content: left !important;
-}
+    .justify-left .mat-grid-tile-content {
+        justify-content: left !important;
+    }
 }

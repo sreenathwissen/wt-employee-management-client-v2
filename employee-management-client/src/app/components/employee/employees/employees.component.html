@@ -3,102 +3,76 @@
     <span class="title">Employee</span>
   </mat-toolbar>
   <div class="search-div">
-    <button mat-raised-button routerLink="/create-employee">
+    <button mat-raised-button (click)="onCreate()">
       <mat-icon>add</mat-icon>Create
     </button>
     <mat-form-field class="search-form-field">
-      <input matInput placeholder="Search" autocomplete="off" />
-      <button mat-button matSuffix mat-icon-button aria-label="Clear">
+      <input matInput [(ngModel)]="searchKey" placeholder="Search" autocomplete="off" (keyup)="applyFilter()" />
+      <button mat-button matSuffix mat-icon-button aria-label="Clear" *ngIf="searchKey" (click)="onSearchClear()">
         <mat-icon>close</mat-icon>
       </button>
     </mat-form-field>
   </div>
   <div class="mat-elevation-z8">
-    <mat-table [dataSource]="employees" [fixedLayout] matSort>
+    <mat-table [dataSource]="service.employeeListForFilter" [fixedLayout] matSort>
       <ng-container matColumnDef="firstName">
-        <mat-header-cell *matHeaderCellDef mat-sort-header
-          ><b>First Name</b></mat-header-cell
-        >
+        <mat-header-cell *matHeaderCellDef mat-sort-header><b>First Name</b></mat-header-cell>
         <mat-cell *matCellDef="let element"><span class="ellipsis">{{ element.firstName }}</span></mat-cell>
       </ng-container>
       <ng-container matColumnDef="lastName">
-        <mat-header-cell *matHeaderCellDef mat-sort-header
-          ><b>Last Name</b></mat-header-cell
-        >
+        <mat-header-cell *matHeaderCellDef mat-sort-header><b>Last Name</b></mat-header-cell>
         <mat-cell *matCellDef="let element"><span class="ellipsis">{{ element.lastName }}</span></mat-cell>
       </ng-container>
       <ng-container matColumnDef="dob">
-        <mat-header-cell *matHeaderCellDef mat-sort-header
-          ><b>Date of Birth</b></mat-header-cell
-        >
+        <mat-header-cell *matHeaderCellDef mat-sort-header><b>Date of Birth</b></mat-header-cell>
         <mat-cell *matCellDef="let element"><span class="ellipsis">{{
-          element.dob | date : "dd/MM/yyy"
-        }}</span></mat-cell>
+            element.dob | date : "dd/MM/yyy"
+            }}</span></mat-cell>
       </ng-container>
       <ng-container matColumnDef="email">
-        <mat-header-cell *matHeaderCellDef mat-sort-header
-          ><b>Email</b></mat-header-cell
-        >
+        <mat-header-cell *matHeaderCellDef mat-sort-header><b>Email</b></mat-header-cell>
         <mat-cell *matCellDef="let element"><span class="ellipsis">{{ element.email }}</span></mat-cell>
       </ng-container>
       <ng-container matColumnDef="primaryPhoneNumber">
-        <mat-header-cell *matHeaderCellDef mat-sort-header
-          ><b>Phone Number</b></mat-header-cell
-        >
+        <mat-header-cell *matHeaderCellDef mat-sort-header><b>Phone Number</b></mat-header-cell>
         <mat-cell *matCellDef="let element"><span class="ellipsis">{{ element.workPhone }}</span></mat-cell>
       </ng-container>
       <ng-container matColumnDef="primaryEmergencyContactNumber">
-        <mat-header-cell *matHeaderCellDef mat-sort-header
-          ><b>Emeregency Contact</b></mat-header-cell
-        >
+        <mat-header-cell *matHeaderCellDef mat-sort-header><b>Emeregency Contact</b></mat-header-cell>
         <mat-cell *matCellDef="let element"><span class="ellipsis">{{
-          element.primaryEmergencyContactNumber
-        }}</span></mat-cell>
+            element.primaryEmergencyContactNumber
+            }}</span></mat-cell>
       </ng-container>
       <ng-container matColumnDef="bloodGroup">
-        <mat-header-cell *matHeaderCellDef mat-sort-header
-          ><b>Blood Group</b></mat-header-cell
-        >
+        <mat-header-cell *matHeaderCellDef mat-sort-header><b>Blood Group</b></mat-header-cell>
         <mat-cell *matCellDef="let element"><span class="ellipsis">{{ element.bloodGroup }}</span></mat-cell>
       </ng-container>
       <ng-container matColumnDef="employeeId">
-        <mat-header-cell *matHeaderCellDef mat-sort-header
-          ><b>Employee ID</b></mat-header-cell
-        >
+        <mat-header-cell *matHeaderCellDef mat-sort-header><b>Employee ID</b></mat-header-cell>
         <mat-cell *matCellDef="let element"><span class="ellipsis">{{ element.empId }}</span></mat-cell>
       </ng-container>
       <ng-container matColumnDef="experience">
-        <mat-header-cell *matHeaderCellDef mat-sort-header
-          ><b>Experience No of Years</b></mat-header-cell
-        >
+        <mat-header-cell *matHeaderCellDef mat-sort-header><b>Experience No of Years</b></mat-header-cell>
         <mat-cell *matCellDef="let element"><span class="ellipsis">{{ element.expDoj }}</span></mat-cell>
       </ng-container>
       <ng-container matColumnDef="manager">
-        <mat-header-cell *matHeaderCellDef mat-sort-header
-          ><b>Manager</b></mat-header-cell
-        >
+        <mat-header-cell *matHeaderCellDef mat-sort-header><b>Manager</b></mat-header-cell>
         <mat-cell *matCellDef="let element"><span class="ellipsis">{{ element.manager }}</span></mat-cell>
       </ng-container>
       <ng-container matColumnDef="designation">
-        <mat-header-cell *matHeaderCellDef mat-sort-header
-          ><b>Designation</b></mat-header-cell
-        >
+        <mat-header-cell *matHeaderCellDef mat-sort-header><b>Designation</b></mat-header-cell>
         <mat-cell *matCellDef="let element"><span class="ellipsis">{{
-          element.designation?.desgName
-        }}</span></mat-cell>
+            element.designation?.desgName
+            }}</span></mat-cell>
       </ng-container>
       <ng-container matColumnDef="role">
-        <mat-header-cell *matHeaderCellDef mat-sort-header
-          ><b>Role</b></mat-header-cell
-        >
+        <mat-header-cell *matHeaderCellDef mat-sort-header><b>Role</b></mat-header-cell>
         <mat-cell *matCellDef="let element"><span class="ellipsis">{{
-          element.role?.roleName
-        }}</span></mat-cell>
+            element.role?.roleName
+            }}</span></mat-cell>
       </ng-container>
       <ng-container matColumnDef="type">
-        <mat-header-cell *matHeaderCellDef mat-sort-header
-          ><b>Type</b></mat-header-cell
-        >
+        <mat-header-cell *matHeaderCellDef mat-sort-header><b>Type</b></mat-header-cell>
         <mat-cell *matCellDef="let element"><span class="ellipsis">{{ element.type }}</span></mat-cell>
       </ng-container>
       <!-- ## from API we are not getting location ## -->
@@ -178,14 +152,18 @@
           element.permanentPinCode
         }}</span></mat-cell>
       </ng-container> -->
+      <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef><b>Actions</b></mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <button mat-icon-button (click)="onEdit(row)">
+            <mat-icon>launch</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
     </mat-table>
 
-    <mat-paginator
-      [pageSize]="5"
-      aria-label="Select page"
-      showFirstLastButtons
-    ></mat-paginator>
+    <mat-paginator [pageSize]="5" aria-label="Select page" showFirstLastButtons></mat-paginator>
   </div>
 </div>

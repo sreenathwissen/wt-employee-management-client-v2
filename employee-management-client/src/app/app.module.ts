@@ -2,10 +2,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatAutocompleteModule } from '@angular/material/autocomplete';
-import { MatChipsModule } from '@angular/material/chips';
 import { MatGridListModule } from '@angular/material/grid-list';
-import { MatStepperModule } from '@angular/material/stepper';
 import { MatTabsModule } from '@angular/material/tabs';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -16,15 +13,14 @@ import { ClientDetailsComponent } from './client-details/client-details.componen
 import { ClientFormComponent } from './client-details/client-form/client-form.component';
 import { ClientListComponent } from './client-details/client-list/client-list.component';
 import { ClientService } from './client-details/client.service';
-import { CreateEmployeeComponent } from './components/employee/create-employee/create-employee.component';
 import { EditEmployeeComponent } from './components/employee/edit-employee/edit-employee.component';
-import { EmployeesComponent } from './components/employee/employees/employees.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { EmployeeProjectDetailsComponent } from './employee-project-details/employee-project-details.component';
 import { EmployeeProjectFormComponent } from './employee-project-details/employee-project-form/employee-project-form.component';
 import { EmployeeProjectService } from './employee-project-details/EmployeeProjectService';
-import { MaterialModule } from './module/material.module';
+import { EmployeeModule } from './module/employee.module';
 import { HomeModule } from './module/home.module';
+import { MaterialModule } from './module/material.module';
 import { SkillModule } from './module/skill.module';
 import { ProjectDetailsComponent } from './project-details/project-details.component';
 import { ProjectFormComponent } from './project-details/project-form/project-form.component';
@@ -32,29 +28,21 @@ import { ProjectListComponent } from './project-details/project-list/project-lis
 import { ProjectService } from './project-details/project.service';
 import { apiList } from './services/https/api-list';
 
-
 @NgModule({
   declarations: [
     AppComponent,
     ClientDetailsComponent,
     ClientFormComponent,
     ClientListComponent,
-    EmployeesComponent,
-    CreateEmployeeComponent,
     NavbarComponent,
     ProjectDetailsComponent,
     ProjectFormComponent,
     ProjectListComponent,
     EmployeeProjectDetailsComponent,
     EditEmployeeComponent,
-    EmployeeProjectFormComponent
+    EmployeeProjectFormComponent,
   ],
-  providers: [
-    ClientService,
-    ProjectService,
-    apiList,
-    EmployeeProjectService,
-  ],
+  providers: [ClientService, ProjectService, apiList, EmployeeProjectService],
   bootstrap: [AppComponent],
   // entryComponents: [SkillDetailsComponent],
   imports: [
@@ -62,20 +50,17 @@ import { apiList } from './services/https/api-list';
     AppRoutingModule,
     BrowserAnimationsModule,
     MatTabsModule,
-    MatStepperModule,
+    EmployeeModule,
     FormsModule,
     MatGridListModule,
     ReactiveFormsModule,
     HttpClientModule,
-    MatAutocompleteModule,
-    MatChipsModule,
     CommonModule,
     MaterialModule,
     HomeModule,
     SkillModule,
     ToastrModule.forRoot(),
   ],
-  exports: [
-  ]
+  exports: [],
 })
-export class AppModule { }
+export class AppModule {}

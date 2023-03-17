@@ -1,7 +1,17 @@
-<div class="wrap">
-  <div class="tilte">
-    <h3>Create Employee</h3>
-  </div>
+<mat-dialog-actions>
+  <!-- <span>{{service.form.controls['skillId'].value?"Modify Skill":"New Skill"}}</span> -->
+  <span class="fill-remaining-space"></span>
+  <button
+    class="btn-dialog-close"
+    mat-stroked-button
+    mat-dialog-close
+    tabIndex="-1"
+  >
+    <mat-icon>clear</mat-icon>
+  </button>
+</mat-dialog-actions>
+<br />
+<mat-dialog-content>
   <mat-stepper [linear]="true" #stepper>
     <mat-step [stepControl]="firstFormGroup">
       <form [formGroup]="firstFormGroup">
@@ -48,7 +58,7 @@
     </mat-step>
     <mat-step [stepControl]="secondFormGroup" label="Professional Info">
       <form [formGroup]="secondFormGroup">
-        <mat-form-field>
+        <mat-form-field style="display: none">
           <mat-label>Employee ID</mat-label>
           <input type="number" matInput formControlName="employeeId" />
         </mat-form-field>
@@ -350,11 +360,11 @@
           class="float-right"
           mat-raised-button
           color="primary"
-          (click)="save(firstFormGroup, secondFormGroup, thirdFormGroup)"
+          (click)="save()"
         >
           Submit
         </button>
       </div>
     </mat-step>
   </mat-stepper>
-</div>
+</mat-dialog-content>

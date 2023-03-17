@@ -50,13 +50,10 @@ export class ProjectService {
   }
 
   insertProject(project: IProject) {
-    console.log(project);
     let projectArray = [];
     projectArray.push(project);
-    console.log(projectArray);
     const headers = { 'content-type': 'application/json' };
     const body = JSON.stringify(projectArray);
-    console.log(body);
     return this._http.post(this.projectUrl, body, { headers: headers });
   }
 
