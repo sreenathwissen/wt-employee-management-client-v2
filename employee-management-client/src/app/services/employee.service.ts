@@ -1,6 +1,7 @@
+import { formatDate } from '@angular/common';
 import { Injectable } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { IEmployee } from '../IEmployee';
+import { IEmployee } from '../model/IEmployee';
 
 @Injectable({
   providedIn: 'root',
@@ -12,17 +13,17 @@ export class EmployeeService {
   employeeListForFilter!: IEmployee[];
 
   firstFormGroup = this._formBuilder.group({
-    firstName: ['', Validators.required],
-    lastName: ['', Validators.required],
-    dob: ['', Validators.required],
-    email: ['', Validators.required],
-    phoneNo: ['', Validators.required],
-    emergencyContact: ['', Validators.required],
-    bloodGroup: ['', Validators.required],
+    firstName: [''],
+    lastName: [''],
+    dob: [''],
+    email: [''],
+    phoneNo: [''],
+    emergencyContact: [''],
+    bloodGroup: [''],
   });
 
   secondFormGroup = this._formBuilder.group({
-    employeeId: ['', Validators.required],
+    employeeId: ['0'],
     experience: ['', Validators.required],
     manager: ['', Validators.required],
     designation: ['', Validators.required],
@@ -43,4 +44,28 @@ export class EmployeeService {
     permanentState: ['', Validators.required],
     permanentPinCode: ['', Validators.required],
   });
+
+  public parseFirstObj(data: any) {
+    return {
+      firstName: data.firstName,
+      lastName: data.lastName,
+      dob: formatDate(data.dob, 'yyyy-MM-dd', 'en'),
+      email: data.email,
+      phoneNo: data.workPhone,
+      emergencyContact: data.primaryEmergencyContactNumber,
+      bloodGroup: data.bloodGroup,
+    };
+  }
+
+  public parseSecondObj(data: any) {
+    return {
+      employeeId: data.empId,
+      experience: data.expDoj,
+      manager: data.manager,
+      designation: data.designation.desgName,
+      role: data.role.roleName,
+      type: data.type,
+      skillTypeahead: '',
+    };
+  }
 }

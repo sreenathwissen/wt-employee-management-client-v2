@@ -3,9 +3,9 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { ISkill } from '../ISkill';
+import { ISkill } from '../../../model/ISkill';
+import { SkillService } from '../../../services/skill.service';
 import { SkillFormComponent } from '../skill-form/skill-form.component';
-import { SkillService } from '../skill.service';
 
 @Component({
   selector: 'app-skill-list',
@@ -18,7 +18,7 @@ export class SkillListComponent implements OnInit {
   rowdata: ISkill[] = [];
 
   // created public service so as to access in html
-  constructor(public service: SkillService, private dialog: MatDialog) {}
+  constructor(public service: SkillService, private dialog: MatDialog) { }
   ngOnInit() {
     this.service.getSkillData().subscribe((list) => {
       console.log(list);

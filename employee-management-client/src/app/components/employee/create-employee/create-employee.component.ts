@@ -4,10 +4,10 @@ import { FormGroup } from '@angular/forms';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MatDialogRef } from '@angular/material/dialog';
 import { NotificationService } from 'src/app/notification-service/notification.service';
+import { EmployeeService } from 'src/app/services/employee.service';
 import { apiList } from 'src/app/services/https/api-list';
 import { HttpsService } from 'src/app/services/https/https.service';
-import { SkillService } from 'src/app/skill-details/skill.service';
-import { EmployeeService } from '../employee.service';
+import { SkillService } from 'src/app/services/skill.service';
 
 @Component({
   selector: 'app-create-employee',
@@ -86,7 +86,7 @@ export class CreateEmployeeComponent implements OnInit {
             addressType: '',
             city: this.thirdFormGroup.value.currentCity,
             country: '',
-            employeeId: 0,
+            employeeId: this.secondFormGroup.value.employeeId,
             flatNo: this.thirdFormGroup.value.currentFlat,
             pincode: this.thirdFormGroup.value.currentPinCode,
             state: this.thirdFormGroup.value.currentState,
@@ -110,7 +110,7 @@ export class CreateEmployeeComponent implements OnInit {
           pfNo: '',
           uan: '',
         },
-        employeeId: 0,
+        employeeId: this.secondFormGroup.value.employeeId,
         employeeSkillDTOList: [] as {
           levels: number;
           skillId: any;
@@ -180,6 +180,9 @@ export class CreateEmployeeComponent implements OnInit {
           this.employeeService.employeeListForFilter = [
             ...this.employeeService.employeeList,
           ];
+          this.employeeService.firstFormGroup.reset();
+          this.employeeService.secondFormGroup.reset();
+          this.employeeService.thirdFormGroup.reset();
         },
         () => {
           this.notificationService.showError('Failure', 'Employee not saved');

@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { EmployeeService } from 'src/app/services/employee.service';
 import { apiList } from 'src/app/services/https/api-list';
 import { HttpsService } from 'src/app/services/https/https.service';
-import { IEmployee } from '../../IEmployee';
+import { IEmployee } from '../../../model/IEmployee';
 import { CreateEmployeeComponent } from '../create-employee/create-employee.component';
-import { EmployeeService } from '../employee.service';
 
 @Component({
   selector: 'app-employees',
@@ -70,14 +70,21 @@ export class EmployeesComponent implements OnInit {
   }
 
   onEdit(row: any) {
-    // this.service.firstFormGroup.setValue(row);
-    // this.service.secondFormGroup.setValue(row);
-    // this.service.thirdFormGroup.setValue(row);
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.width = '60%';
     this.dialog.open(CreateEmployeeComponent, dialogConfig);
-    console.log(row);
+    this.https
+      .httpGetWithHeader(this.apiList.getEmployee, 'employeeId=' + row.empId)
+      .subscribe((resp: any) => {
+        let employeeData = resp.responseData;
+        this.service.firstFormGroup.setValue(
+          this.service.parseFirstObj(employeeData)
+        );
+        this.service.secondFormGroup.setValue(
+          this.service.parseSecondObj(employeeData)
+        );
+      });
   }
 }
