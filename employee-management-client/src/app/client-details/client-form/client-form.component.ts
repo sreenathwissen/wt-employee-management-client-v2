@@ -49,6 +49,7 @@ export class ClientFormComponent implements OnInit {
             this.service.clientList = [...this.service.clientList, data[0]];
             this.dialogRef.close(true);
           }
+          this.service.clientListForFilter = [...this.service.clientList];
         },
         (err) => {
           if (err.status === 400) {
@@ -60,6 +61,7 @@ export class ClientFormComponent implements OnInit {
           }
         }
       );
+      this.service.form.reset();
     }
   }
 

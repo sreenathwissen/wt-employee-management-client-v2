@@ -1,0 +1,92 @@
+<div class="container">
+    <mat-toolbar>
+        <span class="title">Employee Project</span>
+    </mat-toolbar>
+
+
+    <form [formGroup]="employeeProjectService.form" class="normal-form">
+        <mat-grid-list cols="2" rowHeight="200px">
+            <mat-grid-tile>
+                <div class="controles-container">
+                    <input type="hidden" formControlName="employeeId">
+                    <mat-form-field>
+                        <input formControlName="employeeId" matInput placeholder="Employee Id*">
+                        <mat-error>This field is mandatory</mat-error>
+                    </mat-form-field>
+                    <div class="button-row">
+                        <button mat-raised-button color="primary" type="submit" (click)="onSubmit()"
+                            [disabled]="employeeProjectService.form.invalid">Submit</button>
+
+                        <button mat-raised-button (click)="onCreate()">
+                            <mat-icon>add</mat-icon>Create
+                        </button>
+                    </div>
+                </div>
+            </mat-grid-tile>
+        </mat-grid-list>
+    </form>
+
+    <div class="mat-elevation-z8" *ngIf="isListEnable">
+        <mat-table [dataSource]="listData" matSort>
+            <ng-container matColumnDef="employeeId">
+                <mat-header-cell *matHeaderCellDef mat-sort-header><b>Employee ID</b></mat-header-cell>
+                <mat-cell *matCellDef="let element">{{element.employee.empId}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="projectName">
+                <mat-header-cell *matHeaderCellDef mat-sort-header><b>Project Name</b></mat-header-cell>
+                <mat-cell *matCellDef="let element">{{element.project.projectName}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="projectLocation">
+                <mat-header-cell *matHeaderCellDef mat-sort-header><b>Project Location</b></mat-header-cell>
+                <mat-cell *matCellDef="let element">{{element.project.projectLocation}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="projectLead">
+                <mat-header-cell *matHeaderCellDef mat-sort-header><b>Project Lead</b></mat-header-cell>
+                <mat-cell *matCellDef="let element">{{element.project.projectLead}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="projectType">
+                <mat-header-cell *matHeaderCellDef mat-sort-header><b>Project Type</b></mat-header-cell>
+                <mat-cell *matCellDef="let element">{{element.project.projectType}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="dojOnboarding">
+                <mat-header-cell *matHeaderCellDef mat-sort-header><b>Date Of Onboarding</b></mat-header-cell>
+                <mat-cell *matCellDef="let element">{{element.dojOnboarding}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="dorOnboarding">
+                <mat-header-cell *matHeaderCellDef mat-sort-header><b>Date Of Release</b></mat-header-cell>
+                <mat-cell *matCellDef="let element">{{element.dorOnboarding}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="clientName">
+                <mat-header-cell *matHeaderCellDef mat-sort-header><b>Client Name</b></mat-header-cell>
+                <mat-cell *matCellDef="let element">{{element.project.client.clientName}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="clientLocation">
+                <mat-header-cell *matHeaderCellDef mat-sort-header><b>Client Location</b></mat-header-cell>
+                <mat-cell *matCellDef="let element">{{element.project.client.clientLocation}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="actions">
+                <mat-header-cell *matHeaderCellDef><b>Actions</b></mat-header-cell>
+                <mat-cell *matCellDef="let row">
+                    <button mat-icon-button (click)="onEdit(row)"><mat-icon>launch</mat-icon></button>
+                </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="loading">
+                <mat-footer-cell *matFooterCellDef colspan="6">
+                    Loading data...
+                </mat-footer-cell>
+            </ng-container>
+            <ng-container matColumnDef="noData">
+                <mat-footer-cell *matFooterCellDef colspan="6">
+                    No data.
+                </mat-footer-cell>
+            </ng-container>
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+            <mat-footer-row *matFooterRowDef="['loading']" [ngClass]="{'hide':listData!=null}"></mat-footer-row>
+            <mat-footer-row *matFooterRowDef="['noData']"
+                [ngClass]="{'hide':!(listData!=null && listData.data.length==0)}"></mat-footer-row>
+        </mat-table>
+
+        <mat-paginator [pageSize]="5" aria-label="Select page" showFirstLastButtons></mat-paginator>
+    </div>
+</div>

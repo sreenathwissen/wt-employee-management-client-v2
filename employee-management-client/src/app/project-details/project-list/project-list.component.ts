@@ -3,6 +3,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 import { IProject } from '../IProject';
 import { ProjectFormComponent } from '../project-form/project-form.component';
 import { ProjectService } from '../project.service';
@@ -10,23 +11,30 @@ import { ProjectService } from '../project.service';
 @Component({
   selector: 'app-project-list',
   templateUrl: './project-list.component.html',
-  styleUrls: ['./project-list.component.scss']
+  styleUrls: ['./project-list.component.scss'],
 })
 export class ProjectListComponent implements OnInit {
 
-  constructor(public service: ProjectService,
-    private dialog: MatDialog) { }
+constructor(public service: ProjectService,
+    private dialog: MatDialog,
+    private router: Router) { }
 
   listData!: MatTableDataSource<any>;
-  displayedColumns: string[] = ['projectId', 'projectName', 'projectLocation', 'projectLead', 'projectType', 'client', 'actions'];
+  displayedColumns: string[] = [
+    'projectId',
+    'projectName',
+    'projectLocation',
+    'projectLead',
+    'projectType',
+    'client',
+    'actions',
+  ];
   rowdata: IProject[] = [];
-
 
   dataSource!: MatTableDataSource<ProjectFormComponent>;
 
   @ViewChild(MatPaginator, { static: true })
   paginator!: MatPaginator;
-
 
   @ViewChild(MatSort, { static: true })
   sort!: MatSort;
@@ -39,25 +47,28 @@ export class ProjectListComponent implements OnInit {
   searchKey!: string;
 
   ngOnInit() {
-    this.service.getProjectData().subscribe(
-      list => {
-        console.log(list)
-        this.service.projectList = list;
-        this.rowdata = list
-        this.listData = new MatTableDataSource(this.rowdata);
-        this.listData.sort = this.sort;
-        this.listData.paginator = this.paginator;
-      }
-    );
+    this.service.getProjectData().subscribe((list) => {
+      console.log(list);
+      this.service.projectList = list;
+      this.service.projectListForFilter = list;
+      this.rowdata = list;
+      this.listData = new MatTableDataSource(this.rowdata);
+      this.listData.sort = this.sort;
+      this.listData.paginator = this.paginator;
+    });
   }
 
   onSearchClear() {
-    this.searchKey = "";
+    this.searchKey = '';
+    this.service.projectListForFilter = this.service.projectList;
     this.applyFilter();
   }
 
   applyFilter() {
-    this.listData.filter = this.searchKey.trim().toLowerCase();
+    this.service.projectListForFilter = this.service.projectList.filter(
+      ({ projectName }: any) =>
+        projectName.toLowerCase().indexOf(this.searchKey.trim().toLowerCase()) !== -1
+    );
   }
 
   onCreate() {
@@ -65,7 +76,7 @@ export class ProjectListComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
-    dialogConfig.width = "60%";
+    dialogConfig.width = '60%';
     this.dialog.open(ProjectFormComponent, dialogConfig);
   }
 
@@ -74,8 +85,7 @@ export class ProjectListComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
-    dialogConfig.width = "60%";
+    dialogConfig.width = '60%';
     this.dialog.open(ProjectFormComponent, dialogConfig);
   }
-
 }

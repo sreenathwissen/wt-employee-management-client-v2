@@ -3,9 +3,9 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { ISkill } from '../ISkill';
+import { ISkill } from '../../../model/ISkill';
+import { SkillService } from '../../../services/skill.service';
 import { SkillFormComponent } from '../skill-form/skill-form.component';
-import { SkillService } from '../skill.service';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
@@ -27,8 +27,9 @@ export class SkillListComponent implements OnInit {
     this.service.getSkillData().subscribe((list) => {
       console.log(list);
       this.service.skillList = list;
+      this.service.skillListForFilter = list;
       this.rowdata = list;
-      this.listData = new MatTableDataSource(this.rowdata);
+      this.listData = new MatTableDataSource(this.service.skillListForFilter);
       this.listData.sort = this.sort;
       this.listData.paginator = this.paginator;
       this.filteredSkills = this.skillControl.valueChanges.pipe(
@@ -63,11 +64,16 @@ export class SkillListComponent implements OnInit {
 
   onSearchClear() {
     this.searchKey = '';
+    this.service.skillListForFilter = this.service.skillList;
     this.applyFilter();
   }
 
   applyFilter() {
-    this.listData.filter = this.searchKey.trim().toLowerCase();
+    this.service.skillListForFilter = this.service.skillList.filter(
+      ({ skillName }: any) =>
+        skillName.toLowerCase().indexOf(this.searchKey.trim().toLowerCase()) !==
+        -1
+    );
   }
 
   onCreate() {
