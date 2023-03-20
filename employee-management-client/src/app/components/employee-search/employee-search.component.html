@@ -1,0 +1,18 @@
+<mat-form-field>
+  <input
+    type="text"
+    matInput
+    [formControl]="searchControl"
+    placeholder="Search employees"
+    [matAutocomplete]="auto"
+  />
+
+  <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+    <mat-option
+      *ngFor="let employee of filteredEmployees$ | async"
+      [value]="employee"
+    >
+      {{ employee.firstName }} ({{ employee.empId }})
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>

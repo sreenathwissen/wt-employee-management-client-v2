@@ -27,6 +27,7 @@ import { ProjectListComponent } from './project-details/project-list/project-lis
 import { ProjectService } from './project-details/project.service';
 import { EditEmployeeComponent } from './components/employee/edit-employee/edit-employee.component';
 import { ToastrModule } from 'ngx-toastr';
+import { EmployeeSearchComponent } from './components/employee-search/employee-search.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { ToastrModule } from 'ngx-toastr';
     ProjectFormComponent,
     ProjectListComponent,
     EditEmployeeComponent,
+    EmployeeSearchComponent,
   ],
   providers: [ClientService, SkillService, ProjectService, apiList],
   bootstrap: [AppComponent],

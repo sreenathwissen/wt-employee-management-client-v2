@@ -19,6 +19,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 @NgModule({
   declarations: [],
@@ -40,6 +41,7 @@ import { MatListModule } from '@angular/material/list';
     MatPaginatorModule,
     MatSortModule,
     MatDialogModule,
+    MatAutocompleteModule,
   ],
   exports: [
     MatToolbarModule,
@@ -61,6 +63,7 @@ import { MatListModule } from '@angular/material/list';
     MatSidenavModule,
     MatDividerModule,
     MatListModule,
+    MatAutocompleteModule,
   ],
 })
 export class MaterialModule {}

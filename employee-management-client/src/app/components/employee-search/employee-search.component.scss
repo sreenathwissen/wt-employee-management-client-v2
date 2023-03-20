@@ -1,0 +1,20 @@
+.mat-form-field {
+  width: 300px !important;
+}
+
+.mat-option {
+  padding: 8px 16px !important;
+}
+
+.mat-option:hover {
+  background-color: #e0e0e0 !important;
+}
+
+.mat-option.mat-selected {
+  background-color: #64b5f6 !important;
+  color: #ffffff !important;
+}
+
+.mat-option.mat-selected:hover {
+  background-color: #4c8bf5 !important;
+}

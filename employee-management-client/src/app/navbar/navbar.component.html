@@ -1,12 +1,9 @@
 <mat-toolbar>
-  <button
-    mat-icon-button
-    (click)="sidenav.toggle()"
-  >
+  <button mat-icon-button (click)="sidenav.toggle()">
     <mat-icon> menu </mat-icon>
   </button>
   <button mat-button disabled *ngIf="sidenav.mode === 'side'">
-    <img class="logo" src="assets\Wissen-logo.png" />
+    <img class="logo" src="assets\images\Wissen-logo.png" />
   </button>
   <span class="header">Employee Portal</span>
 </mat-toolbar>
@@ -17,7 +14,7 @@
       <a
         mat-button
         class="menu-button"
-        [routerLink]="['/employee']"
+        [routerLink]="['/employees']"
         routerLinkActive="router-link-active"
       >
         <mat-icon>person</mat-icon>
@@ -49,6 +46,15 @@
       >
         <mat-icon>settings</mat-icon>
         <span>Skill</span>
+      </button>
+      <button
+        mat-button
+        class="menu-button"
+        [routerLink]="['/search']"
+        routerLinkActive="router-link-active"
+      >
+        <mat-icon>search</mat-icon>
+        <span>Search</span>
       </button>
 
       <mat-divider></mat-divider>
