@@ -22,6 +22,7 @@ import { EmployeeModule } from './module/employee.module';
 import { HomeModule } from './module/home.module';
 import { MaterialModule } from './module/material.module';
 import { SkillModule } from './module/skill.module';
+import { TypeaheadModule } from './module/typeahead.module';
 import { ProjectDetailsComponent } from './project-details/project-details.component';
 import { ProjectFormComponent } from './project-details/project-form/project-form.component';
 import { ProjectListComponent } from './project-details/project-list/project-list.component';
@@ -59,6 +60,7 @@ import { apiList } from './services/https/api-list';
     MaterialModule,
     HomeModule,
     SkillModule,
+    TypeaheadModule,
     ToastrModule.forRoot(),
   ],
   exports: [],
