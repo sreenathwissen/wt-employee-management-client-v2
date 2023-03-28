@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { MatCardModule } from '@angular/material/card';
 import { HomeComponent } from 'src/app/components/home/home.component';
 
 
@@ -12,6 +13,7 @@ import { HomeComponent } from 'src/app/components/home/home.component';
   providers: [],
   imports: [
     CommonModule,
+    MatCardModule,
     // FormsModule,
     // MaterialModule
   ],
