@@ -5,5 +5,6 @@ export interface IEmployeeProject {
     employeeProjectId: Number;
     dojOnboarding: String;
     dorOnboarding: String;
-    project: IProject
+    project: IProject;
+    employeeId: Number;
 }

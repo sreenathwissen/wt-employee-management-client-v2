@@ -12,7 +12,7 @@ export class EmployeeProjectService {
 
     constructor(private _http: HttpClient) { }
 
-    private empProjectUrl = 'http://localhost:8080/api/project/projectEmployeeMapping?';
+    private empProjectUrl = 'http://localhost:8080/api/project/projectEmployeeMapping';
 
     empProjectList!: IEmployeeProjectForm[];
 
@@ -25,6 +25,7 @@ export class EmployeeProjectService {
         projectId: new FormControl('', [Validators.required]),
         dor: new FormControl(''),
         doj: new FormControl('', [Validators.required]),
+        employeeProjectId: new FormControl(0, [Validators.required]),
     })
 
     initializeFormGroup() {
@@ -40,25 +41,26 @@ export class EmployeeProjectService {
 
     insertEmpProj(empProj: IEmployeeProjectForm) {
         console.log(empProj);
+        let dto = this.getEmployeeProjectDto(empProj)
         let empProjArray = [];
-        empProjArray.push(empProj);
-        console.log(empProjArray);
+        empProjArray.push(dto);
+        console.log("Saving" + empProjArray);
         const headers = { 'content-type': 'application/json' };
-        let dor = empProj.dor === null ? null : this.format(new Date(empProj.dor))
-        let doj = this.format(new Date(empProj.doj))
-        let url = this.empProjectUrl + "projectId=" + empProj.projectId + "&employeeId=" + empProj.employeeId + "&doj=" + doj
-        if (dor !== null) {
-            url = url + "&dor=" + dor
-        }
+        const body = JSON.stringify(empProjArray);
 
-        console.log(url);
-        return this._http.post(url, {
-            headers: headers,
+        return this._http.post(this.empProjectUrl, body, {
+            headers: headers
         });
     }
 
-    populateForm(empProj: IEmployeeProjectForm) {
-        this.employeeProjectForm.setValue(empProj);
+    populateForm(empProj: any) {
+        this.employeeProjectForm.setValue({
+            projectId: empProj.project.projectId,
+            doj: empProj.dojOnboarding,
+            dor: empProj.dorOnboarding,
+            employeeId: empProj.employee.empId,
+            employeeProjectId: empProj.employeeProjectId
+        })
     }
 
     format(date: any): string {
@@ -71,5 +73,16 @@ export class EmployeeProjectService {
 
     private _to2digit(n: number) {
         return ('00' + n).slice(-2);
+    }
+
+    private getEmployeeProjectDto(form: IEmployeeProjectForm) {
+        const dto = {
+            empId: form.employeeId,
+            projectId: form.projectId,
+            dojOnboarding: form.doj,
+            dorOnboarding: form.dor,
+            employeeProjectId: form.employeeProjectId
+        }
+        return dto;
     }
 }

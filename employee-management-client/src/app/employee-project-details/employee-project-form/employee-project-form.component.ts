@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { NotificationService } from 'src/app/notification-service/notification.service';
 import { IProject } from 'src/app/project-details/IProject';
 import { ProjectService } from 'src/app/project-details/project.service';
 import { EmployeeProjectService } from '../EmployeeProjectService';
+
 
 @Component({
   selector: 'app-employee-project-form',
@@ -13,6 +14,9 @@ import { EmployeeProjectService } from '../EmployeeProjectService';
 export class EmployeeProjectFormComponent implements OnInit {
 
   projects: IProject[] = [];
+
+
+  isUpdate!: boolean;
 
   constructor(
     public service: EmployeeProjectService,
@@ -42,7 +46,7 @@ export class EmployeeProjectFormComponent implements OnInit {
           found = true;
           this.notificationService.showSuccess(
             'Success',
-            'Updated Successfully'
+            'Employee Project added Successfully'
           );
           this.onClear()
           this.dialogRef.close(true);
@@ -57,7 +61,9 @@ export class EmployeeProjectFormComponent implements OnInit {
           }
         }
       )
-    }
+    };
+    this.onClear()
+    this.service.form.reset();
   }
 
   onClear() {
@@ -66,6 +72,7 @@ export class EmployeeProjectFormComponent implements OnInit {
   }
 
   onClose() {
+    this.onClear()
     this.service.employeeProjectForm.reset();
     this.service.initializeFormGroup();
     this.dialogRef.close();
