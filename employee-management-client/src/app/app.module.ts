@@ -27,6 +27,14 @@ import { ProjectDetailsComponent } from './project-details/project-details.compo
 import { ProjectFormComponent } from './project-details/project-form/project-form.component';
 import { ProjectListComponent } from './project-details/project-list/project-list.component';
 import { ProjectService } from './project-details/project.service';
+import { EmployeeProjectDetailsComponent } from './components/employee-project-details/employee-project-details.component';
+import { EmployeeProjectService } from './components/employee-project-details/EmployeeProjectService';
+import { EditEmployeeComponent } from './components/employee/edit-employee/edit-employee.component';
+import { ToastrModule } from 'ngx-toastr';
+import { EmployeeProjectFormComponent } from './components/employee-project-details/employee-project-form/employee-project-form.component';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatChipsModule } from '@angular/material/chips';
 import { apiList } from './services/https/api-list';
 
 @NgModule({
@@ -65,4 +73,4 @@ import { apiList } from './services/https/api-list';
   ],
   exports: [],
 })
-export class AppModule {}
+export class AppModule { }

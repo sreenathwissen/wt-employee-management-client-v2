@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
+import { Constants } from '../../shared/constants/Constants';
 import { IEmployeeProjectForm } from './employee-project-form/IEmployeeProjectForm';
 import { IEmployeeProject } from './IEmployeeProject';
 
@@ -11,8 +12,6 @@ import { IEmployeeProject } from './IEmployeeProject';
 export class EmployeeProjectService {
 
     constructor(private _http: HttpClient) { }
-
-    private empProjectUrl = 'http://localhost:8080/api/project/projectEmployeeMapping?';
 
     empProjectList!: IEmployeeProjectForm[];
 
@@ -25,6 +24,7 @@ export class EmployeeProjectService {
         projectId: new FormControl('', [Validators.required]),
         dor: new FormControl(''),
         doj: new FormControl('', [Validators.required]),
+        employeeProjectId: new FormControl(0, [Validators.required]),
     })
 
     initializeFormGroup() {
@@ -34,31 +34,32 @@ export class EmployeeProjectService {
     }
 
     getEmployeeProjectData(employeeId: String): Observable<IEmployeeProject[]> {
-        return this._http.get<IEmployeeProject[]>('http://localhost:8080/api/project/employee?empId=' + employeeId);
+        return this._http.get<IEmployeeProject[]>(Constants.BASE_URL + Constants.PROJECT_URL + '/employee?empId=' + employeeId);
 
     }
 
     insertEmpProj(empProj: IEmployeeProjectForm) {
         console.log(empProj);
+        let dto = this.getEmployeeProjectDto(empProj)
         let empProjArray = [];
-        empProjArray.push(empProj);
-        console.log(empProjArray);
+        empProjArray.push(dto);
+        console.log("Saving" + empProjArray);
         const headers = { 'content-type': 'application/json' };
-        let dor = empProj.dor === null ? null : this.format(new Date(empProj.dor))
-        let doj = this.format(new Date(empProj.doj))
-        let url = this.empProjectUrl + "projectId=" + empProj.projectId + "&employeeId=" + empProj.employeeId + "&doj=" + doj
-        if (dor !== null) {
-            url = url + "&dor=" + dor
-        }
-
-        console.log(url);
-        return this._http.post(url, {
-            headers: headers,
+        const body = JSON.stringify(empProjArray);
+        const url = Constants.BASE_URL + Constants.PROJECT_URL + Constants.EMPLOYEE_PROJECT_URL
+        return this._http.post(url, body, {
+            headers: headers
         });
     }
 
-    populateForm(empProj: IEmployeeProjectForm) {
-        this.employeeProjectForm.setValue(empProj);
+    populateForm(empProj: any) {
+        this.employeeProjectForm.setValue({
+            projectId: empProj.project.projectId,
+            doj: empProj.dojOnboarding,
+            dor: empProj.dorOnboarding,
+            employeeId: empProj.employee.empId,
+            employeeProjectId: empProj.employeeProjectId
+        })
     }
 
     format(date: any): string {
@@ -71,5 +72,16 @@ export class EmployeeProjectService {
 
     private _to2digit(n: number) {
         return ('00' + n).slice(-2);
+    }
+
+    private getEmployeeProjectDto(form: IEmployeeProjectForm) {
+        const dto = {
+            empId: form.employeeId,
+            projectId: form.projectId,
+            dojOnboarding: form.doj,
+            dorOnboarding: form.dor,
+            employeeProjectId: form.employeeProjectId
+        }
+        return dto;
     }
 }
