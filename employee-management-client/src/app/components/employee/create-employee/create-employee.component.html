@@ -1,7 +1,17 @@
-<div class="wrap">
-  <div class="tilte">
-    <h3>Create Employee</h3>
-  </div>
+<mat-dialog-actions>
+  <!-- <span>{{service.form.controls['skillId'].value?"Modify Skill":"New Skill"}}</span> -->
+  <span class="fill-remaining-space"></span>
+  <button
+    class="btn-dialog-close"
+    mat-stroked-button
+    tabIndex="-1"
+    (click)="onClose()"
+  >
+    <mat-icon>clear</mat-icon>
+  </button>
+</mat-dialog-actions>
+<br />
+<mat-dialog-content>
   <mat-stepper [linear]="true" #stepper>
     <mat-step [stepControl]="firstFormGroup">
       <form [formGroup]="firstFormGroup">
@@ -15,6 +25,32 @@
           <input matInput formControlName="lastName" />
         </mat-form-field>
         <mat-form-field>
+          <mat-label>Gender</mat-label>
+          <mat-select formControlName="gender">
+            <mat-option
+              *ngFor="let gender of ['male', 'female', 'other']"
+              [value]="gender"
+            >
+              {{ gender | titlecase }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Marital Status</mat-label>
+          <mat-select formControlName="status">
+            <mat-option
+              *ngFor="let status of ['single', 'married']"
+              [value]="status"
+            >
+              {{ status | titlecase }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Date Of Marital Status</mat-label>
+          <input type="date" matInput formControlName="maritalStatusDate" />
+        </mat-form-field>
+        <mat-form-field>
           <mat-label>Date Of Birth</mat-label>
           <input type="date" matInput formControlName="dob" />
         </mat-form-field>
@@ -23,12 +59,28 @@
           <input type="email" matInput formControlName="email" />
         </mat-form-field>
         <mat-form-field>
-          <mat-label>Phone Number</mat-label>
-          <input type="tel" matInput formControlName="phoneNo" />
+          <mat-label>Primary Phone Number</mat-label>
+          <input type="tel" matInput formControlName="primaryPhoneNumber" />
         </mat-form-field>
         <mat-form-field>
-          <mat-label>Emergency Contact</mat-label>
-          <input type="tel" matInput formControlName="emergencyContact" />
+          <mat-label>Work Phone Number</mat-label>
+          <input type="tel" matInput formControlName="workPhone" />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Primary Emergency Contact</mat-label>
+          <input
+            type="tel"
+            matInput
+            formControlName="primaryEmergencyContactNumber"
+          />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Secondary Emergency Contact</mat-label>
+          <input
+            type="tel"
+            matInput
+            formControlName="secondaryEmergencyContactNumber"
+          />
         </mat-form-field>
         <mat-form-field>
           <mat-label>Blood Group</mat-label>
@@ -48,13 +100,53 @@
     </mat-step>
     <mat-step [stepControl]="secondFormGroup" label="Professional Info">
       <form [formGroup]="secondFormGroup">
-        <mat-form-field>
+        <mat-form-field style="display: none">
           <mat-label>Employee ID</mat-label>
           <input type="number" matInput formControlName="employeeId" />
         </mat-form-field>
         <mat-form-field>
-          <mat-label>Experience No of Years</mat-label>
-          <input type="number" matInput formControlName="experience" />
+          <mat-label>Permanent Account Number</mat-label>
+          <input type="text" matInput formControlName="pan" />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Provident Fund Number</mat-label>
+          <input type="text" matInput formControlName="pfNo" />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Universal Account Number</mat-label>
+          <input type="text" matInput formControlName="uan" />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Date Of Joining</mat-label>
+          <input type="date" matInput formControlName="doj" />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Date Of Leaving</mat-label>
+          <input type="date" matInput formControlName="exitDate" />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Department of Employement</mat-label>
+          <input type="text" matInput formControlName="department" />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Joining Location</mat-label>
+          <mat-select formControlName="joiningLocation">
+            <mat-option
+              *ngFor="
+                let location of [
+                  'delhi',
+                  'banglore',
+                  'mumbai',
+                  'pune',
+                  'hyderabad',
+                  'chennai'
+                ]
+              "
+              [value]="location"
+            >
+              {{ location | titlecase }}
+            </mat-option>
+          </mat-select>
         </mat-form-field>
         <mat-form-field>
           <mat-label>Manager</mat-label>
@@ -148,6 +240,10 @@
             <mat-label>Pincode</mat-label>
             <input matInput formControlName="currentPinCode" />
           </mat-form-field>
+          <mat-form-field>
+            <mat-label>Country</mat-label>
+            <input matInput formControlName="currentCountry" />
+          </mat-form-field>
         </fieldset>
         <fieldset>
           <legend>Permanent Address</legend>
@@ -170,6 +266,10 @@
           <mat-form-field>
             <mat-label>Pincode</mat-label>
             <input matInput formControlName="permanentPinCode" />
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Country</mat-label>
+            <input matInput formControlName="permanentCountry" />
           </mat-form-field>
         </fieldset>
         <mat-checkbox class="mb-2" (click)="sameAddress(thirdFormGroup)"
@@ -210,6 +310,24 @@
         }}</mat-grid-tile>
       </mat-grid-list>
       <mat-grid-list cols="2" rowHeight="2rem">
+        <mat-grid-tile class="justify-right">Gender</mat-grid-tile>
+        <mat-grid-tile class="justify-left">{{
+          firstFormGroup.value.gender
+        }}</mat-grid-tile>
+      </mat-grid-list>
+      <mat-grid-list cols="2" rowHeight="2rem">
+        <mat-grid-tile class="justify-right">MArital Status</mat-grid-tile>
+        <mat-grid-tile class="justify-left">{{
+          firstFormGroup.value.status
+        }}</mat-grid-tile>
+      </mat-grid-list>
+      <mat-grid-list cols="2" rowHeight="2rem">
+        <mat-grid-tile class="justify-right">Marital Status Date</mat-grid-tile>
+        <mat-grid-tile class="justify-left">{{
+          firstFormGroup.value.maritalStatusDate
+        }}</mat-grid-tile>
+      </mat-grid-list>
+      <mat-grid-list cols="2" rowHeight="2rem">
         <mat-grid-tile class="justify-right">Date of Birth</mat-grid-tile>
         <mat-grid-tile class="justify-left">{{
           firstFormGroup.value.dob
@@ -222,15 +340,33 @@
         }}</mat-grid-tile>
       </mat-grid-list>
       <mat-grid-list cols="2" rowHeight="2rem">
-        <mat-grid-tile class="justify-right">Phone Number</mat-grid-tile>
+        <mat-grid-tile class="justify-right"
+          >Primary Phone Number</mat-grid-tile
+        >
         <mat-grid-tile class="justify-left">{{
-          firstFormGroup.value.phoneNo
+          firstFormGroup.value.primaryPhoneNumber
         }}</mat-grid-tile>
       </mat-grid-list>
       <mat-grid-list cols="2" rowHeight="2rem">
-        <mat-grid-tile class="justify-right">Emeregency Contact</mat-grid-tile>
+        <mat-grid-tile class="justify-right">Work Phone Number</mat-grid-tile>
         <mat-grid-tile class="justify-left">{{
-          firstFormGroup.value.emergencyContact
+          firstFormGroup.value.workPhone
+        }}</mat-grid-tile>
+      </mat-grid-list>
+      <mat-grid-list cols="2" rowHeight="2rem">
+        <mat-grid-tile class="justify-right"
+          >Primary Emergency Contact Number</mat-grid-tile
+        >
+        <mat-grid-tile class="justify-left">{{
+          firstFormGroup.value.primaryEmergencyContactNumber
+        }}</mat-grid-tile>
+      </mat-grid-list>
+      <mat-grid-list cols="2" rowHeight="2rem">
+        <mat-grid-tile class="justify-right"
+          >Secondary Emergency Contact Number</mat-grid-tile
+        >
+        <mat-grid-tile class="justify-left">{{
+          firstFormGroup.value.secondaryEmergencyContactNumber
         }}</mat-grid-tile>
       </mat-grid-list>
       <mat-grid-list cols="2" rowHeight="2rem">
@@ -240,17 +376,51 @@
         }}</mat-grid-tile>
       </mat-grid-list>
       <mat-grid-list cols="2" rowHeight="2rem">
-        <mat-grid-tile class="justify-right">Employee ID</mat-grid-tile>
+        <mat-grid-tile class="justify-right"
+          >Permanent Account Number</mat-grid-tile
+        >
         <mat-grid-tile class="justify-left">{{
-          secondFormGroup.value.employeeId
+          secondFormGroup.value.pan
         }}</mat-grid-tile>
       </mat-grid-list>
       <mat-grid-list cols="2" rowHeight="2rem">
         <mat-grid-tile class="justify-right"
-          >Experience No of Years</mat-grid-tile
+          >Provident Fund Number</mat-grid-tile
         >
         <mat-grid-tile class="justify-left">{{
-          secondFormGroup.value.experience
+          secondFormGroup.value.pfNo
+        }}</mat-grid-tile>
+      </mat-grid-list>
+      <mat-grid-list cols="2" rowHeight="2rem">
+        <mat-grid-tile class="justify-right"
+          >Universal Account Number</mat-grid-tile
+        >
+        <mat-grid-tile class="justify-left">{{
+          secondFormGroup.value.uan
+        }}</mat-grid-tile>
+      </mat-grid-list>
+      <mat-grid-list cols="2" rowHeight="2rem">
+        <mat-grid-tile class="justify-right">Department</mat-grid-tile>
+        <mat-grid-tile class="justify-left">{{
+          secondFormGroup.value.department
+        }}</mat-grid-tile>
+      </mat-grid-list>
+      <mat-grid-list cols="2" rowHeight="2rem">
+        <mat-grid-tile class="justify-right">Date of Joining</mat-grid-tile>
+        <mat-grid-tile class="justify-left">{{
+          secondFormGroup.value.doj
+        }}</mat-grid-tile>
+      </mat-grid-list>
+      <mat-grid-list cols="2" rowHeight="2rem">
+        <mat-grid-tile class="justify-right">Date of Leaving</mat-grid-tile>
+        <mat-grid-tile class="justify-left">{{
+          secondFormGroup.value.exitDate
+        }}</mat-grid-tile>
+      </mat-grid-list>
+      <mat-grid-list cols="2" rowHeight="2rem">
+        <mat-grid-tile class="justify-right">Joining Location</mat-grid-tile>
+        <mat-grid-tile class="justify-left">{{
+          secondFormGroup.value.joiningLocation
         }}</mat-grid-tile>
       </mat-grid-list>
       <mat-grid-list cols="2" rowHeight="2rem">
@@ -308,6 +478,12 @@
         }}</mat-grid-tile>
       </mat-grid-list>
       <mat-grid-list cols="2" rowHeight="2rem">
+        <mat-grid-tile class="justify-right">Current Country</mat-grid-tile>
+        <mat-grid-tile class="justify-left">{{
+          thirdFormGroup.value.currentCountry
+        }}</mat-grid-tile>
+      </mat-grid-list>
+      <mat-grid-list cols="2" rowHeight="2rem">
         <mat-grid-tile class="justify-right">Permanent Flat No</mat-grid-tile>
         <mat-grid-tile class="justify-left">{{
           thirdFormGroup.value.permanentFlat
@@ -337,6 +513,12 @@
           thirdFormGroup.value.permanentPinCode
         }}</mat-grid-tile>
       </mat-grid-list>
+      <mat-grid-list cols="2" rowHeight="2rem">
+        <mat-grid-tile class="justify-right">Permanent Country</mat-grid-tile>
+        <mat-grid-tile class="justify-left">{{
+          thirdFormGroup.value.permanentCountry
+        }}</mat-grid-tile>
+      </mat-grid-list>
       <div class="stepper-button-container">
         <button
           class="float-left"
@@ -350,11 +532,11 @@
           class="float-right"
           mat-raised-button
           color="primary"
-          (click)="save(firstFormGroup, secondFormGroup, thirdFormGroup)"
+          (click)="save()"
         >
           Submit
         </button>
       </div>
     </mat-step>
   </mat-stepper>
-</div>
+</mat-dialog-content>

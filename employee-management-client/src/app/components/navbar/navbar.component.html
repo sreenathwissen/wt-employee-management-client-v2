@@ -17,6 +17,15 @@
       <a
         mat-button
         class="menu-button"
+        [routerLink]="['/home']"
+        routerLinkActive="router-link-active"
+      >
+        <mat-icon>home</mat-icon>
+        <span>Home</span>
+      </a>
+      <a
+        mat-button
+        class="menu-button"
         [routerLink]="['/employee']"
         routerLinkActive="router-link-active"
       >
