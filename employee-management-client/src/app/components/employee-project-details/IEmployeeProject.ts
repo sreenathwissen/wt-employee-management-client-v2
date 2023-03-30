@@ -1,4 +1,4 @@
-import { IProject } from "../project-details/IProject";
+import { IProject } from "../../project-details/IProject";
 
 export interface IEmployeeProject {
 

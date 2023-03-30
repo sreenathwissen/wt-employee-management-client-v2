@@ -6,7 +6,7 @@ import { ClientDetailsComponent } from './client-details/client-details.componen
 import { ProjectDetailsComponent } from './project-details/project-details.component';
 import { SkillDetailsComponent } from './skill-details/skill-details.component';
 import { EditEmployeeComponent } from './components/employee/edit-employee/edit-employee.component';
-import { EmployeeProjectDetailsComponent } from './employee-project-details/employee-project-details.component';
+import { EmployeeProjectDetailsComponent } from './components/employee-project-details/employee-project-details.component';
 
 const routes: Routes = [
   {

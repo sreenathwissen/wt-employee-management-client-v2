@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
+import { Constants } from '../../shared/constants/Constants';
 import { IEmployeeProjectForm } from './employee-project-form/IEmployeeProjectForm';
 import { IEmployeeProject } from './IEmployeeProject';
 
@@ -11,8 +12,6 @@ import { IEmployeeProject } from './IEmployeeProject';
 export class EmployeeProjectService {
 
     constructor(private _http: HttpClient) { }
-
-    private empProjectUrl = 'http://localhost:8080/api/project/projectEmployeeMapping';
 
     empProjectList!: IEmployeeProjectForm[];
 
@@ -35,7 +34,7 @@ export class EmployeeProjectService {
     }
 
     getEmployeeProjectData(employeeId: String): Observable<IEmployeeProject[]> {
-        return this._http.get<IEmployeeProject[]>('http://localhost:8080/api/project/employee?empId=' + employeeId);
+        return this._http.get<IEmployeeProject[]>(Constants.BASE_URL + Constants.PROJECT_URL + '/employee?empId=' + employeeId);
 
     }
 
@@ -47,8 +46,8 @@ export class EmployeeProjectService {
         console.log("Saving" + empProjArray);
         const headers = { 'content-type': 'application/json' };
         const body = JSON.stringify(empProjArray);
-
-        return this._http.post(this.empProjectUrl, body, {
+        const url = Constants.BASE_URL + Constants.PROJECT_URL + Constants.EMPLOYEE_PROJECT_URL
+        return this._http.post(url, body, {
             headers: headers
         });
     }
