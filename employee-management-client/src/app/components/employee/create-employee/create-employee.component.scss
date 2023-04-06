@@ -43,6 +43,27 @@ fieldset {
     margin-left: 0.2rem;
 }
 
+.ratingColor {
+    color: orange;
+}
+
+.defaultColor {
+    color: gray;
+}
+
+.rating {
+    margin-left: 5px;
+}
+
+mat-icon {
+    cursor: pointer;
+}
+
+.flex-content {
+    display: flex;
+    gap: 10px;
+}
+
 ::ng-deep {
     .justify-right .mat-grid-tile-content {
         justify-content: right !important;

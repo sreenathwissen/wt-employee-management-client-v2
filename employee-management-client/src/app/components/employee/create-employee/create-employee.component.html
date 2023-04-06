@@ -168,12 +168,18 @@
           <mat-chip-list #chipList>
             <mat-chip
               color="primary"
-              *ngFor="let skill of skills"
+              *ngFor="let skill of selectedSkills"
               [selectable]="true"
               [removable]="true"
               (removed)="remove(skill)"
             >
-              {{ skill }}
+              {{ skill.skillName }}
+              <mat-icon class="rating"
+              *ngFor="let data of ratingStarArr; let index = index" 
+              (click)="pickRating(skill.skillName, index)"
+              [ngClass]="skill.levels > index ? 'ratingColor': 'defaultColor'">
+                star
+              </mat-icon>
               <mat-icon matChipRemove>cancel</mat-icon>
             </mat-chip>
             <input
@@ -446,6 +452,16 @@
         <mat-grid-tile class="justify-left">{{
           secondFormGroup.value.type
         }}</mat-grid-tile>
+      </mat-grid-list>
+      <mat-grid-list cols="2" rowHeight="2rem">
+        <mat-grid-tile class="justify-right">Skills</mat-grid-tile>
+        <mat-grid-tile class="justify-left">
+          <div class="flex-content">
+            <mat-label *ngFor="let skill of selectedSkills; let index=index">
+              {{ skill.skillName }} <span>{{index !== selectedSkills.length-1 ? ',': ''}}</span>
+            </mat-label>
+          </div>
+        </mat-grid-tile>
       </mat-grid-list>
       <mat-grid-list cols="2" rowHeight="2rem">
         <mat-grid-tile class="justify-right">Current Flat No</mat-grid-tile>
