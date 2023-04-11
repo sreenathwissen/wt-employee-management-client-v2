@@ -3,6 +3,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MatDialogRef } from '@angular/material/dialog';
+import { ISkill } from 'src/app/model/ISkill';
 import { NotificationService } from 'src/app/notification-service/notification.service';
 import { EmployeeService } from 'src/app/services/employee.service';
 import { apiList } from 'src/app/services/https/api-list';
@@ -15,12 +16,13 @@ import { SkillService } from 'src/app/services/skill.service';
   styleUrls: ['./create-employee.component.scss'],
 })
 export class CreateEmployeeComponent implements OnInit {
-  skills: string[] = [];
+  selectedSkills: ISkill[] = [];
   @ViewChild('skillInput') skillInput!: ElementRef;
   separatorKeysCodes: number[] = [ENTER, COMMA];
   firstFormGroup = this.employeeService.firstFormGroup;
   secondFormGroup = this.employeeService.secondFormGroup;
   thirdFormGroup = this.employeeService.thirdFormGroup;
+  ratingStarArr: number[] = [];
 
   constructor(
     private https: HttpsService,
@@ -33,30 +35,57 @@ export class CreateEmployeeComponent implements OnInit {
 
   ngOnInit(): void {
     this.service.getSkillData().subscribe((list) => {
-      this.service.skillList = list;
+      this.service.skillList = [...list];
       this.service.skillListForFilter = list;
+      this.sortSkillList();
     });
+    this.ratingStarArr = Array(5).fill(0);
   }
 
-  remove(skill: string): void {
-    const index = this.skills.indexOf(skill);
+  remove(skill: ISkill): void {
+    const index = this.selectedSkills.indexOf(skill);
     if (index >= 0) {
-      this.skills.splice(index, 1);
+      this.selectedSkills.splice(index, 1);
     }
     const foundSkill = this.service.skillList.find(
-      (tskill) =>
-        tskill.skillName === skill && this.skills.indexOf(skill) === -1
+      (tskill) => tskill.skillName === skill.skillName
     );
     foundSkill && this.service.skillListForFilter.push(foundSkill);
+    this.sortSkillList();
   }
 
   selected(event: MatAutocompleteSelectedEvent): void {
-    this.skills.push(event.option.viewValue);
-    this.skillInput.nativeElement.value = '';
-    this.secondFormGroup.get('skillTypeahead')?.setValue(null);
-    this.service.skillListForFilter = this.service.skillList.filter(
-      (skill) => skill.skillName !== event.option.viewValue
+    this.selectedSkills.push({
+      skillName: event.option.viewValue, levels: 0, skillId: 0
+    });
+    const index = this.service.skillListForFilter.findIndex(
+      (skill) => skill.skillName === event.option.viewValue
     );
+    if (index !== -1) {
+      this.service.skillListForFilter.splice(index, 1);
+    }
+    this.skillInput.nativeElement.value = '';
+    this.skillInput.nativeElement.blur();
+    this.sortSkillList();
+    this.secondFormGroup.get('skillTypeahead')?.setValue(null);
+
+  }
+
+  sortSkillList() {
+    this.service.skillListForFilter.sort(function (obj1: ISkill, obj2: ISkill) {
+      if (obj1.skillName > obj2.skillName) {
+        return 1;
+      }
+      if (obj1.skillName < obj2.skillName) {
+        return -1;
+      }
+      return 0;
+    });
+  }
+
+  pickRating(skill: string, index: number) {
+    let data = this.selectedSkills.filter((skillData: ISkill) => skillData.skillName === skill)?.[0];
+    data.levels = index + 1;
   }
 
   sameAddress(thirdFormGroup: FormGroup) {
@@ -132,11 +161,7 @@ export class CreateEmployeeComponent implements OnInit {
           uan: this.secondFormGroup.value.uan,
         },
         employeeId: this.secondFormGroup.value.employeeId,
-        employeeSkillDTOList: [] as {
-          levels: number;
-          skillId: any;
-          skillName: string;
-        }[],
+        employeeSkillDTOList: [] as ISkill[],
         exitDate: this.secondFormGroup.value.exitDate,
         expDoj: this.employeeService.calcExp(this.secondFormGroup.value.doj),
         firstName: this.firstFormGroup.value.firstName,
@@ -160,12 +185,11 @@ export class CreateEmployeeComponent implements OnInit {
         workPhone: this.firstFormGroup.value.workPhone,
       },
     ];
-    this.skills.forEach((skill) => {
+    this.selectedSkills.forEach((skill) => {
       sendData[0].employeeSkillDTOList.push({
-        levels: 0,
-        skillId: this.service.skillList.find((s) => s.skillName === skill)
-          ?.skillId,
-        skillName: skill,
+        levels: skill.levels,
+        skillId: this.service.skillList.filter((s) => s.skillName === skill.skillName)[0]?.skillId,
+        skillName: skill.skillName,
       });
     });
     let found: boolean;
