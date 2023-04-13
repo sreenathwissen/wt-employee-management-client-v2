@@ -63,7 +63,7 @@ import { apiList } from './services/https/api-list';
     HomeModule,
     SkillModule,
     TypeaheadModule,
-    ToastrModule.forRoot(),
+    ToastrModule.forRoot()
   ],
   exports: [],
 })
