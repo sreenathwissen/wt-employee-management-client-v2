@@ -13,9 +13,9 @@ export class SkillFormComponent implements OnInit {
     public service: SkillService,
     public notificationService: NotificationService,
     public dialogRef: MatDialogRef<SkillFormComponent>
-  ) { }
+  ) {}
 
-  ngOnInit() { }
+  ngOnInit() {}
 
   onClear() {
     this.service.form.reset();
@@ -56,7 +56,7 @@ export class SkillFormComponent implements OnInit {
               'Failure',
               'Skill Already Present'
             );
-            this.dialogRef.close(false);
+            return;
           }
         }
       );

@@ -57,7 +57,7 @@ export class ClientFormComponent implements OnInit {
               'Failure',
               'Client Already Present'
             );
-            this.dialogRef.close(false);
+            return;
           }
         }
       );

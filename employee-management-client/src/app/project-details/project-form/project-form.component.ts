@@ -81,7 +81,7 @@ export class ProjectFormComponent implements OnInit {
               'Failure',
               'Project Already Present'
             );
-            this.dialogRef.close(false);
+            return;
           }
         }
       );
