@@ -3,12 +3,12 @@ import { Injectable } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { ISkill } from '../model/ISkill';
+import { Constants } from '../shared/constants/Constants';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SkillService {
-  private skillUrl = 'http://localhost:8080/api/skill';
   constructor(private _http: HttpClient) {}
 
   skillList!: ISkill[];
@@ -27,7 +27,7 @@ export class SkillService {
   }
 
   getSkillData(): Observable<ISkill[]> {
-    return this._http.get<ISkill[]>(this.skillUrl);
+    return this._http.get<ISkill[]>(Constants.BASE_URL + Constants.SKILL_URL);
   }
 
   insertSkill(skill: ISkill) {
@@ -35,7 +35,7 @@ export class SkillService {
     skillArray.push(skill);
     const headers = { 'content-type': 'application/json' };
     const body = JSON.stringify(skillArray);
-    return this._http.post(this.skillUrl, body, {
+    return this._http.post(Constants.BASE_URL + Constants.SKILL_URL, body, {
       headers: headers,
     });
   }

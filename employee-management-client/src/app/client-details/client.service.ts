@@ -4,11 +4,11 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { IClient } from '../client-details/IClient';
 import { catchError, map } from 'rxjs/operators';
+import { Constants } from '../shared/constants/Constants';
 @Injectable({
   providedIn: 'root',
 })
 export class ClientService {
-  clientUrl = 'http://localhost:8080/api/client';
   clientList!: IClient[];
   clientListForFilter!: IClient[];
 
@@ -29,12 +29,12 @@ export class ClientService {
   }
 
   getClientData(): Observable<IClient[]> {
-    return this._http.get<IClient[]>(this.clientUrl + '/allClients');
+    return this._http.get<IClient[]>(Constants.BASE_URL + Constants.CLIENT_URL + Constants.ALL_CLIENTS);
   }
 
   searchClientData(searchPattern: String): Observable<IClient[]> {
     return this._http.get<IClient[]>(
-      this.clientUrl + '/search?clientName=' + searchPattern
+      Constants.BASE_URL + Constants.CLIENT_URL + Constants.SEARCH_CLIENT + searchPattern
     );
   }
 
@@ -46,7 +46,7 @@ export class ClientService {
     const headers = { 'content-type': 'application/json' };
     const body = JSON.stringify(clientArray);
     console.log(body);
-    return this._http.post(this.clientUrl, body, {
+    return this._http.post(Constants.BASE_URL + Constants.CLIENT_URL, body, {
       headers: headers,
     });
   }
