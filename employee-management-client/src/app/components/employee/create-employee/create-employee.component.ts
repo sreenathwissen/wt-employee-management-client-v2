@@ -56,7 +56,9 @@ export class CreateEmployeeComponent implements OnInit {
 
   selected(event: MatAutocompleteSelectedEvent): void {
     this.selectedSkills.push({
-      skillName: event.option.viewValue, levels: 0, skillId: 0
+      skillName: event.option.viewValue,
+      levels: 0,
+      skillId: 0,
     });
     const index = this.service.skillListForFilter.findIndex(
       (skill) => skill.skillName === event.option.viewValue
@@ -68,7 +70,6 @@ export class CreateEmployeeComponent implements OnInit {
     this.skillInput.nativeElement.blur();
     this.sortSkillList();
     this.secondFormGroup.get('skillTypeahead')?.setValue(null);
-
   }
 
   sortSkillList() {
@@ -84,7 +85,9 @@ export class CreateEmployeeComponent implements OnInit {
   }
 
   pickRating(skill: string, index: number) {
-    let data = this.selectedSkills.filter((skillData: ISkill) => skillData.skillName === skill)?.[0];
+    let data = this.selectedSkills.filter(
+      (skillData: ISkill) => skillData.skillName === skill
+    )?.[0];
     data.levels = index + 1;
   }
 
@@ -188,7 +191,9 @@ export class CreateEmployeeComponent implements OnInit {
     this.selectedSkills.forEach((skill) => {
       sendData[0].employeeSkillDTOList.push({
         levels: skill.levels,
-        skillId: this.service.skillList.filter((s) => s.skillName === skill.skillName)[0]?.skillId,
+        skillId: this.service.skillList.filter(
+          (s) => s.skillName === skill.skillName
+        )[0]?.skillId,
         skillName: skill.skillName,
       });
     });
@@ -232,7 +237,7 @@ export class CreateEmployeeComponent implements OnInit {
         },
         () => {
           this.notificationService.showError('Failure', 'Employee not saved');
-          this.dialogRef.close(false);
+          return;
         }
       );
   }
