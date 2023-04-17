@@ -34,7 +34,7 @@ export class EmployeeProjectService {
     }
 
     getEmployeeProjectData(employeeId: String): Observable<IEmployeeProject[]> {
-        return this._http.get<IEmployeeProject[]>(Constants.BASE_URL + Constants.PROJECT_URL + '/employee?empId=' + employeeId);
+        return this._http.get<IEmployeeProject[]>(Constants.BASE_URL + Constants.PROJECT_URL + Constants.SEARCH_EMPLOYEE_PROJECT + employeeId);
 
     }
 

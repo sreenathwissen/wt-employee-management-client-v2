@@ -4,11 +4,11 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { IClient } from '../client-details/IClient';
 import { IProject } from '../project-details/IProject';
+import { Constants } from '../shared/constants/Constants';
 @Injectable({
   providedIn: 'root',
 })
 export class ProjectService {
-  private projectUrl = 'http://localhost:8080/api/project';
   projectList!: IProject[];
   projectListForFilter!: IProject[];
 
@@ -40,12 +40,12 @@ export class ProjectService {
   }
 
   getProjectData(): Observable<IProject[]> {
-    return this._http.get<IProject[]>(this.projectUrl + '/allProjects');
+    return this._http.get<IProject[]>(Constants.BASE_URL + Constants.PROJECT_URL + Constants.ALL_PROJECTS);
   }
 
   searchProjectData(searchPattern: String): Observable<IProject[]> {
     return this._http.get<IProject[]>(
-      this.projectUrl + '/search?projectName=' + searchPattern
+      Constants.BASE_URL + Constants.PROJECT_URL + Constants.SEARCH_PROJECTS + searchPattern
     );
   }
 
@@ -54,7 +54,7 @@ export class ProjectService {
     projectArray.push(project);
     const headers = { 'content-type': 'application/json' };
     const body = JSON.stringify(projectArray);
-    return this._http.post(this.projectUrl, body, { headers: headers });
+    return this._http.post(Constants.BASE_URL + Constants.PROJECT_URL, body, { headers: headers });
   }
 
   populateForm(project: IProject) {
