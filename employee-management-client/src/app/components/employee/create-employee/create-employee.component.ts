@@ -23,6 +23,7 @@ export class CreateEmployeeComponent implements OnInit {
   secondFormGroup = this.employeeService.secondFormGroup;
   thirdFormGroup = this.employeeService.thirdFormGroup;
   ratingStarArr: number[] = [];
+  today!: Date;
 
   constructor(
     private https: HttpsService,
@@ -40,6 +41,7 @@ export class CreateEmployeeComponent implements OnInit {
       this.sortSkillList();
     });
     this.ratingStarArr = Array(5).fill(0);
+    this.today = new Date();
   }
 
   remove(skill: ISkill): void {
@@ -155,8 +157,8 @@ export class CreateEmployeeComponent implements OnInit {
           desgId: 0,
           desgName: this.secondFormGroup.value.designation,
         },
-        dob: this.firstFormGroup.value.dob,
-        doj: this.secondFormGroup.value.doj,
+        dob: this.employeeService.formatDateSelected(this.firstFormGroup.value.dob),
+        doj: this.employeeService.formatDateSelected(this.secondFormGroup.value.doj),
         email: this.firstFormGroup.value.email,
         employeeAccountDTO: {
           pan: this.secondFormGroup.value.pan,
@@ -165,14 +167,13 @@ export class CreateEmployeeComponent implements OnInit {
         },
         employeeId: this.secondFormGroup.value.employeeId,
         employeeSkillDTOList: [] as ISkill[],
-        exitDate: this.secondFormGroup.value.exitDate,
         expDoj: this.employeeService.calcExp(this.secondFormGroup.value.doj),
         firstName: this.firstFormGroup.value.firstName,
         gender: this.firstFormGroup.value.gender,
         joiningLocation: this.secondFormGroup.value.joiningLocation,
         lastName: this.firstFormGroup.value.lastName,
         manager: this.secondFormGroup.value.manager,
-        maritalStatusDate: this.firstFormGroup.value.maritalStatusDate,
+        maritalStatusDate: this.employeeService.formatDateSelected(this.firstFormGroup.value.maritalStatusDate),
         primaryEmergencyContactNumber:
           this.firstFormGroup.value.primaryEmergencyContactNumber,
         primaryPhoneNumber: this.firstFormGroup.value.primaryPhoneNumber,
@@ -182,7 +183,7 @@ export class CreateEmployeeComponent implements OnInit {
         },
         secondaryEmergencyContactNumber:
           this.firstFormGroup.value.secondaryEmergencyContactNumber,
-        secondaryPhoneNumber: 0,
+        secondaryPhoneNumber: this.firstFormGroup.value.secondaryPhoneNumber,
         status: this.firstFormGroup.value.status,
         type: this.secondFormGroup.value.type,
         workPhone: this.firstFormGroup.value.workPhone,
