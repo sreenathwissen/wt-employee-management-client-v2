@@ -6,7 +6,6 @@ export interface IEmployee {
   doj: string;
   email: string;
   empId: number;
-  exitDate: string;
   expDoj: string;
   firstName: string;
   gender: string;

@@ -48,11 +48,17 @@
         </mat-form-field>
         <mat-form-field>
           <mat-label>Date Of Marital Status</mat-label>
-          <input type="date" matInput formControlName="maritalStatusDate" />
+          <input matInput [matDatepicker]="MaritalPicker" formControlName="maritalStatusDate" 
+          placeholder="mm/dd/yyyy" [max]="today">
+          <mat-datepicker-toggle matSuffix [for]="MaritalPicker"></mat-datepicker-toggle>
+          <mat-datepicker #MaritalPicker></mat-datepicker>
         </mat-form-field>
         <mat-form-field>
           <mat-label>Date Of Birth</mat-label>
-          <input type="date" matInput formControlName="dob" />
+          <input matInput [matDatepicker]="dobPicker" formControlName="dob" 
+          placeholder="mm/dd/yyyy" [max]="today">
+          <mat-datepicker-toggle matSuffix [for]="dobPicker"></mat-datepicker-toggle>
+          <mat-datepicker #dobPicker></mat-datepicker>
         </mat-form-field>
         <mat-form-field>
           <mat-label>Email</mat-label>
@@ -61,6 +67,10 @@
         <mat-form-field>
           <mat-label>Primary Phone Number</mat-label>
           <input type="tel" matInput formControlName="primaryPhoneNumber" />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Secondary Phone Number</mat-label>
+          <input type="tel" matInput formControlName="secondaryPhoneNumber" />
         </mat-form-field>
         <mat-form-field>
           <mat-label>Work Phone Number</mat-label>
@@ -118,11 +128,10 @@
         </mat-form-field>
         <mat-form-field>
           <mat-label>Date Of Joining</mat-label>
-          <input type="date" matInput formControlName="doj" />
-        </mat-form-field>
-        <mat-form-field>
-          <mat-label>Date Of Leaving</mat-label>
-          <input type="date" matInput formControlName="exitDate" />
+          <input matInput [matDatepicker]="dojPicker" formControlName="doj" 
+          placeholder="mm/dd/yyyy" [max]="today">
+          <mat-datepicker-toggle matSuffix [for]="dojPicker"></mat-datepicker-toggle>
+          <mat-datepicker #dojPicker></mat-datepicker>
         </mat-form-field>
         <mat-form-field>
           <mat-label>Department of Employement</mat-label>
@@ -251,6 +260,8 @@
             <input matInput formControlName="currentCountry" />
           </mat-form-field>
         </fieldset>
+        <mat-checkbox class="mb-2" (click)="sameAddress(thirdFormGroup)"
+          >Same as Current Address</mat-checkbox>
         <fieldset>
           <legend>Permanent Address</legend>
           <mat-form-field>
@@ -278,9 +289,6 @@
             <input matInput formControlName="permanentCountry" />
           </mat-form-field>
         </fieldset>
-        <mat-checkbox class="mb-2" (click)="sameAddress(thirdFormGroup)"
-          >Same as Current Address</mat-checkbox
-        >
         <div class="stepper-button-container">
           <button
             class="float-left"
@@ -330,13 +338,13 @@
       <mat-grid-list cols="2" rowHeight="2rem">
         <mat-grid-tile class="justify-right">Marital Status Date</mat-grid-tile>
         <mat-grid-tile class="justify-left">{{
-          firstFormGroup.value.maritalStatusDate
+          employeeService.formatDateSelected(firstFormGroup.value.maritalStatusDate)
         }}</mat-grid-tile>
       </mat-grid-list>
       <mat-grid-list cols="2" rowHeight="2rem">
         <mat-grid-tile class="justify-right">Date of Birth</mat-grid-tile>
         <mat-grid-tile class="justify-left">{{
-          firstFormGroup.value.dob
+          employeeService.formatDateSelected(firstFormGroup.value.dob)
         }}</mat-grid-tile>
       </mat-grid-list>
       <mat-grid-list cols="2" rowHeight="2rem">
@@ -351,6 +359,14 @@
         >
         <mat-grid-tile class="justify-left">{{
           firstFormGroup.value.primaryPhoneNumber
+        }}</mat-grid-tile>
+      </mat-grid-list>
+      <mat-grid-list cols="2" rowHeight="2rem">
+        <mat-grid-tile class="justify-right"
+          >Secondary Phone Number</mat-grid-tile
+        >
+        <mat-grid-tile class="justify-left">{{
+          firstFormGroup.value.secondaryPhoneNumber
         }}</mat-grid-tile>
       </mat-grid-list>
       <mat-grid-list cols="2" rowHeight="2rem">
@@ -414,13 +430,7 @@
       <mat-grid-list cols="2" rowHeight="2rem">
         <mat-grid-tile class="justify-right">Date of Joining</mat-grid-tile>
         <mat-grid-tile class="justify-left">{{
-          secondFormGroup.value.doj
-        }}</mat-grid-tile>
-      </mat-grid-list>
-      <mat-grid-list cols="2" rowHeight="2rem">
-        <mat-grid-tile class="justify-right">Date of Leaving</mat-grid-tile>
-        <mat-grid-tile class="justify-left">{{
-          secondFormGroup.value.exitDate
+          employeeService.formatDateSelected(secondFormGroup.value.doj)
         }}</mat-grid-tile>
       </mat-grid-list>
       <mat-grid-list cols="2" rowHeight="2rem">

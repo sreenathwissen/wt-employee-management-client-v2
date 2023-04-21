@@ -116,7 +116,6 @@ export class EditEmployeeComponent implements OnInit {
             "skillName": ""
           }
         ],
-        "exitDate": "",
         "expDoj": this.data.experience,
         "firstName": this.data.firstName,
         "gender": "",

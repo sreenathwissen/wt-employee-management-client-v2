@@ -17,14 +17,15 @@ export class EmployeeService {
     lastName: ['', Validators.required],
     dob: ['', Validators.required],
     email: ['', Validators.required],
-    workPhone: ['', Validators.required],
+    workPhone: [''],
     primaryEmergencyContactNumber: ['', Validators.required],
     bloodGroup: ['', Validators.required],
     gender: ['', Validators.required],
     status: ['', Validators.required],
-    maritalStatusDate: ['', Validators.required],
-    secondaryEmergencyContactNumber: ['', Validators.required],
+    maritalStatusDate: [''],
+    secondaryEmergencyContactNumber: [''],
     primaryPhoneNumber: ['', Validators.required],
+    secondaryPhoneNumber: ['']
   });
 
   secondFormGroup = this._formBuilder.group({
@@ -33,7 +34,6 @@ export class EmployeeService {
     pfNo: ['', Validators.required],
     uan: ['', Validators.required],
     department: ['', Validators.required],
-    exitDate: ['', Validators.required],
     joiningLocation: ['', Validators.required],
     doj: ['', Validators.required],
     manager: ['', Validators.required],
@@ -62,16 +62,17 @@ export class EmployeeService {
     return {
       firstName: data.firstName,
       lastName: data.lastName,
-      dob: formatDate(data.dob, 'yyyy-MM-dd', 'en'),
+      dob: this.formatDateSelected(data.dob),
       email: data.email,
       primaryPhoneNumber: data.primaryPhoneNumber,
+      secondaryPhoneNumber: data.secondaryPhoneNumber,
       workPhone: data.workPhone,
       primaryEmergencyContactNumber: data.primaryEmergencyContactNumber,
       secondaryEmergencyContactNumber: data.secondaryEmergencyContactNumber,
       bloodGroup: data.bloodGroup,
       gender: data.gender,
       status: data.status,
-      maritalStatusDate: formatDate(data.maritalStatusDate, 'yyyy-MM-dd', 'en'),
+      maritalStatusDate: this.formatDateSelected(data.maritalStatusDate),
     };
   }
 
@@ -85,8 +86,7 @@ export class EmployeeService {
       pan: data.pan || '',
       pfNo: data.pfNo || '',
       uan: data.uan || '',
-      exitDate: formatDate(data.exitDate, 'yyyy-MM-dd', 'en') || '',
-      doj: formatDate(data.doj, 'yyyy-MM-dd', 'en'),
+      doj: this.formatDateSelected(data.doj),
       department: data.department.depName,
       joiningLocation: data.joiningLocation,
       skillTypeahead: '',
@@ -98,5 +98,12 @@ export class EmployeeService {
       Math.abs(new Date().getTime() - new Date(dateISO).getTime()) / 1000
     );
     return (Math.floor(seconds / 86400) / 365).toFixed(2);
+  }
+
+  public formatDateSelected(date: Date) {
+    if(date) {
+      return formatDate(date, 'yyyy-MM-dd', 'en');
+    }
+    return date;
   }
 }
