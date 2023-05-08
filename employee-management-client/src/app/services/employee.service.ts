@@ -11,28 +11,30 @@ export class EmployeeService {
 
   employeeList!: IEmployee[];
   employeeListForFilter!: IEmployee[];
+  permanentAddKeys = ['permanentFlat', 'permanentStreet', 'permanentCity', 
+  'permanentState','permanentPinCode', 'permanentCountry'];
 
   firstFormGroup = this._formBuilder.group({
-    firstName: ['', Validators.required],
-    lastName: ['', Validators.required],
+    firstName: ['', [Validators.required, Validators.pattern('^[a-zA-Z]+$')]],
+    lastName: ['', [Validators.required, Validators.pattern('^[a-zA-Z]+$')]],
     dob: ['', Validators.required],
+    employeeId: ['', Validators.required],
     email: ['', Validators.required],
-    workPhone: [''],
-    primaryEmergencyContactNumber: ['', Validators.required],
+    workPhone: ['', Validators.pattern('^[0-9]+$')],
+    primaryEmergencyContactNumber: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
     bloodGroup: ['', Validators.required],
     gender: ['', Validators.required],
     status: ['', Validators.required],
     maritalStatusDate: [''],
-    secondaryEmergencyContactNumber: [''],
-    primaryPhoneNumber: ['', Validators.required],
-    secondaryPhoneNumber: ['']
+    secondaryEmergencyContactNumber: ['', Validators.pattern('^[0-9]+$')],
+    primaryPhoneNumber: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
+    secondaryPhoneNumber: ['', Validators.pattern('^[0-9]+$')]
   });
 
   secondFormGroup = this._formBuilder.group({
-    employeeId: ['0'],
-    pan: ['', Validators.required],
-    pfNo: ['', Validators.required],
-    uan: ['', Validators.required],
+    pan: [''],
+    pfNo: [''],
+    uan: [''],
     department: ['', Validators.required],
     joiningLocation: ['', Validators.required],
     doj: ['', Validators.required],
@@ -48,13 +50,13 @@ export class EmployeeService {
     currentStreet: ['', Validators.required],
     currentCity: ['', Validators.required],
     currentState: ['', Validators.required],
-    currentPinCode: ['', Validators.required],
+    currentPinCode: ['', [Validators.required, Validators.pattern('^[0-9]{6}$')]],
     currentCountry: ['', Validators.required],
     permanentFlat: ['', Validators.required],
     permanentStreet: ['', Validators.required],
     permanentCity: ['', Validators.required],
     permanentState: ['', Validators.required],
-    permanentPinCode: ['', Validators.required],
+    permanentPinCode: ['', [Validators.required, Validators.pattern('^[0-9]{6}$')]],
     permanentCountry: ['', Validators.required],
   });
 
@@ -63,6 +65,7 @@ export class EmployeeService {
       firstName: data.firstName,
       lastName: data.lastName,
       dob: this.formatDateSelected(data.dob),
+      employeeId: data.empId,
       email: data.email,
       primaryPhoneNumber: data.primaryPhoneNumber,
       secondaryPhoneNumber: data.secondaryPhoneNumber,
@@ -78,7 +81,6 @@ export class EmployeeService {
 
   public parseSecondObj(data: any) {
     return {
-      employeeId: data.empId,
       manager: data.manager,
       designation: data.designation.desgName,
       role: data.role.roleName,

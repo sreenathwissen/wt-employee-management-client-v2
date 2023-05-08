@@ -20,6 +20,7 @@
     "@angular/platform-browser": "~12.0.1",
     "@angular/platform-browser-dynamic": "~12.0.1",
     "@angular/router": "~12.0.1",
+    "angular-ng-autocomplete": "^2.0.12",
     "material": "^0.5.2",
     "ngx-toastr": "^14.3.0",
     "rxjs": "~6.6.0",

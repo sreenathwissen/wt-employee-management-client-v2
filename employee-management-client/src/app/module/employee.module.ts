@@ -11,6 +11,7 @@ import { EmployeesComponent } from '../components/employee/employees/employees.c
 import { EmployeeService } from '../services/employee.service';
 import { SkillService } from '../services/skill.service';
 import { MaterialModule } from './material.module';
+import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 
 @NgModule({
   declarations: [EmployeesComponent, CreateEmployeeComponent],
@@ -25,6 +26,7 @@ import { MaterialModule } from './material.module';
     MatChipsModule,
     MatAutocompleteModule,
     MatStepperModule,
+    AutocompleteLibModule
   ],
 })
 export class EmployeeModule {}

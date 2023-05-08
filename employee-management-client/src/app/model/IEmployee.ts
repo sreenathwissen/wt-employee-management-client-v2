@@ -1,7 +1,7 @@
 export interface IEmployee {
   bloodGroup: string;
-  department: { depId: number; depName: string };
-  designation: { desgId: number; desgName: string };
+  department: IDepartment;
+  designation: IDesignation;
   dob: number;
   doj: string;
   email: string;
@@ -15,10 +15,31 @@ export interface IEmployee {
   maritalStatusDate: string;
   primaryEmergencyContactNumber: number;
   primaryPhoneNumber: number;
-  role: { roleId: number; roleName: string };
+  role: IRole;
   secondaryEmergencyContactNumber: number;
   secondaryPhoneNumber: number;
   status: string;
   type: string;
   workPhone: number;
+}
+
+export interface IDepartment {
+  depId: number;
+  depName: string;
+}
+
+export interface IRole {
+  roleId: number;
+  roleName: string;
+}
+
+export interface IDesignation {
+  desgId: number;
+  desgName: string;
+}
+
+export interface IManager {
+  name: string;
+  id: number;
+  email: string;
 }

@@ -64,6 +64,40 @@ mat-icon {
     gap: 10px;
 }
 
+.mat-fix {
+    padding: 10px;
+    background: lightgray;
+}
+
+.preview-header {
+    background: #f0efef;
+    padding: 15px 10px;
+    display: flex;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+::ng-deep .ng-autocomplete {
+    width: 100% !important;
+    .ng-auto-label {
+        top: 10px;
+        font-size: 12px;
+    }
+    
+    .autocomplete-container {
+        border-bottom: 1px solid;
+        margin-bottom: 17.5px;
+        box-shadow: none;
+        .input-container input {
+            background: transparent;
+            padding: 0;
+            &::placeholder {
+                color: rgb(153, 147, 147);
+            }
+        }
+    }
+}
+
 ::ng-deep {
     .justify-right .mat-grid-tile-content {
         justify-content: right !important;

@@ -17,15 +17,21 @@
       <form [formGroup]="firstFormGroup">
         <ng-template matStepLabel>Personal Info</ng-template>
         <mat-form-field>
-          <mat-label>First Name</mat-label>
+          <mat-label>First Name*</mat-label>
           <input matInput formControlName="firstName" />
+          <mat-error *ngIf="firstFormGroup.get('firstName')?.hasError('pattern')">
+            Only alphabets allowed
+          </mat-error>
         </mat-form-field>
         <mat-form-field>
-          <mat-label>Last Name</mat-label>
+          <mat-label>Last Name*</mat-label>
           <input matInput formControlName="lastName" />
+          <mat-error *ngIf="firstFormGroup.get('lastName')?.hasError('pattern')">
+            Only alphabets allowed
+          </mat-error>
         </mat-form-field>
         <mat-form-field>
-          <mat-label>Gender</mat-label>
+          <mat-label>Gender*</mat-label>
           <mat-select formControlName="gender">
             <mat-option
               *ngFor="let gender of ['male', 'female', 'other']"
@@ -36,7 +42,7 @@
           </mat-select>
         </mat-form-field>
         <mat-form-field>
-          <mat-label>Marital Status</mat-label>
+          <mat-label>Marital Status*</mat-label>
           <mat-select formControlName="status">
             <mat-option
               *ngFor="let status of ['single', 'married']"
@@ -46,7 +52,7 @@
             </mat-option>
           </mat-select>
         </mat-form-field>
-        <mat-form-field>
+        <mat-form-field *ngIf="firstFormGroup.get('status')?.value === 'married'">
           <mat-label>Date Of Marital Status</mat-label>
           <input matInput [matDatepicker]="MaritalPicker" formControlName="maritalStatusDate" 
           placeholder="mm/dd/yyyy" [max]="today">
@@ -54,35 +60,53 @@
           <mat-datepicker #MaritalPicker></mat-datepicker>
         </mat-form-field>
         <mat-form-field>
-          <mat-label>Date Of Birth</mat-label>
+          <mat-label>Date Of Birth*</mat-label>
           <input matInput [matDatepicker]="dobPicker" formControlName="dob" 
           placeholder="mm/dd/yyyy" [max]="today">
           <mat-datepicker-toggle matSuffix [for]="dobPicker"></mat-datepicker-toggle>
           <mat-datepicker #dobPicker></mat-datepicker>
         </mat-form-field>
         <mat-form-field>
-          <mat-label>Email</mat-label>
-          <input type="email" matInput formControlName="email" />
+          <mat-label>Employee ID*</mat-label>
+          <input type="text" matInput formControlName="employeeId" />
+          <div matPrefix aria-readonly="true" class="mat-fix">{{empIdPrefix}}</div>
         </mat-form-field>
         <mat-form-field>
-          <mat-label>Primary Phone Number</mat-label>
+          <mat-label>Email*</mat-label>
+          <input type="email" matInput formControlName="email" />
+          <div matSuffix aria-readonly="true" class="mat-fix">{{emailSuffix}}</div>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Primary Phone Number*</mat-label>
           <input type="tel" matInput formControlName="primaryPhoneNumber" />
+          <mat-error *ngIf="firstFormGroup.get('primaryPhoneNumber')?.hasError('pattern')">
+            Only digits allowed
+          </mat-error>
         </mat-form-field>
         <mat-form-field>
           <mat-label>Secondary Phone Number</mat-label>
           <input type="tel" matInput formControlName="secondaryPhoneNumber" />
+          <mat-error *ngIf="firstFormGroup.get('secondaryPhoneNumber')?.hasError('pattern')">
+            Only digits allowed
+          </mat-error>
         </mat-form-field>
         <mat-form-field>
           <mat-label>Work Phone Number</mat-label>
           <input type="tel" matInput formControlName="workPhone" />
+          <mat-error *ngIf="firstFormGroup.get('workPhone')?.hasError('pattern')">
+            Only digits allowed
+          </mat-error>
         </mat-form-field>
         <mat-form-field>
-          <mat-label>Primary Emergency Contact</mat-label>
+          <mat-label>Primary Emergency Contact*</mat-label>
           <input
             type="tel"
             matInput
             formControlName="primaryEmergencyContactNumber"
           />
+          <mat-error *ngIf="firstFormGroup.get('primaryEmergencyContactNumber')?.hasError('pattern')">
+            Only digits allowed
+          </mat-error>
         </mat-form-field>
         <mat-form-field>
           <mat-label>Secondary Emergency Contact</mat-label>
@@ -91,9 +115,12 @@
             matInput
             formControlName="secondaryEmergencyContactNumber"
           />
+          <mat-error *ngIf="firstFormGroup.get('secondaryEmergencyContactNumber')?.hasError('pattern')">
+            Only digits allowed
+          </mat-error>
         </mat-form-field>
         <mat-form-field>
-          <mat-label>Blood Group</mat-label>
+          <mat-label>Blood Group*</mat-label>
           <input matInput formControlName="bloodGroup" />
         </mat-form-field>
         <div class="stepper-button-container">
@@ -110,10 +137,6 @@
     </mat-step>
     <mat-step [stepControl]="secondFormGroup" label="Professional Info">
       <form [formGroup]="secondFormGroup">
-        <mat-form-field style="display: none">
-          <mat-label>Employee ID</mat-label>
-          <input type="number" matInput formControlName="employeeId" />
-        </mat-form-field>
         <mat-form-field>
           <mat-label>Permanent Account Number</mat-label>
           <input type="text" matInput formControlName="pan" />
@@ -127,50 +150,68 @@
           <input type="text" matInput formControlName="uan" />
         </mat-form-field>
         <mat-form-field>
-          <mat-label>Date Of Joining</mat-label>
+          <mat-label>Date Of Joining*</mat-label>
           <input matInput [matDatepicker]="dojPicker" formControlName="doj" 
           placeholder="mm/dd/yyyy" [max]="today">
           <mat-datepicker-toggle matSuffix [for]="dojPicker"></mat-datepicker-toggle>
           <mat-datepicker #dojPicker></mat-datepicker>
         </mat-form-field>
         <mat-form-field>
-          <mat-label>Department of Employement</mat-label>
-          <input type="text" matInput formControlName="department" />
-        </mat-form-field>
-        <mat-form-field>
-          <mat-label>Joining Location</mat-label>
-          <mat-select formControlName="joiningLocation">
-            <mat-option
-              *ngFor="
-                let location of [
-                  'delhi',
-                  'banglore',
-                  'mumbai',
-                  'pune',
-                  'hyderabad',
-                  'chennai'
-                ]
-              "
-              [value]="location"
-            >
-              {{ location | titlecase }}
+          <mat-label>Department of Employement*</mat-label>
+          <mat-select formControlName="department">
+            <mat-option *ngFor="let dept of departmentList"
+              [value]="dept.depName">
+              {{ dept.depName }}
             </mat-option>
           </mat-select>
         </mat-form-field>
         <mat-form-field>
-          <mat-label>Manager</mat-label>
-          <input matInput formControlName="manager" />
+          <mat-label>Joining Location*</mat-label>
+          <input matInput formControlName="joiningLocation" />
+        </mat-form-field>
+          <div class="ng-autocomplete">
+            <label class="ng-auto-label">Manager*</label>
+            <ng-autocomplete
+              #autocomplete
+              [data]="managerList"
+              placeholder="Enter atleast 3 character"
+              (selected)='selectEvent($event)'
+              (inputChanged)='onChangeSearch($event)'
+              (inputCleared)='onCleared()'
+              [itemTemplate]="itemTemplate"
+              [notFoundTemplate]="notFoundTemplate"
+              [debounceTime]="500" 
+              formControlName="manager">                                 
+            </ng-autocomplete>
+            
+            <ng-template #itemTemplate let-item>
+            <a [innerHTML]="item"></a>
+            </ng-template>
+            
+            <ng-template #notFoundTemplate let-notFound>
+            <div [innerHTML]="notFound"></div>
+            </ng-template>
+            </div>
+        <mat-form-field>
+          <mat-label>Designation*</mat-label>
+          <mat-select formControlName="designation">
+            <mat-option *ngFor="let designation of designationList"
+              [value]="designation.desgName">
+              {{ designation.desgName }}
+            </mat-option>
+          </mat-select>
         </mat-form-field>
         <mat-form-field>
-          <mat-label>Designation</mat-label>
-          <input matInput formControlName="designation" />
+          <mat-label>Role*</mat-label>
+          <mat-select formControlName="role">
+            <mat-option *ngFor="let role of roleList"
+              [value]="role.roleName">
+              {{ role.roleName }}
+            </mat-option>
+          </mat-select>
         </mat-form-field>
         <mat-form-field>
-          <mat-label>Role</mat-label>
-          <input matInput formControlName="role" />
-        </mat-form-field>
-        <mat-form-field>
-          <mat-label>Type</mat-label>
+          <mat-label>Type*</mat-label>
           <input matInput formControlName="type" />
         </mat-form-field>
         <mat-form-field>
@@ -236,57 +277,69 @@
         <fieldset>
           <legend>Current Address</legend>
           <mat-form-field>
-            <mat-label>Flat No</mat-label>
-            <input type="number" matInput formControlName="currentFlat" />
+            <mat-label>Flat No*</mat-label>
+            <input type="number" matInput formControlName="currentFlat" 
+            (input)="getCheckState() && changePermanetAdd('permanentFlat', $event)"/>
           </mat-form-field>
           <mat-form-field>
-            <mat-label>Street</mat-label>
-            <input matInput formControlName="currentStreet" />
+            <mat-label>Street*</mat-label>
+            <input matInput formControlName="currentStreet" 
+            (input)="getCheckState() && changePermanetAdd('permanentStreet', $event)"/>
           </mat-form-field>
           <mat-form-field>
-            <mat-label>City</mat-label>
-            <input matInput formControlName="currentCity" />
+            <mat-label>City*</mat-label>
+            <input matInput formControlName="currentCity" 
+            (input)="getCheckState() && changePermanetAdd('permanentCity', $event)"/>
           </mat-form-field>
           <mat-form-field>
-            <mat-label>State</mat-label>
-            <input matInput formControlName="currentState" />
+            <mat-label>State*</mat-label>
+            <input matInput formControlName="currentState" 
+            (input)="getCheckState() && changePermanetAdd('permanentState', $event)"/>
           </mat-form-field>
           <mat-form-field>
-            <mat-label>Pincode</mat-label>
-            <input matInput formControlName="currentPinCode" />
+            <mat-label>Pincode*</mat-label>
+            <input matInput formControlName="currentPinCode" 
+            (input)="getCheckState() && changePermanetAdd('permanentPinCode', $event)"/>
+            <mat-error *ngIf="thirdFormGroup.get('currentPinCode')?.hasError('pattern')">
+              Pincode should of 6 digit
+            </mat-error>
           </mat-form-field>
           <mat-form-field>
-            <mat-label>Country</mat-label>
-            <input matInput formControlName="currentCountry" />
+            <mat-label>Country*</mat-label>
+            <input matInput formControlName="currentCountry" 
+            (input)="getCheckState() && changePermanetAdd('permanentCountry', $event)"/>
           </mat-form-field>
         </fieldset>
-        <mat-checkbox class="mb-2" (click)="sameAddress(thirdFormGroup)"
+        <mat-checkbox class="mb-2" (change)="setPermanentAddress($event, thirdFormGroup)"
           >Same as Current Address</mat-checkbox>
         <fieldset>
           <legend>Permanent Address</legend>
           <mat-form-field>
-            <mat-label>Flat No</mat-label>
-            <input type="number" matInput formControlName="permanentFlat" />
+            <mat-label>Flat No*</mat-label>
+            <input type="number" matInput formControlName="permanentFlat"/>
           </mat-form-field>
           <mat-form-field>
-            <mat-label>Street</mat-label>
-            <input matInput formControlName="permanentStreet" />
+            <mat-label>Street*</mat-label>
+            <input matInput formControlName="permanentStreet"/>
           </mat-form-field>
           <mat-form-field>
-            <mat-label>City</mat-label>
-            <input matInput formControlName="permanentCity" />
+            <mat-label>City*</mat-label>
+            <input matInput formControlName="permanentCity"/>
           </mat-form-field>
           <mat-form-field>
-            <mat-label>State</mat-label>
-            <input matInput formControlName="permanentState" />
+            <mat-label>State*</mat-label>
+            <input matInput formControlName="permanentState"/>
           </mat-form-field>
           <mat-form-field>
-            <mat-label>Pincode</mat-label>
-            <input matInput formControlName="permanentPinCode" />
+            <mat-label>Pincode*</mat-label>
+            <input matInput formControlName="permanentPinCode"/>
+            <mat-error *ngIf="thirdFormGroup.get('permanentPinCode')?.hasError('pattern')">
+              Pincode should of 6 digit
+            </mat-error>
           </mat-form-field>
           <mat-form-field>
-            <mat-label>Country</mat-label>
-            <input matInput formControlName="permanentCountry" />
+            <mat-label>Country*</mat-label>
+            <input matInput formControlName="permanentCountry"/>
           </mat-form-field>
         </fieldset>
         <div class="stepper-button-container">
@@ -311,6 +364,7 @@
     </mat-step>
     <mat-step>
       <ng-template matStepLabel>Preview</ng-template>
+      <mat-label class="preview-header">Personal Info</mat-label>
       <mat-grid-list cols="2" rowHeight="2rem">
         <mat-grid-tile class="justify-right">First Name</mat-grid-tile>
         <mat-grid-tile class="justify-left">{{
@@ -330,7 +384,7 @@
         }}</mat-grid-tile>
       </mat-grid-list>
       <mat-grid-list cols="2" rowHeight="2rem">
-        <mat-grid-tile class="justify-right">MArital Status</mat-grid-tile>
+        <mat-grid-tile class="justify-right">Marital Status</mat-grid-tile>
         <mat-grid-tile class="justify-left">{{
           firstFormGroup.value.status
         }}</mat-grid-tile>
@@ -348,9 +402,15 @@
         }}</mat-grid-tile>
       </mat-grid-list>
       <mat-grid-list cols="2" rowHeight="2rem">
+        <mat-grid-tile class="justify-right">Employee ID</mat-grid-tile>
+        <mat-grid-tile class="justify-left">{{
+          this.empIdPrefix + firstFormGroup.value.employeeId
+        }}</mat-grid-tile>
+      </mat-grid-list>
+      <mat-grid-list cols="2" rowHeight="2rem">
         <mat-grid-tile class="justify-right">Email</mat-grid-tile>
         <mat-grid-tile class="justify-left">{{
-          firstFormGroup.value.email
+          firstFormGroup.value.email + this.emailSuffix
         }}</mat-grid-tile>
       </mat-grid-list>
       <mat-grid-list cols="2" rowHeight="2rem">
@@ -397,6 +457,7 @@
           firstFormGroup.value.bloodGroup
         }}</mat-grid-tile>
       </mat-grid-list>
+      <mat-label class="preview-header">Professional Info</mat-label>
       <mat-grid-list cols="2" rowHeight="2rem">
         <mat-grid-tile class="justify-right"
           >Permanent Account Number</mat-grid-tile
@@ -473,6 +534,7 @@
           </div>
         </mat-grid-tile>
       </mat-grid-list>
+      <mat-label class="preview-header">Address</mat-label>
       <mat-grid-list cols="2" rowHeight="2rem">
         <mat-grid-tile class="justify-right">Current Flat No</mat-grid-tile>
         <mat-grid-tile class="justify-left">{{
@@ -512,37 +574,37 @@
       <mat-grid-list cols="2" rowHeight="2rem">
         <mat-grid-tile class="justify-right">Permanent Flat No</mat-grid-tile>
         <mat-grid-tile class="justify-left">{{
-          thirdFormGroup.value.permanentFlat
+          thirdFormGroup.getRawValue().permanentFlat
         }}</mat-grid-tile>
       </mat-grid-list>
       <mat-grid-list cols="2" rowHeight="2rem">
         <mat-grid-tile class="justify-right">Permanent Street</mat-grid-tile>
         <mat-grid-tile class="justify-left">{{
-          thirdFormGroup.value.permanentStreet
+          thirdFormGroup.getRawValue().permanentStreet
         }}</mat-grid-tile>
       </mat-grid-list>
       <mat-grid-list cols="2" rowHeight="2rem">
         <mat-grid-tile class="justify-right">Permanent City</mat-grid-tile>
         <mat-grid-tile class="justify-left">{{
-          thirdFormGroup.value.permanentCity
+          thirdFormGroup.getRawValue().permanentCity
         }}</mat-grid-tile>
       </mat-grid-list>
       <mat-grid-list cols="2" rowHeight="2rem">
         <mat-grid-tile class="justify-right">Permanent State</mat-grid-tile>
         <mat-grid-tile class="justify-left">{{
-          thirdFormGroup.value.permanentState
+          thirdFormGroup.getRawValue().permanentState
         }}</mat-grid-tile>
       </mat-grid-list>
       <mat-grid-list cols="2" rowHeight="2rem">
         <mat-grid-tile class="justify-right">Permanent Pincode</mat-grid-tile>
         <mat-grid-tile class="justify-left">{{
-          thirdFormGroup.value.permanentPinCode
+          thirdFormGroup.getRawValue().permanentPinCode
         }}</mat-grid-tile>
       </mat-grid-list>
       <mat-grid-list cols="2" rowHeight="2rem">
         <mat-grid-tile class="justify-right">Permanent Country</mat-grid-tile>
         <mat-grid-tile class="justify-left">{{
-          thirdFormGroup.value.permanentCountry
+          thirdFormGroup.getRawValue().permanentCountry
         }}</mat-grid-tile>
       </mat-grid-list>
       <div class="stepper-button-container">
