@@ -40,6 +40,6 @@ export interface IDesignation {
 
 export interface IManager {
   name: string;
-  id: number;
+  id: string;
   email: string;
 }

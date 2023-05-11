@@ -169,29 +169,13 @@
           <mat-label>Joining Location*</mat-label>
           <input matInput formControlName="joiningLocation" />
         </mat-form-field>
-          <div class="ng-autocomplete">
-            <label class="ng-auto-label">Manager*</label>
-            <ng-autocomplete
-              #autocomplete
-              [data]="managerList"
-              placeholder="Enter atleast 3 character"
-              (selected)='selectEvent($event)'
-              (inputChanged)='onChangeSearch($event)'
-              (inputCleared)='onCleared()'
-              [itemTemplate]="itemTemplate"
-              [notFoundTemplate]="notFoundTemplate"
-              [debounceTime]="500" 
-              formControlName="manager">                                 
-            </ng-autocomplete>
-            
-            <ng-template #itemTemplate let-item>
-            <a [innerHTML]="item"></a>
-            </ng-template>
-            
-            <ng-template #notFoundTemplate let-notFound>
-            <div [innerHTML]="notFound"></div>
-            </ng-template>
-            </div>
+        <mat-form-field>
+          <mat-label>Manager*</mat-label>
+          <input matInput formControlName="manager"
+          (input)="searchEmployee(secondFormGroup.get('manager')?.value)" (keydown)="onKeyDown($event)"/>
+          <app-typeahead-search [dataSource]="dataSource" (onRowClicked)="onRowClicked($event)"
+          [displayedColumns]="displayedColumns"></app-typeahead-search>
+        </mat-form-field>
         <mat-form-field>
           <mat-label>Designation*</mat-label>
           <mat-select formControlName="designation">

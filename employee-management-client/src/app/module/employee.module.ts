@@ -11,10 +11,10 @@ import { EmployeesComponent } from '../components/employee/employees/employees.c
 import { EmployeeService } from '../services/employee.service';
 import { SkillService } from '../services/skill.service';
 import { MaterialModule } from './material.module';
-import { AutocompleteLibModule } from 'angular-ng-autocomplete';
+import { TypeaheadSearchComponent } from '../shared/components/typeahead-search/typeahead-search.component';
 
 @NgModule({
-  declarations: [EmployeesComponent, CreateEmployeeComponent],
+  declarations: [EmployeesComponent, CreateEmployeeComponent, TypeaheadSearchComponent],
   providers: [EmployeeService, SkillService],
   imports: [
     BrowserModule,
@@ -26,7 +26,6 @@ import { AutocompleteLibModule } from 'angular-ng-autocomplete';
     MatChipsModule,
     MatAutocompleteModule,
     MatStepperModule,
-    AutocompleteLibModule
   ],
 })
 export class EmployeeModule {}

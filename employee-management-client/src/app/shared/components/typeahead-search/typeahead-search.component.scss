@@ -1,0 +1,16 @@
+.typeahead {
+    width: 100%;
+    position: absolute;
+    z-index: 1000;
+    .mat-header-row {
+        background: #e5e5e5;
+    }
+    .cell-text {
+        font-weight: bold;
+        font-size: 20px;
+    }
+    .mat-row:hover .mat-cell{
+        background-color: #f4f4f4;
+        cursor: pointer;
+    }
+}

@@ -1,0 +1,20 @@
+<div class="mat-elevation-z8 typeahead" *ngIf="dataSource?.length">
+    <mat-table [dataSource]="dataSource">
+        <ng-container matColumnDef="id">
+            <mat-header-cell *matHeaderCellDef><b class="cell-text">Employee Id</b></mat-header-cell>
+            <mat-cell *matCellDef="let element">{{element.id}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="name">
+            <mat-header-cell *matHeaderCellDef><b class="cell-text">Name</b></mat-header-cell>
+            <mat-cell *matCellDef="let element">{{element.name}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="email">
+            <mat-header-cell *matHeaderCellDef><b class="cell-text">Email</b></mat-header-cell>
+            <mat-cell *matCellDef="let element">{{element.email}}</mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+
+        <mat-row *matRowDef="let row; columns: displayedColumns" (click)="onRowSelecetd(row)"></mat-row>
+    </mat-table>
+</div>

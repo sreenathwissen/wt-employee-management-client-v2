@@ -5,6 +5,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MatCheckboxChange } from '@angular/material/checkbox';
 import { MatDialogRef } from '@angular/material/dialog';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { IDepartment, IDesignation, IManager, IRole } from 'src/app/model/IEmployee';
 import { ISkill } from 'src/app/model/ISkill';
 import { NotificationService } from 'src/app/notification-service/notification.service';
@@ -30,12 +31,18 @@ export class CreateEmployeeComponent implements OnInit {
   today!: Date;
   departmentList!: IDepartment[];
   roleList!: IRole[];
-  managerList: string[] = [];
   designationList!: IDesignation[];
   empIdPrefix: string = 'WT';
   emailSuffix: string = '@wissen.com';
   isSameAddress = new FormControl(false);
   @ViewChild('autocomplete') autocomplete!: any;
+  dataSource!: IManager[];
+  dataSelected!: boolean;
+  displayedColumns: string[] = [
+    'id',
+    'name',
+    'email'
+  ];
 
   constructor(
     private https: HttpsService,
@@ -53,26 +60,33 @@ export class CreateEmployeeComponent implements OnInit {
     this.today = new Date();
   }
 
-  selectEvent(item: string) {
-    this.secondFormGroup.get('manager')?.setValue(item);
-  }
-
-  onChangeSearch(val: string) {
-    if(val.length >= 3) {
+  searchEmployee(searchText: string) {
+    if (searchText.length >= 3) {
       this.httpClient.get<IManager[]>
-      (Constants.BASE_URL + Constants.EMPLOYEE_URL + Constants.SEARCH_EMPLOYEE + val)
-      .subscribe((response: any) => {
-        this.managerList = response.responseData.map((res: IManager) => res.name);
-      });
+        (Constants.BASE_URL + Constants.EMPLOYEE_URL + Constants.SEARCH_EMPLOYEE + searchText)
+        .pipe(
+          debounceTime(200),
+          distinctUntilChanged()
+        )
+        .subscribe((response: any) => {
+          this.dataSource = response.responseData;
+        });
     } else {
-      this.managerList = [];
+      this.dataSource = [];
     }
   }
 
-  onCleared() {
-    this.secondFormGroup.get('manager')?.setValue('');
-    this.managerList = [];
-    this.autocomplete.close();
+  onRowClicked(row: IManager) {
+    this.dataSource = [];
+    this.secondFormGroup.get('manager')?.setValue(row.name);
+    this.dataSelected = true;
+  }
+
+  onKeyDown(event: KeyboardEvent) {
+    if ((event.code === 'Backspace' || event.code === 'Delete') && this.dataSelected) {
+      this.secondFormGroup.get('manager')?.setValue('');
+      this.dataSelected = false;
+    }
   }
 
   getInitialData() {
