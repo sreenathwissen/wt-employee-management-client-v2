@@ -5,7 +5,7 @@ export interface IEmployee {
   dob: number;
   doj: string;
   email: string;
-  empId: number;
+  employeeWissenId: string;
   expDoj: string;
   firstName: string;
   gender: string;

@@ -96,7 +96,7 @@ export class CreateEmployeeComponent implements OnInit {
       this.sortSkillList();
     });
     this.httpClient.get<IDepartment[]>
-    (Constants.BASE_URL + Constants.DEPARTMENT_URL + Constants.SEARCH_DEPARTMENT + 'IT')
+    (Constants.BASE_URL + Constants.DEPARTMENT_URL)
     .subscribe((departmentList: IDepartment[]) => {
       this.departmentList = departmentList;
     });
@@ -217,7 +217,7 @@ export class CreateEmployeeComponent implements OnInit {
             addressType: 'current',
             city: this.thirdFormGroup.value.currentCity,
             country: this.thirdFormGroup.value.currentCountry,
-            employeeId: this.empIdPrefix + this.firstFormGroup.value.employeeId,
+            employeeWissenId: this.empIdPrefix + this.firstFormGroup.value.employeeWissenId,
             flatNo: this.thirdFormGroup.value.currentFlat,
             pincode: this.thirdFormGroup.value.currentPinCode,
             state: this.thirdFormGroup.value.currentState,
@@ -228,7 +228,7 @@ export class CreateEmployeeComponent implements OnInit {
             addressType: 'permanent',
             city: this.thirdFormGroup.getRawValue().permanentCity,
             country: this.thirdFormGroup.getRawValue().permanentCountry,
-            employeeId: this.empIdPrefix + this.firstFormGroup.value.employeeId,
+            employeeWissenId: this.empIdPrefix + this.firstFormGroup.value.employeeWissenId,
             flatNo: this.thirdFormGroup.getRawValue().permanentFlat,
             pincode: this.thirdFormGroup.getRawValue().permanentPinCode,
             state: this.thirdFormGroup.getRawValue().permanentState,
@@ -248,7 +248,7 @@ export class CreateEmployeeComponent implements OnInit {
         },
         dob: this.employeeService.formatDateSelected(this.firstFormGroup.value.dob),
         doj: this.employeeService.formatDateSelected(this.secondFormGroup.value.doj),
-        employeeId: this.empIdPrefix + this.firstFormGroup.value.employeeId,
+        employeeWissenId: this.empIdPrefix + this.firstFormGroup.value.employeeWissenId,
         email: this.firstFormGroup.value.email + this.emailSuffix,
         employeeAccountDTO: {
           pan: this.secondFormGroup.value.pan,
@@ -289,14 +289,13 @@ export class CreateEmployeeComponent implements OnInit {
       });
     });
     let found: boolean;
-    console.log("saveData:", sendData);
     this.https
       .httpPostWithHeader(this.apiList.createEmployee, sendData)
       .subscribe(
         (res: any) => {
           let data = res[0].employeeResponse;
           this.employeeService.employeeList.forEach((employee, index) => {
-            if (employee.empId === data.empId) {
+            if (employee.employeeWissenId === data.employeeWissenId) {
               this.employeeService.employeeList[index] = data;
               this.employeeService.employeeList = [
                 ...this.employeeService.employeeList,
