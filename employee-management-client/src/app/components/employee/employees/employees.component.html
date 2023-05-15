@@ -35,7 +35,7 @@
       </ng-container>
       <ng-container matColumnDef="primaryPhoneNumber">
         <mat-header-cell *matHeaderCellDef mat-sort-header><b>Phone Number</b></mat-header-cell>
-        <mat-cell *matCellDef="let element"><span class="ellipsis">{{ element.workPhone }}</span></mat-cell>
+        <mat-cell *matCellDef="let element"><span class="ellipsis">{{ element.primaryPhoneNumber }}</span></mat-cell>
       </ng-container>
       <ng-container matColumnDef="primaryEmergencyContactNumber">
         <mat-header-cell *matHeaderCellDef mat-sort-header><b>Emeregency Contact</b></mat-header-cell>
@@ -47,9 +47,9 @@
         <mat-header-cell *matHeaderCellDef mat-sort-header><b>Blood Group</b></mat-header-cell>
         <mat-cell *matCellDef="let element"><span class="ellipsis">{{ element.bloodGroup }}</span></mat-cell>
       </ng-container>
-      <ng-container matColumnDef="employeeId">
+      <ng-container matColumnDef="employeeWissenId">
         <mat-header-cell *matHeaderCellDef mat-sort-header><b>Employee ID</b></mat-header-cell>
-        <mat-cell *matCellDef="let element"><span class="ellipsis">{{ element.empId }}</span></mat-cell>
+        <mat-cell *matCellDef="let element"><span class="ellipsis">{{ element.employeeWissenId }}</span></mat-cell>
       </ng-container>
       <ng-container matColumnDef="experience">
         <mat-header-cell *matHeaderCellDef mat-sort-header><b>Experience No of Years</b></mat-header-cell>

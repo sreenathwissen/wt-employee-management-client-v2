@@ -14,7 +14,7 @@ import { CreateEmployeeComponent } from '../create-employee/create-employee.comp
 export class EmployeesComponent implements OnInit {
   employees: IEmployee[] = [];
   displayedColumns: string[] = [
-    'employeeId',
+    'employeeWissenId',
     'firstName',
     'lastName',
     'dob',
@@ -76,7 +76,7 @@ export class EmployeesComponent implements OnInit {
     dialogConfig.width = '60%';
     this.dialog.open(CreateEmployeeComponent, dialogConfig);
     this.https
-      .httpGetWithHeader(this.apiList.getEmployee, 'employeeId=' + row.empId)
+      .httpGetWithHeader(this.apiList.getEmployee, 'employeeWissenId=' + row.employeeWissenId)
       .subscribe((resp: any) => {
         let employeeData = resp.responseData;
         this.service.firstFormGroup.setValue(

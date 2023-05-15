@@ -68,7 +68,7 @@
         </mat-form-field>
         <mat-form-field>
           <mat-label>Employee ID*</mat-label>
-          <input type="text" matInput formControlName="employeeId" />
+          <input type="text" matInput formControlName="employeeWissenId" />
           <div matPrefix aria-readonly="true" class="mat-fix">{{empIdPrefix}}</div>
         </mat-form-field>
         <mat-form-field>
@@ -388,7 +388,7 @@
       <mat-grid-list cols="2" rowHeight="2rem">
         <mat-grid-tile class="justify-right">Employee ID</mat-grid-tile>
         <mat-grid-tile class="justify-left">{{
-          this.empIdPrefix + firstFormGroup.value.employeeId
+          this.empIdPrefix + firstFormGroup.value.employeeWissenId
         }}</mat-grid-tile>
       </mat-grid-list>
       <mat-grid-list cols="2" rowHeight="2rem">
